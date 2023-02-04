@@ -1,4 +1,5 @@
 /.next
+/.husky
 /docs
 /node_modules
 /prisma

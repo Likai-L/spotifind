@@ -26,6 +26,14 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: ['react'],
+  ignorePatterns: [
+    '/.next',
+    '/.husky',
+    '/docs',
+    '/node_modules',
+    '/prisma',
+    '*.json'
+  ],
   rules: {
     // Possible errors
     'no-console': 'warn',
