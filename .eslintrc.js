@@ -1,6 +1,7 @@
 const prettierConfig = require('./.prettierrc');
 
 module.exports = {
+  root: true,
   env: {
     browser: true,
     commonjs: true,
@@ -53,6 +54,7 @@ module.exports = {
     'prefer-const': 'error',
     // Imports
     'import/prefer-default-export': 'off',
+    'import/no-unresolved': [0, { caseSensitive: false }],
     'sort-imports': [
       'error',
       {
