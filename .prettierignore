@@ -1,0 +1,5 @@
+/.next
+/docs
+/node_modules
+/prisma
+*.json

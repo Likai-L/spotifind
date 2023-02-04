@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "pnpm prettier --write ."
+    "lint:fix": "next lint --fix",
+    "format": "npx prettier --write ."
   },
   "dependencies": {
     "@next/font": "13.1.6",
