@@ -14,10 +14,13 @@ const textColor = {
 
 const backgroundColor = {
   primary: generateColorClass('bg-primary'),
-  secondary: generateColorClass('bg-secondary'),
-  main: generateColorClass('bg-main'),
+  secondary: generateColorClass('bg-secondary')
+};
+
+const backgroundImage = {
   nav: generateColorClass('bg-nav'),
-  button: generateColorClass('bg-button')
+  button: generateColorClass('bg-button'),
+  main: generateColorClass('bg-main')
 };
 
 module.exports = {
@@ -31,7 +34,8 @@ module.exports = {
     ...defaultTheme,
     extend: {
       textColor,
-      backgroundColor
+      backgroundColor,
+      backgroundImage
     }
   },
   plugins: []
