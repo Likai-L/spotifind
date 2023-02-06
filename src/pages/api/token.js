@@ -1,11 +1,11 @@
 const querystring = require('querystring');
 const axios = require('axios');
 
-const redirectUri = 'http://localhost:3000/api/token';
+const redirectUri = process.env.REDIRECT_URI;
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const code = req.query.code || null;
   // const state = req.query.state || null;
   if (code) {
@@ -27,8 +27,8 @@ export default function handler(req, res) {
         headers: authOptions.headers
       })
       .then(response => {
-        console.log('success', response.data);
         res.status(200).json(response.data);
-      });
+      })
+      .catch(err => console.log(err.message));
   }
 }
