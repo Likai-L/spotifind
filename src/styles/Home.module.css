@@ -6,3 +6,8 @@
   padding: 6rem;
   min-height: 100vh;
 }
+
+.map{
+  width:50vw;
+  height:40rem;
+}
