@@ -6,7 +6,7 @@ export default function Button(props) {
   return (
     <Link href={path} target={target}>
       <button
-        className="btn bg-button text-primary font-bold py-2 px-4 rounded-2xl"
+        className="btn bg-button text-primary font-bold text-xl py-2 px-4 rounded-2xl"
         type="button"
         {...props}>
         {content}
