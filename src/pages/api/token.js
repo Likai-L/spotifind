@@ -1,19 +1,24 @@
 // const querystring = require('querystring');
 const axios = require('axios');
 
-const redirectUri = process.env.REDIRECT_URI;
-const clientId = process.env.SPOTIFY_CLIENT_ID;
+const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+const redirectUri = process.env.NEXT_PUBLIC_REDIRECT_URI;
 
 export default async function handler(req, res) {
-  const code = req.query.code || null;
+  console.log('🔥request came through');
+  const code = req.body.authCode || null;
   if (!code) {
-    res.status(400).jason({
+    console.log('🔥code undefined');
+    res.status(401).json({
       code: null,
       message: 'Missing required query: authentication code'
     });
     return;
   }
+  console.log('🔥reached authOptions!');
+  console.log(redirectUri);
+  console.log(typeof code, code.length, code);
   const authOptions = {
     body: {
       code,
@@ -27,6 +32,7 @@ export default async function handler(req, res) {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   };
+  console.log('🔥reached axios!');
   axios
     .post('https://accounts.spotify.com/api/token', authOptions.body, {
       headers: authOptions.headers
@@ -34,5 +40,5 @@ export default async function handler(req, res) {
     .then(response => {
       res.status(200).json(response.data);
     })
-    .catch(err => console.log(err.message));
+    .catch(err => console.log(err.response.data));
 }
