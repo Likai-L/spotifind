@@ -8,7 +8,10 @@ const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 export default async function handler(req, res) {
   const code = req.query.code || null;
   if (!code) {
-    res.redirect('/');
+    res.status(400).jason({
+      code: null,
+      message: 'Missing required query: authentication code'
+    });
     return;
   }
   const authOptions = {
