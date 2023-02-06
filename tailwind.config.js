@@ -17,6 +17,7 @@ const backgroundColor = {
   secondary: generateColorClass('bg-secondary')
 };
 
+// Gradient backgrounds
 const backgroundImage = {
   nav: generateColorClass('bg-nav'),
   button: generateColorClass('bg-button'),
