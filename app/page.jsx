@@ -1,4 +1,5 @@
 import Button from './(button)/Button';
+import SpotifyIcon from './(nav)/(icons)/SpotifyIcon';
 
 export default function Home() {
   const clientId = process.env.SPOTIFY_CLIENT_ID;
@@ -11,11 +12,22 @@ export default function Home() {
     .split(' ')
     .join('%20')}&response_type=code&show_dialog=true`;
 
+  const buttonContent = () => {
+    return (
+      <span className="flex items-center">
+        Login With <SpotifyIcon /> Spotify
+      </span>
+    );
+  };
+
   return (
     <div className="text-green-500">
       I am Home (AKA Now Playing)
-      <a href={authUrl}>Login with Spotify</a>
-      <Button path="/songs" text="Songs" />
+      <br />
+      <br />
+      <div>
+        <Button content={buttonContent()} path={authUrl} target="_blank" />
+      </div>
     </div>
   );
 }

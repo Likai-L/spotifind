@@ -1,25 +1,15 @@
-'use client';
-
 import Link from 'next/link';
 
 export default function Button(props) {
-  const { text, path } = props;
-
-  // const redirect = e => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  // };
+  const { content, path, target } = props;
 
   return (
-    <Link href={path}>
-      <div className="bg-button rounded-2xl">
-        <button
-          className="text-primary w-auto h-15"
-          // onClick={redirect}
-          type="button">
-          {text}
-        </button>
-      </div>
+    <Link href={path} target={target}>
+      <button
+        className="btn bg-button text-primary font-bold py-2 px-4 rounded-2xl"
+        type="button">
+        {content}
+      </button>
     </Link>
   );
 }
