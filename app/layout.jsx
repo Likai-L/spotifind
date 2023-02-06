@@ -1,4 +1,5 @@
 import '@/styles/global.css';
+import styles from '@/styles/Home.module.css';
 import Sidebar from './(nav)/Sidebar';
 
 export default function RootLayout({ children }) {
@@ -13,7 +14,9 @@ export default function RootLayout({ children }) {
         <div className="h-screen flex flex-row justify-start">
           <Sidebar />
           {/* Main content will be inside children here */}
-          <div className="bg-main text-primary flex-1">{children}</div>
+          <div className={`bg-main text-primary flex-1 ${styles.main}`}>
+            {children}
+          </div>
         </div>
       </body>
     </html>

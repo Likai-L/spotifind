@@ -36,7 +36,7 @@ module.exports = {
   ],
   rules: {
     // Possible errors
-    'no-console': 'warn',
+    'no-console': 'off',
     // Best practices
     'dot-notation': 'error',
     'no-else-return': 'error',
