@@ -1,16 +1,18 @@
 'use client';
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from '@/styles/Home.module.css';
- import { getOrCreateChat } from 'react-chat-engine';
+import { getOrCreateChat } from 'react-chat-engine';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
+//better to import this way, otherwise importting regularly may cause error if api is not yet ready?
 const ChatEngine = dynamic(() =>
   import("react-chat-engine").then((module) => module.ChatEngine)
 );
+
 export default function Messages() {
   const [username, setUsername] = useState('');
- 
 
+  //with maybe a little modification this function can be called so easily to 
+  //create a new chat by passing in dynamic credentials
   function createDirectChat(creds) {
     getOrCreateChat(
       creds,
@@ -41,7 +43,6 @@ export default function Messages() {
         userName='Larsy'
         userSecret='123qwe'
         renderNewChatForm={(creds) => renderChatForm(creds)}
-        onNewMessage={console.log('new message')}
       />
     </div>);
 }
