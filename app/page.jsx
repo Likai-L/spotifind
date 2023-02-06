@@ -12,7 +12,7 @@ export default function Home() {
     .split(' ')
     .join('%20')}&response_type=code&show_dialog=true`;
 
-  const buttonContent = () => {
+  const loginButtonContent = () => {
     return (
       <span className="flex items-center">
         Login With <SpotifyIcon /> Spotify
@@ -26,7 +26,7 @@ export default function Home() {
       <br />
       <br />
       <div>
-        <Button content={buttonContent()} path={authUrl} target="_blank" />
+        <Button content={loginButtonContent()} path={authUrl} target="_blank" />
       </div>
     </div>
   );
