@@ -1,5 +1,9 @@
-import styles from '@/styles/Home.module.css';
+import Button from '../(button)/Button';
 
-export default function Songs() {
-  return <div className={`text-green-500 ${styles.main}`}>Songs</div>;
+export default function Home() {
+  return (
+    <div className="">
+      <Button content="Home" path="/" />
+    </div>
+  );
 }
