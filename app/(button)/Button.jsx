@@ -12,9 +12,9 @@ export default function Button(props) {
 
   return (
     <Link href={path}>
-      <div className="bg-button">
+      <div className="bg-button rounded-2xl">
         <button
-          className="text-primary w-auto h-15 rounded-2xl"
+          className="text-primary w-auto h-15"
           // onClick={redirect}
           type="button">
           {text}
