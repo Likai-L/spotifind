@@ -1,5 +1,5 @@
 import '@/styles/global.css';
-import SideBar from './SideBar';
+import Sidebar from './(nav)/Sidebar';
 
 export default function RootLayout({ children }) {
   return (
@@ -10,8 +10,11 @@ export default function RootLayout({ children }) {
       */}
       <head />
       <body>
-        <SideBar />
-        {children}
+        <div className="h-screen flex flex-row justify-start">
+          <Sidebar />
+          {/* Main content will be inside children here */}
+          <div className="bg-main text-primary flex-1">{children}</div>
+        </div>
       </body>
     </html>
   );
