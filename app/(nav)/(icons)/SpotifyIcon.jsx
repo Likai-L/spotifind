@@ -1,7 +1,6 @@
 export default function SpotifyIcon({ ...rest }) {
   return (
     <svg
-      className="mx-1"
       fill="none"
       height={35}
       viewBox="0 0 35 36"

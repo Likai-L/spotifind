@@ -34,7 +34,7 @@ export default function Home() {
   const loginButtonContent = () => {
     return (
       <span className="flex items-center">
-        Login With <SpotifyIcon /> Spotify
+        Login With <SpotifyIcon className="mx-1" /> Spotify
       </span>
     );
   };
