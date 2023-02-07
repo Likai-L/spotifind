@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Button from './(button)/Button';
 import SpotifyIcon from './(nav)/(icons)/SpotifyIcon';
+import axios from 'axios';
 
 export default function Home() {
   const [accessToken, setAccessToken] = useState();
@@ -19,6 +20,16 @@ export default function Home() {
       setExpiresIn(searchParams.get('expires_in'));
     }
   }, []);
+
+  // when refresh token changes, set an interval of 55 minutues to the refresh access token
+  useEffect(() => {
+    const refresh = setInterval(() => {
+      axios(`/api/refresh_token/?refresh_token=${refreshToken}`)
+        .then(res => setAccessToken(res.data.access_token))
+        .catch(err => console.log(err));
+    }, 3300000); // to test, change this to, eg, 10000
+    return () => clearInterval(refresh);
+  }, [refreshToken]);
 
   const loginButtonContent = () => {
     return (
