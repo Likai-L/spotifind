@@ -1,3 +1,5 @@
+/* Chat engine has a whole bunch of classes set up already for changing styling, so can't really use TailWind unfortunately */
+
 .ce-chats-container{
   background-color: #36393F !important;
 }
