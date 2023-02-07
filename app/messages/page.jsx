@@ -1,7 +1,7 @@
 'use client';
 
 // This will use useContext when we have more set up in our app
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './messages.css';
 import { getOrCreateChat } from 'react-chat-engine';
 import dynamic from 'next/dynamic';
