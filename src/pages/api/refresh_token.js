@@ -7,7 +7,7 @@ const querystring = require('querystring');
 
 export default function handler(req, res) {
   const refresh_token = req.query.refresh_token || null;
-  if (!refreshToken) {
+  if (!refresh_token) {
     res.status(400).json({ error: 'No refresh token provided' });
     return;
   }
