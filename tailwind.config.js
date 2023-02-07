@@ -27,7 +27,6 @@ const backgroundImage = {
 const fontFamily = {
   primary: generateColorClass('font-primary')
 };
-
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
