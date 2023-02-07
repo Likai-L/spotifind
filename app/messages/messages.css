@@ -66,3 +66,10 @@
 #ce-ice-breaker-gif{
   display:none;
 }
+.ce-chats-container span{
+  color:	#CBC3E3 !important;
+}
+.ce-active-chat-card{
+  border:2px solid rgb(217,217,217) !important;
+  background-color: transparent !important;
+}
