@@ -4,6 +4,7 @@ const axios = require('axios');
 const redirectUri = process.env.REDIRECT_URI;
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+const querystring = require('querystring');
 
 export default async function handler(req, res) {
   const code = req.query.code || null;
@@ -30,7 +31,7 @@ export default async function handler(req, res) {
       headers: authOptions.headers
     })
     .then(response => {
-      res.status(200).json(response.data);
+      res.redirect(`/?${querystring.stringify(response.data)}`);
     })
     .catch(err => console.log(err.message));
 }
