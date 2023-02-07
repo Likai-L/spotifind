@@ -4,26 +4,45 @@ datasource db {
   url      = env("DB_URL")
 }
 
+// Initialize by running 'npx prisma generate'
+// import { PrismaClient } from './prisma/generated/prisma-client-js
+// const prisma = new PrismaClient()
+
 generator client {
   provider = "prisma-client-js"
   output   = "./generated/prisma-client-js"
 }
 
-// model Message {
-//   id            String     @default(cuid()) @id
-//   sender_id     User       @relation(references: [id])
-//   receiver_id   User
-//   published     Boolean @default(false)
-//   author        User?   @relation(fields: [authorId], references: [id])
-//   authorId      String?
-// }
+model User {
+  id                String    @id @default(cuid())
+  spotifyUserUri    String    @unique @map(name: "spotify_user_uri")
+  username          String    @unique
+  profilePictureUrl String    @map(name: "profile_picture_url")
+  createdAt         DateTime  @default(now()) @map(name: "created_at")
+  updatedAt         DateTime  @updatedAt @map(name: "updated_at")
+  Comment           Comment[]
 
-// model User {
-//   id            String       @default(cuid()) @id
-//   name          String?
-//   email         String?   @unique
-//   createdAt     DateTime  @default(now()) @map(name: "created_at")
-//   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-//   posts         Post[]
-//   @@map(name: "users")
-// }
+  @@map(name: "users")
+}
+
+model Song {
+  id             String    @id @default(cuid())
+  name           String
+  artists        String[]
+  spotifySongUri String    @unique @map(name: "spotify_song_uri")
+  Comment        Comment[]
+
+  @@map(name: "songs")
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  user_id   User     @relation(references: [id], fields: [userId])
+  userId    String
+  song_id   Song     @relation(references: [id], fields: [songId])
+  songId    String
+  text      String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+
+  @@map(name: "comments")
+}
