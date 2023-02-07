@@ -24,6 +24,10 @@ const backgroundImage = {
   main: generateColorClass('bg-main')
 };
 
+const fontFamily = {
+  primary: generateColorClass('font-primary')
+};
+
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
@@ -36,7 +40,8 @@ module.exports = {
     extend: {
       textColor,
       backgroundColor,
-      backgroundImage
+      backgroundImage,
+      fontFamily
     }
   },
   plugins: []
