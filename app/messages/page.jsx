@@ -1,8 +1,10 @@
 'use client';
 import React, { useState, useEffect, useContext } from 'react';
 import styles from '@/styles/Home.module.css';
+import './messages.css'
 import { getOrCreateChat } from 'react-chat-engine';
 import dynamic from 'next/dynamic';
+
 //better to import this way, otherwise importting regularly may cause error if api is not yet ready?
 const ChatEngine = dynamic(() =>
   import("react-chat-engine").then((module) => module.ChatEngine)
@@ -25,20 +27,21 @@ export default function Messages() {
     return (
       <div>
         <input
+          className={"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}
           placeholder='Username'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <button onClick={() => createDirectChat(creds)}>
+        <button className={'text-white'} onClick={() => createDirectChat(creds)}>
           Create
         </button>
       </div>
     );
   }
   return (
-    <div className={"text-blue--600 w-[70vw]"}>Messages
+    <div className={"w-[65vw]"}>
       <ChatEngine
-        height="70vh"
+        height="80vh"
         projectID='f06a82ab-ee91-4d7d-9b6d-90b79d3392ca'
         userName='Larsy'
         userSecret='123qwe'
