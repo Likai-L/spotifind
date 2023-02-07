@@ -28,13 +28,13 @@ export default function Messages() {
     return (
       <div>
         <input
-          className="border text-gray-900 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 dark:text-white focus:ring-blue-500 focus:border-blue-500"
+          className="font-primary border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
           onChange={e => setUsername(e.target.value)}
           placeholder="Find by username"
           value={username}
         />
         <button
-          className="text-white text-lg mx-2 my-4"
+          className="font-primary text-white text-lg mx-2 my-4"
           onClick={() => createDirectChat(creds)}
           type="submit">
           Create
