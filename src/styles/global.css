@@ -12,7 +12,7 @@
   }
 
   * {
-  box-sizing: border-box;
+    box-sizing: border-box;
   }
 
   /* Global variables, passed through Tailwind config */
@@ -24,13 +24,20 @@
     --bg-secondary: rgba(69, 54, 96, 0.4);
 
     /* Main app background gradient */
-    --bg-main: linear-gradient(180deg, #44355E 0%, rgba(68, 53, 94, 0) 100%);
+    --bg-main: linear-gradient(180deg, #44355e 0%, rgba(68, 53, 94, 0) 100%);
 
     /* Sidebar background gradient */
-    --bg-nav: linear-gradient(180deg, #1C1419 0%, #261D2B 42.71%, #453660 100%);
+    --bg-nav: linear-gradient(180deg, #1c1419 0%, #261d2b 42.71%, #453660 100%);
 
     /* Background gradient for buttons */
-    --bg-button: linear-gradient(94.56deg, rgba(91, 39, 109, 0.7) 3.67%, rgba(150, 99, 161, 0.669531) 52.31%, rgba(224, 164, 233, 0.65) 96.14%);
+    --bg-button: linear-gradient(
+      94.56deg,
+      rgba(91, 39, 109, 0.7) 3.67%,
+      rgba(150, 99, 161, 0.669531) 52.31%,
+      rgba(224, 164, 233, 0.65) 96.14%
+    );
+
+    --font-primary: Poppins, sans-serif !important;
 
     --text-primary: rgba(245, 245, 245, 1);
     --text-secondary: rgba(136, 131, 131, 1);
@@ -39,6 +46,6 @@
 
   .nav-item-active {
     box-shadow: 0px 0px 10px 0px rgba(244, 205, 238, 1);
-    text-shadow: 0px 0px 10px #F4CDEE;
+    text-shadow: 0px 0px 10px #f4cdee;
   }
 }
