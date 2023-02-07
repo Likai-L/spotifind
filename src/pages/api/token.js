@@ -8,27 +8,26 @@ const querystring = require('querystring');
 
 export default async function handler(req, res) {
   const code = req.query.code || null;
-  // const state = req.query.state || null;
   if (!code) {
     res.status(400).json({ error: 'No auth code provided' });
     return;
   }
-  const authOptions = {
-    body: {
-      code,
-      redirect_uri: redirectUri,
-      grant_type: 'authorization_code'
-    },
-    headers: {
-      Authorization: `Basic ${Buffer.from(
-        `${clientId}:${clientSecret}`
-      ).toString('base64')}`,
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
+  const url = 'https://accounts.spotify.com/api/token';
+  const data = {
+    code,
+    redirect_uri: redirectUri,
+    grant_type: 'authorization_code'
   };
+  const headers = {
+    Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString(
+      'base64'
+    )}`,
+    'Content-Type': 'application/x-www-form-urlencoded'
+  };
+
   axios
-    .post('https://accounts.spotify.com/api/token', authOptions.body, {
-      headers: authOptions.headers
+    .post(url, data, {
+      headers
     })
     .then(response => {
       res.redirect(`/?${querystring.stringify(response.data)}`);
