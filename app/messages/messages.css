@@ -5,12 +5,15 @@
 }
 .ce-settings {
   background-color: #36393f !important;
+  font-family: var(--font-primary) !important;
 }
 
 .ce-chat-feed-container {
   background-color: #40444b !important;
 }
-
+.ce-chat-title-text {
+  font-family: var(--font-primary) !important;
+}
 .ce-chat-title {
   background-color: #40444b !important;
 }
@@ -56,6 +59,7 @@
 }
 .ql-editor {
   color: black !important;
+  font-family: var(--font-primary) !important;
 }
 .ce-message-date-text {
   color: grey !important;
@@ -72,4 +76,11 @@
 .ce-active-chat-card {
   border: 2px solid rgb(217, 217, 217) !important;
   background-color: transparent !important;
+}
+.ce-chat-subtitle {
+  font-family: var(--font-primary) !important;
+}
+
+.ce-chat-engine {
+  font-family: var(--font-primary) !important;
 }
