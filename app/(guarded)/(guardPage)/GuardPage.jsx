@@ -3,13 +3,13 @@
 import { useGlobalContext } from 'app/(context)';
 import { useRouter } from 'next/navigation';
 
-const LANDING_PAGE = '/';
+import { LANDING } from 'public/constants/pathNames';
 
 export default function GuardPage({ children }) {
   const { accessToken } = useGlobalContext();
   const router = useRouter();
   if (!accessToken) {
-    router.push(LANDING_PAGE);
+    router.push(LANDING);
   }
 
   return children;
