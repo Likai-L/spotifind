@@ -7,7 +7,7 @@ export default function Button(props) {
   return (
     <Link href={path} prefetch={false}>
       <button
-        className={`btn bg-button text-primary font-bold rounded-2xl ${fontSizeClass} ${paddingClass}`}
+        className={`btn bg-button text-primary font-bold rounded-2xl ${fontSizeClass} ${paddingClass} button-hover-pulse`}
         type="button"
         {...props}>
         {content}

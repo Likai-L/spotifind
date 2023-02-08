@@ -1,5 +1,5 @@
-import styles from '@/styles/Home.module.css';
+import SearchBar from 'app/(searchbar)/SearchBar';
 
 export default function People() {
-  return <div className={`text-green-500 ${styles.main}`}>People</div>;
+  return <SearchBar action="/people" label="Search for a user" />;
 }

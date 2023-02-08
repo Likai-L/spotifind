@@ -6,7 +6,7 @@ export default function NavLogo() {
     <>
       <div className="flex flex-col items-center justify-between">
         <div className="flex items-center pl-1 gap-4">
-          <span className="mt-2">
+          <span className="mt-2 hover:animate-pulse">
             <Image alt="Spotifind logo" height={150} src={logo} width={150} />
           </span>
         </div>
