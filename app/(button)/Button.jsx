@@ -1,12 +1,13 @@
 import Link from 'next/link';
 
 export default function Button(props) {
-  const { content, path, fontSize } = props;
+  const { content, path, fontSize, padding } = props;
   const fontSizeClass = fontSize || 'text-xl';
+  const paddingClass = padding || 'py-2 px-4';
   return (
     <Link href={path} prefetch={false}>
       <button
-        className={`btn bg-button text-primary font-bold py-2 px-4 rounded-2xl ${fontSizeClass}`}
+        className={`btn bg-button text-primary font-bold rounded-2xl ${fontSizeClass} ${paddingClass}`}
         type="button"
         {...props}>
         {content}
