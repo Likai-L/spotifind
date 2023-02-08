@@ -14,11 +14,11 @@ export default function Home() {
 
   return (
     <div className="bg-landing min-h-screen font-primary">
-      <div className="flex flex-row justify-evenly">
-        <div>
-          <div className="text-center text-white text-5xl font-bold mt-48">
+      <div className="flex flex-row justify-center">
+        <div className="mr-24">
+          <div className="text-center text-white text-5xl font-bold mt-40">
             <p>Find Your Music Soul Mates</p>
-            <div className="mt-12">
+            <div className="mt-6">
               <span>With</span>
               <Image
                 alt="Spotifind logo"
@@ -28,17 +28,25 @@ export default function Home() {
               <span>SpotiFind</span>
             </div>
           </div>
-          <div className="mt-16 flex  justify-center">
+          <div className="mt-8 flex  justify-center">
             <LoginButton />
           </div>
         </div>
-
         <PeopleListening />
       </div>
-      <div className="flex flex-row">
-        <Phone />
-        <PeoplePlaying />
-        <PeopleDancing />
+      <div className="flex flex-row justify-evenly">
+        <div className="text-center text-white text-2xl font-bold">
+          <Phone />
+          <p>Share your thoughts</p>
+        </div>
+        <div className="text-center text-white text-2xl font-bold">
+          <PeoplePlaying />
+          <p>Find your people</p>
+        </div>
+        <div className="text-center text-white text-2xl font-bold">
+          <PeopleDancing />
+          <p>Enjoy music together</p>
+        </div>
       </div>
     </div>
   );
