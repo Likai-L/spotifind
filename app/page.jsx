@@ -14,21 +14,23 @@ export default function Home() {
 
   return (
     <div className="bg-landing min-h-screen font-primary">
-      <div className="flex flex-row justify-around">
+      <div className="flex flex-row justify-evenly">
         <div>
-          <div className="text-center text-white text-5xl font-bold">
+          <div className="text-center text-white text-5xl font-bold mt-48">
             <p>Find Your Music Soul Mates</p>
-            <div>
+            <div className="mt-12">
               <span>With</span>
               <Image
                 alt="Spotifind logo"
-                src={logo}
                 className="inline-block w-20 ml-2"
+                src={logo}
               />
               <span>SpotiFind</span>
             </div>
           </div>
-          <LoginButton />
+          <div className="mt-12 flex  justify-center">
+            <LoginButton />
+          </div>
         </div>
 
         <PeopleListening />
