@@ -21,7 +21,7 @@ export default function useAuth() {
   useEffect(() => {
     const refresh = setInterval(() => {
       if (credentials.refreshToken) {
-        axios(`/api/refresh_token/?refresh_token=${credentials.refreshToken}}`)
+        axios(`/api/refresh_token/?refresh_token=${credentials.refreshToken}`)
           .then(res => {
             setCredentials({
               ...credentials,
