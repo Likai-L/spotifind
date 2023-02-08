@@ -17,7 +17,8 @@ const backgroundColor = {
 const backgroundImage = {
   nav: 'var(--bg-nav)',
   button: 'var(--bg-button)',
-  main: 'var(--bg-main)'
+  main: 'var(--bg-main)',
+  landing: 'var(--bg-landing)'
 };
 
 const fontFamily = {

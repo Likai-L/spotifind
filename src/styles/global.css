@@ -28,6 +28,9 @@
     /* Main app background gradient */
     --bg-main: linear-gradient(180deg, #44355e 0%, rgba(68, 53, 94, 0) 100%);
 
+    /* Landing page background gradient */
+    --bg-landing: linear-gradient(144.29deg, #1c0f33 14.36%, #694596 83.71%);
+
     /* Sidebar background gradient */
     --bg-nav: linear-gradient(180deg, #1c1419 0%, #261d2b 42.71%, #453660 100%);
 
@@ -40,7 +43,7 @@
 
     --font-primary: Poppins, sans-serif;
 
-    /* Text colors */ 
+    /* Text colors */
     --text-primary: rgba(245, 245, 245, 1);
     --text-secondary: rgba(136, 131, 131, 1);
     --text-nav: rgba(255, 255, 255, 0.8);
@@ -53,32 +56,45 @@
 
   /* Animations */
   .fade-in-down {
-	  animation: fadeInDown 0.5s ease-out;
-  	opacity: 1;
+    animation: fadeInDown 0.5s ease-out;
+    opacity: 1;
+  }
+  .animate-fast-pulse {
+    animation: pulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
   }
 
   @keyframes fadeInDown {
     from {
-    	opacity: 0;
+      opacity: 0;
       transform: translateY(-50%);
     }
     to {
-   	  opacity: 1;
+      opacity: 1;
       transform: translateY(0);
     }
   }
 
   .fade-in {
-	  animation: fadeIn 0.5s ease-out;
-  	opacity: 1;
+    animation: fadeIn 0.5s ease-out;
+    opacity: 1;
   }
 
   @keyframes fadeIn {
     from {
-    	opacity: 0;
+      opacity: 0;
     }
     to {
-   	  opacity: 1;
+      opacity: 1;
     }
   }
 
@@ -100,31 +116,32 @@
   }
 
   .fade-out {
-	  animation: fadeOut 0.3s ease-in;
-  	opacity: 0;
+    animation: fadeOut 0.3s ease-in;
+    opacity: 0;
   }
 
   @keyframes fadeOut {
     from {
-    	opacity: 1;
+      opacity: 1;
     }
     to {
-   	  opacity: 0;
+      opacity: 0;
     }
   }
 
   .button-hover-pulse:hover {
-    animation: buttonPulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: buttonPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   @keyframes buttonPulse {
-    0%, 100% {
+    0%,
+    100% {
       box-shadow: 0 0 8px 2px rgba(90, 79, 116, 0.2);
     }
     50% {
       box-shadow: 0 0 8px 2px rgba(90, 79, 116, 0.6);
       opacity: 0.9;
-      transform: scale(1.01);
+      transform: scale(1.03);
     }
   }
 }
