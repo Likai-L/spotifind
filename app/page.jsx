@@ -38,7 +38,7 @@ export default function Home() {
         <div className="text-center text-white text-2xl font-bold w-80">
           <Phone />
           <p className="mt-6">Share your thoughts</p>
-          <p className="mt-6 text-lg font-medium">
+          <p className="mt-6 text-lg font-light text-left">
             Find your favorite songs, share your insights and feelings in the
             comment sections!
           </p>
@@ -46,7 +46,7 @@ export default function Home() {
         <div className="text-center text-white text-2xl font-bold w-80">
           <PeoplePlaying />
           <p className="mt-6">Find your people</p>
-          <p className="mt-6 text-lg font-medium">
+          <p className="mt-6 text-lg font-light text-left">
             Find people around you who are also interested in your favorite
             songs.{' '}
           </p>
@@ -54,9 +54,8 @@ export default function Home() {
         <div className="text-center text-white text-2xl font-bold w-80">
           <PeopleDancing />
           <p className="mt-12">Enjoy music together</p>
-          <p className="mt-6 text-lg font-medium">
-            Message people, meet up and listen together! Music is more enjoyable
-            when someone who gets you is dancing with you!
+          <p className="mt-6 text-lg font-light text-left">
+            Message people, meet up and listen together!
           </p>
         </div>
       </div>
