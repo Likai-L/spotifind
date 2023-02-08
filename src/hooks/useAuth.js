@@ -1,12 +1,18 @@
 import { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
+import { NOW_PLAYING } from 'public/constants/pathNames';
 
 export default function useAuth() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const { credentials, setCredentials } = useGlobalContext();
   useEffect(() => {
+    if (credentials.accessToken) {
+      router.push('/now-playing');
+    }
+
     // since three query strings come together just check for one
     if (searchParams.get('access_token')) {
       setCredentials({
@@ -14,6 +20,7 @@ export default function useAuth() {
         refreshToken: searchParams.get('refresh_token'),
         expiresIn: searchParams.get('expires_in')
       });
+      router.push(NOW_PLAYING);
     }
   }, []);
 
