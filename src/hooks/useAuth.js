@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
 import { NOW_PLAYING } from 'public/constants/pathNames';
 
-export default function useAuth() {
-  const searchParams = useSearchParams();
+export default function useAuth(searchParams) {
   const router = useRouter();
   const { credentials, setCredentials } = useGlobalContext();
   useEffect(() => {
