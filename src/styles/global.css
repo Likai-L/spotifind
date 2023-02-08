@@ -42,6 +42,10 @@
       rgba(175, 95, 203, 0.7) 96.14%
     );
 
+    /* Ubuntu for Logo and body, Poppins for pretty much everything else */
+    --font-primary: Ubuntu, sans-serif;
+    --font-title: Poppins, sans-serif;
+
     /* Text colors */
     --text-primary: rgba(245, 245, 245, 1);
     --text-secondary: rgba(136, 131, 131, 1);

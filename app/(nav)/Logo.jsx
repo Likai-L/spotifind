@@ -11,7 +11,7 @@ export default function NavLogo() {
           </span>
         </div>
       </div>
-      <div className="text-primary text-4xl font-bold self-center p-5 pb-5">
+      <div className="font-primary text-primary text-4xl font-bold self-center p-5 pb-5">
         SpotiFind
       </div>
     </>
