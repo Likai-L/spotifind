@@ -58,7 +58,7 @@
     opacity: 1;
   }
   .animate-fast-pulse {
-    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: pulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   @keyframes pulse {
