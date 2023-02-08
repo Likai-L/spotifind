@@ -1,4 +1,4 @@
-import Button from '../(button)/Button';
+import Button from 'app/(button)/Button';
 
 export default function Home() {
   return (

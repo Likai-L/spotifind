@@ -1,25 +1,23 @@
-// const querystring = require('querystring');
 const axios = require('axios');
 
-const redirectUri = process.env.REDIRECT_URI;
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-const querystring = require('querystring');
 
-export default async function handler(req, res) {
-  const code = req.query.code || null;
+export default function handler(req, res) {
+  const refreshToken = req.query.refresh_token || null;
 
-  if (!code) {
-    res.status(400).json({ error: 'No auth code provided' });
+  if (!refreshToken) {
+    res.status(400).json({ error: 'No refresh token provided' });
     return;
   }
 
   const url = 'https://accounts.spotify.com/api/token';
+
   const data = {
-    code,
-    redirect_uri: redirectUri,
-    grant_type: 'authorization_code'
+    refresh_token: refreshToken,
+    grant_type: 'refresh_token'
   };
+
   const headers = {
     Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString(
       'base64'
@@ -28,11 +26,9 @@ export default async function handler(req, res) {
   };
 
   axios
-    .post(url, data, {
-      headers
-    })
+    .post(url, data, { headers })
     .then(response => {
-      res.redirect(`/?${querystring.stringify(response.data)}`);
+      res.send({ access_token: response.data.access_token });
     })
     .catch(err => console.log(err.message));
 }

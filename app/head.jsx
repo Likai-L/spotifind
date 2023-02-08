@@ -5,6 +5,7 @@ export default function Head() {
     <>
       <DefaultTags />
       <title>SpotiFind</title>
+      <link href="/images/favicon.png" rel="icon" type="image/png" />
     </>
   );
 }

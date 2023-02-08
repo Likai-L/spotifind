@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,17 +7,17 @@
 @layer base {
   html,
   body {
+    background: rgba(28, 20, 25, 1);
     padding: 0;
     margin: 0;
     font-family: Poppins, sans-serif;
-    background: rgba(28, 20, 25, 1);
   }
 
   * {
     box-sizing: border-box;
   }
 
-  /* Global variables, passed through Tailwind config */
+    /* Global variables, passed through Tailwind config */
   :root {
     /* Primary for main view components */
     --bg-primary: rgba(29, 21, 27, 0.3);
@@ -26,19 +28,22 @@
     /* Main app background gradient */
     --bg-main: linear-gradient(180deg, #44355e 0%, rgba(68, 53, 94, 0) 100%);
 
+    /* Landing page background gradient */
+    --bg-landing: linear-gradient(144.29deg, #1c0f33 14.36%, #694596 83.71%);
+
     /* Sidebar background gradient */
     --bg-nav: linear-gradient(180deg, #1c1419 0%, #261d2b 42.71%, #453660 100%);
 
     /* Background gradient for buttons */
     --bg-button: linear-gradient(
       94.56deg,
-      rgba(91, 39, 109, 0.7) 3.67%,
-      rgba(150, 99, 161, 0.669531) 52.31%,
-      rgba(224, 164, 233, 0.65) 96.14%
+      rgba(116, 91, 189, 0.65) 3.67%,
+      rgba(175, 95, 203, 0.7) 96.14%
     );
 
-    --font-primary: Poppins, sans-serif !important;
+    --font-primary: Poppins, sans-serif;
 
+    /* Text colors */
     --text-primary: rgba(245, 245, 245, 1);
     --text-secondary: rgba(136, 131, 131, 1);
     --text-nav: rgba(255, 255, 255, 0.8);
@@ -49,7 +54,94 @@
     text-shadow: 0px 0px 10px #f4cdee;
   }
 
-  button:hover {
-    box-shadow: 0px 0px 8px 2px rgba(90, 79, 116, 0.8);
+  /* Animations */
+  .fade-in-down {
+    animation: fadeInDown 0.5s ease-out;
+    opacity: 1;
+  }
+  .animate-fast-pulse {
+    animation: pulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+    opacity: 1;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fade-in-left {
+    animation: fadeInLeft 0.5s ease-out;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translate3d(-50px, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .fade-out {
+    animation: fadeOut 0.3s ease-in;
+    opacity: 0;
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  .button-hover-pulse:hover {
+    animation: buttonPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes buttonPulse {
+    0%,
+    100% {
+      box-shadow: 0 0 8px 2px rgba(90, 79, 116, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 8px 2px rgba(90, 79, 116, 0.6);
+      opacity: 0.9;
+      transform: scale(1.03);
+    }
   }
 }

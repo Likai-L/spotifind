@@ -2,31 +2,29 @@
 
 const defaultTheme = require('tailwindcss/defaultConfig');
 
-const generateColorClass = variable => {
-  return `var(--${variable})`;
-};
-
 const textColor = {
-  primary: generateColorClass('text-primary'),
-  secondary: generateColorClass('text-secondary'),
-  nav: generateColorClass('text-nav')
+  primary: 'var(--text-primary)',
+  secondary: 'var(--text-secondary)',
+  nav: 'var(--text-nav)'
 };
 
 const backgroundColor = {
-  primary: generateColorClass('bg-primary'),
-  secondary: generateColorClass('bg-secondary')
+  primary: 'var(--bg-primary)',
+  secondary: 'var(--bg-secondary)'
 };
 
 // Gradient backgrounds
 const backgroundImage = {
-  nav: generateColorClass('bg-nav'),
-  button: generateColorClass('bg-button'),
-  main: generateColorClass('bg-main')
+  nav: 'var(--bg-nav)',
+  button: 'var(--bg-button)',
+  main: 'var(--bg-main)',
+  landing: 'var(--bg-landing)'
 };
 
 const fontFamily = {
-  primary: generateColorClass('font-primary')
+  primary: ['Poppins', 'sans-serif']
 };
+
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
