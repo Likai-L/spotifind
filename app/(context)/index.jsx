@@ -7,9 +7,11 @@ export const GlobalContext = createContext();
 export function GlobalContextProvider(props) {
   // state will be accessible globally, should be easy enough to link to spotify, there's a guide on connecting to existing stuff
   // user auth credentials
-  const [accessToken, setAccessToken] = useState();
-  const [refreshToken, setRefreshToken] = useState();
-  const [expiresIn, setExpiresIn] = useState();
+  const [credentials, setCredentials] = useState({
+    accessToken: null,
+    refreshToken: null,
+    expiresIn: null
+  });
   // spotify profile
   const [username, setUsername] = useState('');
   const { children } = props;
@@ -18,14 +20,10 @@ export function GlobalContextProvider(props) {
     () => ({
       username,
       setUsername,
-      accessToken,
-      setAccessToken,
-      refreshToken,
-      setRefreshToken,
-      expiresIn,
-      setExpiresIn
+      credentials,
+      setCredentials
     }),
-    [username, accessToken, refreshToken, expiresIn]
+    [username, credentials.accessToken]
   );
   // component provider, wraps around other components, components that are wrapped
   // have access to the context username, secret, basically which account is logged in
