@@ -22,7 +22,8 @@ const backgroundImage = {
 };
 
 const fontFamily = {
-  primary: ['Poppins', 'sans-serif']
+  title: ['Poppins', 'sans-serif'],
+  primary: ['Ubuntu', 'sans-serif']
 };
 
 module.exports = {
