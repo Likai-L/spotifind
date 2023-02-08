@@ -1,7 +1,7 @@
 import Sidebar from 'app/(nav)/Sidebar';
 import styles from '@/styles/Home.module.css';
 
-export default function DashboardLayout({
+export default function GuardedLayout({
   children // will be a page or nested layout
 }) {
   return (
