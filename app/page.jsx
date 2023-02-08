@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import LoginButton from 'app/(button)/LoginButton';
-import useAuth from '@/hooks/useAuth';
 import PeopleListening from 'app/(illustrations)/PeopleListening';
 import Phone from 'app/(illustrations)/Phone';
 import PeoplePlaying from 'app/(illustrations)/PeoplePlaying';
 import PeopleDancing from 'app/(illustrations)/PeopleDancing';
+import useAuth from '@/hooks/useAuth';
 import logo from '../public/images/logo.png';
 
 export default function Home() {
