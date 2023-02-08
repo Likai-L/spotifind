@@ -9,9 +9,8 @@ export default function useAuth(searchParams) {
   const { credentials, setCredentials } = useGlobalContext();
   useEffect(() => {
     if (credentials.accessToken) {
-      router.push('/now-playing');
+      router.push(NOW_PLAYING);
     }
-
     // since three query strings come together just check for one
     if (searchParams.get('access_token')) {
       setCredentials({
