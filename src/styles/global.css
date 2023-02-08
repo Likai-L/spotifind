@@ -57,6 +57,19 @@
     animation: fadeInDown 0.5s ease-out;
     opacity: 1;
   }
+  .animate-fast-pulse {
+    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
 
   @keyframes fadeInDown {
     from {
