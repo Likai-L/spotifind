@@ -6,6 +6,9 @@ const nextConfig = {
   // sassOptions: { // If using sass instead of postCSS
   //   includePaths: [path.join(__dirname, 'styles')]
   // },
+  images: {
+    domains: ['thumbs.dreamstime.com']
+  },
   experimental: {
     appDir: true
   }
