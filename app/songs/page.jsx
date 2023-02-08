@@ -1,9 +1,9 @@
-import Button from '../(button)/Button';
+import SearchBar from 'app/(searchbar)/SearchBar';
 
 export default function Home() {
   return (
     <div className="">
-      <Button content="Home" path="/" />
+      <SearchBar action="/songs" label="Search for a song" />
     </div>
   );
 }

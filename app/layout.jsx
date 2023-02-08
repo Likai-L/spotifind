@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
       */}
       <head />
       <body>
-        <div className="h-screen flex flex-row justify-start">
+        <div className="h-screen flex flex-row justify-start fade-in-left">
           <Sidebar />
           {/* Main content will be inside children here */}
           <div className={`bg-main text-primary flex-1 ${styles.main}`}>

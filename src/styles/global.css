@@ -49,7 +49,80 @@
     text-shadow: 0px 0px 10px #f4cdee;
   }
 
-  button:hover {
-    box-shadow: 0px 0px 8px 2px rgba(90, 79, 116, 0.8);
+  /* Animations */
+  .fade-in-down {
+	  animation: fadeInDown 0.5s ease-out;
+  	opacity: 1;
+  }
+
+  @keyframes fadeInDown {
+    from {
+    	opacity: 0;
+      transform: translateY(-50%);
+    }
+    to {
+   	  opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+	  animation: fadeIn 0.5s ease-out;
+  	opacity: 1;
+  }
+
+  @keyframes fadeIn {
+    from {
+    	opacity: 0;
+    }
+    to {
+   	  opacity: 1;
+    }
+  }
+
+  .fade-in-left {
+    animation: fadeInLeft 0.5s ease-out;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translate3d(-50px, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .fade-out {
+	  animation: fadeOut 0.3s ease-in;
+  	opacity: 0;
+  }
+
+  @keyframes fadeOut {
+    from {
+    	opacity: 1;
+    }
+    to {
+   	  opacity: 0;
+    }
+  }
+
+  .button-hover-pulse:hover {
+    animation: buttonPulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes buttonPulse {
+    0%, 100% {
+      box-shadow: 0 0 8px 2px rgba(90, 79, 116, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 8px 2px rgba(90, 79, 116, 0.6);
+      opacity: 0.9;
+      transform: scale(1.01);
+    }
   }
 }
