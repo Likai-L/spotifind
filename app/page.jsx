@@ -1,18 +1,10 @@
 'use client';
 
-import Button from './(button)/Button';
-import SpotifyIcon from './(nav)/(icons)/SpotifyIcon';
-import useAuth from '@/hooks/useAuth';
+import LoginButton from './(button)/LoginButton';
+import useAuth from '../src/hooks/useAuth';
 
 export default function Home() {
   useAuth();
-  const loginButtonContent = () => {
-    return (
-      <span className="flex items-center">
-        Login With <SpotifyIcon className="mx-1" /> Spotify
-      </span>
-    );
-  };
 
   return (
     <div className="text-green-500">
@@ -20,11 +12,7 @@ export default function Home() {
       <br />
       <br />
       <div>
-        <Button
-          content={loginButtonContent()}
-          path="/api/login"
-          target="_blank"
-        />
+        <LoginButton />
       </div>
     </div>
   );
