@@ -1,7 +1,7 @@
 export default function PeopleDancing({ ...rest }) {
   return (
     <svg
-      className="w-72"
+      className="w-72 mx-auto"
       viewBox="0 0 280 271"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
