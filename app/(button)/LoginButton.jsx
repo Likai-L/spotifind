@@ -5,7 +5,7 @@ import Button from './Button';
 export default function LoginButton() {
   return (
     <Button
-      addedClasses="text-3xl py-3 px-6"
+      addedclasses="text-3xl py-3 px-6"
       content={
         <span className="flex items-center">
           Login With <SpotifyIcon className="mx-1 ml-2" size="45" /> Spotify
