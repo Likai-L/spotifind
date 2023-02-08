@@ -11,28 +11,30 @@ function Map() {
   const position = [49.28594, -123.11129];
   const position2 = [49.28519, -123.11186];
   return (
-    <MapContainer
-      center={position}
-      className="w-1/2 h-2/4"
-      scrollWheelZoom
-      zoom={13}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={position}>
-        <Popup>
-          marker
-          <br />
-        </Popup>
-      </Marker>
-      <Marker position={position2}>
-        <Popup>
-          marker
-          <br />
-        </Popup>
-      </Marker>
-    </MapContainer>
+    <div className="min-h-[30vh] min-w-[30vw] w-3/4 h-2/3">
+      <MapContainer
+        center={position}
+        className="h-full w-full"
+        scrollWheelZoom
+        zoom={13}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={position}>
+          <Popup>
+            marker
+            <br />
+          </Popup>
+        </Marker>
+        <Marker position={position2}>
+          <Popup>
+            marker
+            <br />
+          </Popup>
+        </Marker>
+      </MapContainer>
+    </div>
   );
 }
 
