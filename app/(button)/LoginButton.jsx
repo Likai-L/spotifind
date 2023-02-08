@@ -10,7 +10,6 @@ export default function LoginButton() {
         </span>
       }
       path="/api/login"
-      prefetch={false}
     />
   );
 }
