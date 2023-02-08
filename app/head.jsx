@@ -9,7 +9,7 @@ export default function Head() {
         precedence="default"
         rel="icon"
         type="image/png"
-        href="/images/logo.png"></link>
+        href="/images/favicon.png"></link>
     </>
   );
 }
