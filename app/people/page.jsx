@@ -38,11 +38,13 @@ export default function People() {
           </button>
         </div>
         <div className="flex flex-row h-3/4 w-full overflow-x-auto overflow-y-clip items-center">
+          {showMap ? <Map /> : null}
+          <UserCard />
+          <UserCard />
           <UserCard />
           <UserCard />
           <UserCard />
         </div>
-        {showMap ? <Map /> : null}
       </footer>
     </div>
   );
