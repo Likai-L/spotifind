@@ -1,7 +1,7 @@
 export default function PeopleListening({ ...rest }) {
   return (
     <svg
-      class="w-1/3"
+      class="w-5/12"
       viewBox="0 0 575 428"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
