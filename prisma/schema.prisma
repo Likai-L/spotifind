@@ -1,11 +1,43 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated/prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DB_URL")
+}
+
+model User {
+  id                String    @id @default(cuid())
+  spotifyUserUri    String    @unique @map("spotify_user_uri")
+  username          String    @unique
+  profilePictureUrl String    @map("profile_picture_url")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  Comment           Comment[]
+
+  @@map("users")
+}
+
+model Song {
+  id             String    @id @default(cuid())
+  name           String
+  artists        String[]
+  spotifySongUri String    @unique @map("spotify_song_uri")
+  Comment        Comment[]
+
+  @@map("songs")
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  userId    String
+  songId    String
+  text      String
+  createdAt DateTime @default(now()) @map("created_at")
+  song_id   Song     @relation(fields: [songId], references: [id])
+  user_id   User     @relation(fields: [userId], references: [id])
+
+  @@map("comments")
 }

@@ -8,10 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "format": "npx prettier --write ."
+    "format": "npx prettier --write .",
+    "db:reset": "npx prisma db pull && npx prisma validate && npx prisma generate",
+    "db:push": "npx prisma validate && npx prisma generate && npx prisma db push"
   },
   "dependencies": {
     "@next/font": "13.1.6",
+    "@prisma/client": "^4.9.0",
     "axios": "^1.3.2",
     "classnames": "^2.3.2",
     "leaflet": "^1.9.3",
