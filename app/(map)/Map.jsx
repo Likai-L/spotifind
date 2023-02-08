@@ -13,7 +13,7 @@ function Map() {
   return (
     <MapContainer
       center={position}
-      className="w-[50vw] h-[40rem]"
+      className="w-1/2 h-2/4"
       scrollWheelZoom
       zoom={13}>
       <TileLayer
