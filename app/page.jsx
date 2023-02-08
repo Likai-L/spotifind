@@ -1,19 +1,13 @@
 'use client';
 
-import LoginButton from './(button)/LoginButton';
-import useAuth from '../src/hooks/useAuth';
+import { useSearchParams } from 'next/navigation';
+
+import useAuth from '@/hooks/useAuth';
+import Landing from './Landing';
 
 export default function Home() {
-  useAuth();
-
-  return (
-    <div className="text-green-500">
-      I am Home (AKA Now Playing)
-      <br />
-      <br />
-      <div>
-        <LoginButton />
-      </div>
-    </div>
-  );
+  const searchParams = useSearchParams();
+  const accessToken = searchParams.get('access_token');
+  useAuth(searchParams);
+  return <div>{accessToken ? <p>loading</p> : <Landing />}</div>;
 }

@@ -7,12 +7,18 @@ import ListeningIcon from './ListeningIcon';
 import MessageIcon from './MessageIcon';
 import MusicIcon from './MusicIcon';
 import PeopleIcon from './PeopleIcon';
+import {
+  NOW_PLAYING,
+  PEOPLE,
+  SONGS,
+  MESSAGES
+} from 'public/constants/pathNames';
 
 const menuItems = [
-  { id: 1, label: 'Now Playing', icon: ListeningIcon, path: '/' },
-  { id: 2, label: 'Find Songs', icon: MusicIcon, path: '/songs' },
-  { id: 3, label: 'Find People', icon: PeopleIcon, path: '/people' },
-  { id: 4, label: 'Messages', icon: MessageIcon, path: '/messages' }
+  { id: 1, label: 'Now Playing', icon: ListeningIcon, path: NOW_PLAYING },
+  { id: 2, label: 'Find Songs', icon: MusicIcon, path: SONGS },
+  { id: 3, label: 'Find People', icon: PeopleIcon, path: PEOPLE },
+  { id: 4, label: 'Messages', icon: MessageIcon, path: MESSAGES }
 ];
 
 export default function NavItems() {
@@ -32,7 +38,7 @@ export default function NavItems() {
       {menuItems.map(({ icon: Icon, ...menu }) => {
         return (
           <div
-            className="flex items-center cursor-pointer rounded w-full overflow-hidden whitespace-nowrap hover:animate-pulse"
+            className="flex items-center cursor-pointer rounded w-full overflow-hidden whitespace-nowrap hover:animate-fast-pulse"
             key={menu.id}>
             <Link className={getActivePathClass(menu)} href={menu.path}>
               <div className="w-10">
