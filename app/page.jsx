@@ -23,7 +23,7 @@ export default function Home() {
               <Image
                 alt="Spotifind logo"
                 src={logo}
-                className="inline-block w-20"
+                className="inline-block w-20 ml-2"
               />
               <span>SpotiFind</span>
             </div>
