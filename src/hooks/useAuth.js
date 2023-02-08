@@ -17,7 +17,7 @@ export default function useAuth() {
     }
   }, []);
 
-  // when refresh token changes, set an interval of 55 minutues to the refresh access token
+  // when refresh token changes, set an interval of 55 minutes to the refresh access token
   useEffect(() => {
     const refresh = setInterval(() => {
       if (credentials.refreshToken) {
