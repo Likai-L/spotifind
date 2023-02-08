@@ -32,9 +32,8 @@
     /* Background gradient for buttons */
     --bg-button: linear-gradient(
       94.56deg,
-      rgba(91, 39, 109, 0.7) 3.67%,
-      rgba(150, 99, 161, 0.669531) 52.31%,
-      rgba(224, 164, 233, 0.65) 96.14%
+      rgba(116, 91, 189, 0.65) 3.67%,
+      rgba(175, 95, 203, 0.7) 96.14%
     );
 
     --font-primary: Poppins, sans-serif !important;
