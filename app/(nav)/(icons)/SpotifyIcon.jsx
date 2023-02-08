@@ -1,10 +1,9 @@
-export default function SpotifyIcon({ ...rest }) {
+export default function SpotifyIcon({ size, ...rest }) {
   return (
     <svg
       fill="none"
-      height={35}
+      height={size || 35}
       viewBox="0 0 35 36"
-      width={36}
       xmlns="http://www.w3.org/2000/svg"
       {...rest}>
       <path
