@@ -1,8 +1,7 @@
 export default function Phone({ ...rest }) {
   return (
     <svg
-      width="220"
-      height="268"
+      className="w-60"
       viewBox="0 0 220 268"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

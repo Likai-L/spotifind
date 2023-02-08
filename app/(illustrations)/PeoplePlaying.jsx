@@ -1,8 +1,7 @@
 export default function PeoplePlaying({ ...rest }) {
   return (
     <svg
-      width="280"
-      height="291"
+      className="w-72"
       viewBox="0 0 280 291"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
