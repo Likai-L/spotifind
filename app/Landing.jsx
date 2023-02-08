@@ -45,7 +45,7 @@ export default function Landing() {
           <p className="mt-6">Find your people</p>
           <p className="mt-6 text-lg font-light text-left">
             Find people around you who are also interested in your favorite
-            songs.{' '}
+            songs.
           </p>
         </div>
         <div className="text-center text-white text-2xl font-bold w-80">
