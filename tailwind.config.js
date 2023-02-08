@@ -21,7 +21,7 @@ const backgroundImage = {
 };
 
 const fontFamily = {
-  primary: 'var(--font-primary)'
+  primary: ['Poppins', 'sans-serif']
 };
 
 module.exports = {
