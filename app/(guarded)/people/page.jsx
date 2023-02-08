@@ -12,7 +12,7 @@ export default function People() {
     <div className="w-full h-full flex-col space-y-8 overflow-hidden text-primary font-primary">
       <h1 className="text-[1.5vw] font-primary font-semibold ml-10 cursor-default">
         Find people with similar taste
-        <SearchBar action="/people" label="Search for a user" />
+        <SearchBar action="/people" label="Search for a song" />
       </h1>
       <div className="flex m-auto w-4/5 h-1/5 rounded-3xl bg-secondary">
         <SongCard />
