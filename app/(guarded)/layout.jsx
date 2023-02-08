@@ -1,16 +1,19 @@
 import Sidebar from 'app/(nav)/Sidebar';
 import styles from '@/styles/Home.module.css';
+import GuardPage from './(guardPage)/GuardPage';
 
 export default function GuardedLayout({
   children // will be a page or nested layout
 }) {
   return (
-    <div className="h-screen flex flex-row justify-start">
-      <Sidebar />
-      {/* Main content will be inside children here */}
-      <div className={`bg-main text-primary flex-1 ${styles.main}`}>
-        {children}
+    <GuardPage>
+      <div className="h-screen flex flex-row justify-start">
+        <Sidebar />
+        {/* Main content will be inside children here */}
+        <div className={`bg-main text-primary flex-1 ${styles.main}`}>
+          {children}
+        </div>
       </div>
-    </div>
+    </GuardPage>
   );
 }
