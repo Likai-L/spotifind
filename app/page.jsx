@@ -28,7 +28,7 @@ export default function Home() {
               <span>SpotiFind</span>
             </div>
           </div>
-          <div className="mt-12 flex  justify-center">
+          <div className="mt-16 flex  justify-center">
             <LoginButton />
           </div>
         </div>
