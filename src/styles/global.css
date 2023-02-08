@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-    /* Global variables, passed through Tailwind config */
+  /* Global variables, passed through Tailwind config */
   :root {
     /* Primary for main view components */
     --bg-primary: rgba(29, 21, 27, 0.3);
@@ -13,6 +13,9 @@
 
     /* Main app background gradient */
     --bg-main: linear-gradient(180deg, #44355e 0%, rgba(68, 53, 94, 0) 100%);
+
+    /* Landing page background gradient */
+    --bg-landing: linear-gradient(144.29deg, #1c0f33 14.36%, #694596 83.71%);
 
     /* Sidebar background gradient */
     --bg-nav: linear-gradient(180deg, #1c1419 0%, #261d2b 42.71%, #453660 100%);
@@ -26,7 +29,7 @@
 
     --font-primary: Poppins, sans-serif;
 
-    /* Text colors */ 
+    /* Text colors */
     --text-primary: rgba(245, 245, 245, 1);
     --text-secondary: rgba(136, 131, 131, 1);
     --text-nav: rgba(255, 255, 255, 0.8);
