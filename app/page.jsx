@@ -1,17 +1,11 @@
+'use client';
+
 import Button from './(button)/Button';
 import SpotifyIcon from './(nav)/(icons)/SpotifyIcon';
+import useAuth from '@/hooks/useAuth';
 
 export default function Home() {
-  const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const redirectUri = process.env.REDIRECT_URI;
-
-  const scope =
-    'user-read-private user-read-email user-read-currently-playing user-top-read user-read-recently-played playlist-read-private';
-
-  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope
-    .split(' ')
-    .join('%20')}&response_type=code&show_dialog=true`;
-
+  useAuth();
   const loginButtonContent = () => {
     return (
       <span className="flex items-center">
@@ -26,7 +20,11 @@ export default function Home() {
       <br />
       <br />
       <div>
-        <Button content={loginButtonContent()} path={authUrl} target="_blank" />
+        <Button
+          content={loginButtonContent()}
+          path="/api/login"
+          target="_blank"
+        />
       </div>
     </div>
   );

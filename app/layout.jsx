@@ -1,6 +1,7 @@
 import '@/styles/global.css';
 import styles from '@/styles/Home.module.css';
 import Sidebar from './(nav)/Sidebar';
+import { GlobalContextProvider } from './(context)';
 
 export default function RootLayout({ children }) {
   return (
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
           <Sidebar />
           {/* Main content will be inside children here */}
           <div className={`bg-main text-primary flex-1 ${styles.main}`}>
-            {children}
+            <GlobalContextProvider>{children}</GlobalContextProvider>
           </div>
         </div>
       </body>
