@@ -3,16 +3,16 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import {
+  MESSAGES,
+  NOW_PLAYING,
+  PEOPLE,
+  SONGS
+} from 'public/constants/pathNames';
 import ListeningIcon from './ListeningIcon';
 import MessageIcon from './MessageIcon';
 import MusicIcon from './MusicIcon';
 import PeopleIcon from './PeopleIcon';
-import {
-  NOW_PLAYING,
-  PEOPLE,
-  SONGS,
-  MESSAGES
-} from 'public/constants/pathNames';
 
 const menuItems = [
   { id: 1, label: 'Now Playing', icon: ListeningIcon, path: NOW_PLAYING },
