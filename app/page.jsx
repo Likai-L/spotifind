@@ -2,8 +2,10 @@
 
 import Button from './(button)/Button';
 import SpotifyIcon from './(nav)/(icons)/SpotifyIcon';
+import useAuth from '@/hooks/useAuth';
 
 export default function Home() {
+  useAuth();
   const loginButtonContent = () => {
     return (
       <span className="flex items-center">
