@@ -8,10 +8,12 @@ const querystring = require('querystring');
 
 export default async function handler(req, res) {
   const code = req.query.code || null;
+
   if (!code) {
     res.status(400).json({ error: 'No auth code provided' });
     return;
   }
+
   const url = 'https://accounts.spotify.com/api/token';
   const data = {
     code,
