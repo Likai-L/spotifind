@@ -32,7 +32,7 @@ export default function NavItems() {
       {menuItems.map(({ icon: Icon, ...menu }) => {
         return (
           <div
-            className="flex items-center cursor-pointer rounded w-full overflow-hidden whitespace-nowrap"
+            className="flex items-center cursor-pointer rounded w-full overflow-hidden whitespace-nowrap hover:animate-pulse"
             key={menu.id}>
             <Link className={getActivePathClass(menu)} href={menu.path}>
               <div className="w-10">
