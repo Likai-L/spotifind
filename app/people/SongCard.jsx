@@ -8,7 +8,7 @@ export default function SongCard() {
           alt="cute cat"
           className="rounded-lg block m-auto"
           fill
-          src="https://thumbs.dreamstime.com/b/cute-cat-portrait-square-photo-beautiful-white-closeup-105311158.jpg"
+          src="https://thumbs.dreamstime.com/z/dog-cat-above-white-banner-5900263.jpg"
         />
       </div>
       <div className="flex flex-col">
