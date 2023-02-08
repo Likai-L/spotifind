@@ -35,17 +35,20 @@ export default function Home() {
         <PeopleListening />
       </div>
       <div className="flex flex-row justify-evenly">
-        <div className="text-center text-white text-2xl font-bold">
+        <div className="text-center text-white text-2xl font-bold w-80">
           <Phone />
-          <p>Share your thoughts</p>
+          <p className="mt-6">Share your thoughts</p>
+          <p className="mt-6 text-lg font-medium">Share your thoughts</p>
         </div>
-        <div className="text-center text-white text-2xl font-bold">
+        <div className="text-center text-white text-2xl font-bold w-80">
           <PeoplePlaying />
-          <p>Find your people</p>
+          <p className="mt-6">Find your people</p>
+          <p className="mt-6 text-lg font-medium">Share your thoughts</p>
         </div>
-        <div className="text-center text-white text-2xl font-bold">
+        <div className="text-center text-white text-2xl font-bold w-80">
           <PeopleDancing />
-          <p>Enjoy music together</p>
+          <p className="mt-12">Enjoy music together</p>
+          <p className="mt-6 text-lg font-medium">Share your thoughts</p>
         </div>
       </div>
     </div>
