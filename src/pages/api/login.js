@@ -12,7 +12,8 @@ export default function handler(req, res) {
     response_type: 'code',
     client_id: clientId,
     scope,
-    redirect_uri: redirectUri
+    redirect_uri: redirectUri,
+    show_dialog: true
     // state: state,
   });
 
