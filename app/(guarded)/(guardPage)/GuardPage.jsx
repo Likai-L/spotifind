@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation';
 import { LANDING } from 'public/constants/pathNames';
 
 export default function GuardPage({ children }) {
-  const { accessToken } = useGlobalContext();
+  const { credentials } = useGlobalContext();
   const router = useRouter();
-  if (!accessToken) {
+  if (!credentials.accessToken) {
     router.push(LANDING);
   }
 
