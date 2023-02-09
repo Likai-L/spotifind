@@ -12,9 +12,15 @@ export default function SongCard() {
         />
       </div>
       <div className="flex flex-col">
-        <h1 className="mt-1 ml-[2vh] text-[2.3vh] cursor-default">Cat Song</h1>
-        <h1 className="mt-1 ml-[2vh] text-[2.3vh] cursor-default">Mittens</h1>
-        <h1 className="mt-1 ml-[2vh] text-[2.3vh] cursor-default">Mrrreowww</h1>
+        <h1 className="mt-1 ml-[2vh] text-[2.3vh] cursor-default font-semibold">
+          Cat Song
+        </h1>
+        <h1 className="mt-1 ml-[2vh] text-[2.3vh] cursor-default font-semibold">
+          Mittens
+        </h1>
+        <h1 className="mt-1 ml-[2vh] text-[2.3vh] cursor-default font-semibold">
+          Mrrreowww
+        </h1>
       </div>
     </div>
   );
