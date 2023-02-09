@@ -16,7 +16,7 @@ export default function useProfile() {
           setProfile({
             name: profileData.display_name,
             uri: profileData.uri,
-            handle: profileData.id,
+            handle: `@${profileData.id}`,
             avatar: profileData.images[0].url
           });
         })
