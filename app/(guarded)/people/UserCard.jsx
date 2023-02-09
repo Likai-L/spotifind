@@ -4,7 +4,7 @@ import { MESSAGES } from 'public/constants/pathNames';
 
 export default function UserCard() {
   return (
-    <div className="flex max-w-[250px] w-[20%] min-w-[12.5rem] m-5 flex-col justify-evenly bg-primary p-2 h-2/3 min-h-[20rem] rounded-2xl ">
+    <div className="flex max-w-[250px] w-[20%] min-w-[12.5rem] m-5 flex-col justify-evenly bg-primary p-2 h-[95%] max-h-[25rem] rounded-2xl ">
       <div className="sticky aspect-square max-w-full w-auto min-h-[20%] h-[50%] self-center my-3">
         <Image
           alt="cute cat"
