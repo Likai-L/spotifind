@@ -4,11 +4,11 @@ import { MESSAGES } from 'public/constants/pathNames';
 
 export default function UserCard() {
   return (
-    <div className="flex max-w-[250px] min-w-[10vw] w-[15vw] m-5 flex-col justify-evenly bg-primary p-2 h-2/3 min-h-[20rem] rounded-lg ">
-      <div className="sticky aspect-square max-w-full min-h-2/5 h-2/4 self-center my-3">
+    <div className="flex max-w-[250px] w-[20%] min-w-[12.5rem] m-5 flex-col justify-evenly bg-primary p-2 h-[95%] max-h-[25rem] rounded-2xl ">
+      <div className="sticky aspect-square max-w-full w-auto min-h-[20%] h-[50%] self-center my-3">
         <Image
           alt="cute cat"
-          className="rounded-lg block m-auto aspect-square"
+          className="rounded-3xl block m-auto aspect-square"
           fill
           src="https://thumbs.dreamstime.com/b/cute-cat-portrait-square-photo-beautiful-white-closeup-105311158.jpg"
         />
