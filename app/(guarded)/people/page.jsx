@@ -19,7 +19,7 @@ export default function People() {
       <div className="flex m-auto w-4/5 h-1/5 rounded-xl bg-secondary">
         <SongCard />
       </div>
-      <div className="container m-auto bg-secondary w-4/5 h-3/5 max-h-max rounded-3xl">
+      <div className="container m-auto bg-secondary min-w-[80%] w-4/5 h-3/5 max-h-max rounded-xl">
         <div className="flex flex-row">
           <h1 className="text-[2vh] p-5 cursor-default">x user/s found </h1>
           <div className="my-auto">
