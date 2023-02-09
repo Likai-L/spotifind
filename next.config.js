@@ -6,11 +6,20 @@ const nextConfig = {
   // sassOptions: { // If using sass instead of postCSS
   //   includePaths: [path.join(__dirname, 'styles')]
   // },
+  images: {
+    domains: ['thumbs.dreamstime.com', 'i.scdn.co']
+  },
   experimental: {
     appDir: true
   },
-  images: {
-    domains: ['i.scdn.co']
+  // TODO: Fix CORS issues.......
+  async rewrites() {
+    return [
+      {
+        source: '/api/login',
+        destination: '/'
+      }
+    ];
   }
 };
 
