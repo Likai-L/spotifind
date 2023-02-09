@@ -4,7 +4,7 @@ import { useGlobalContext } from 'app/(context)';
 import { SPOTIFY_ENDPOINT } from 'public/constants/pathNames';
 
 export default function useProfile() {
-  const { credentials } = useGlobalContext();
+  const { credentials, setProfile } = useGlobalContext();
   const axiosConfig = {
     headers: {
       Authorization: `Bearer ${credentials.accessToken}}`,
@@ -16,6 +16,13 @@ export default function useProfile() {
       axios(`${SPOTIFY_ENDPOINT}/me`, axiosConfig)
         .then(res => {
           console.log(res.data);
+          const profileData = res.data;
+          setProfile({
+            name: profileData.display_name,
+            uri: profileData.uri,
+            handle: profileData.id,
+            avatar: profileData.images[0].url
+          });
         })
         .catch(err => console.log(err));
     }
