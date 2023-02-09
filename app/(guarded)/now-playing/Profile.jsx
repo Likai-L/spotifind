@@ -1,16 +1,16 @@
 import Image from 'next/image';
 export default function Profile() {
   return (
-    <div className="">
+    <div className="text-center w-[200px]">
       <Image
         alt="pfp"
-        src="https://i.scdn.co/image/ab67616d0000b27309e4ac9a68d9ea5ef0ad9b05"
+        src="https://i.scdn.co/image/ab67616d0000b273d0a93f4d6d61ec9f850218f9"
         width={200}
         height={200}
-        className="rounded-2xl"
+        className="rounded-3xl"
       />
-      <div className="text-2xl">Grimes</div>
-      <div>@GrimesGurlll</div>
+      <div className="text-2xl mt-4">Grimes</div>
+      <div className="mt-1 opacity-30">@GrimesGurlll</div>
     </div>
   );
 }
