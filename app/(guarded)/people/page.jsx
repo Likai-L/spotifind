@@ -16,7 +16,7 @@ export default function People() {
         Find people with similar taste
         <SearchBar action="/people" label="Search for a song" />
       </h1>
-      <div className="flex m-auto w-4/5 h-1/5 rounded-xl bg-secondary">
+      <div className="flex m-auto w-[75%] h-1/5 rounded-xl bg-secondary">
         <SongCard />
       </div>
       <div className="container m-auto bg-secondary w-4/5 h-3/5 max-h-max rounded-3xl">
