@@ -11,6 +11,15 @@ const nextConfig = {
   },
   experimental: {
     appDir: true
+  },
+  // TODO: Fix CORS issues.......
+  async rewrites() {
+    return [
+      {
+        source: '/api/login',
+        destination: '/'
+      }
+    ];
   }
 };
 
