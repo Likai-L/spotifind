@@ -1,9 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  /* Global variables, passed through Tailwind config */
+  html,
+  body {
+    background: rgba(28, 20, 25, 1);
+    padding: 0;
+    margin: 0;
+    font-family: Poppins, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+    /* Global variables, passed through Tailwind config */
   :root {
     /* Primary for main view components */
     --bg-primary: rgba(29, 21, 27, 0.3);
@@ -27,24 +42,14 @@
       rgba(175, 95, 203, 0.7) 96.14%
     );
 
-    --font-primary: Poppins, sans-serif;
+    /* Ubuntu for Logo and body, Poppins for pretty much everything else */
+    --font-primary: Ubuntu, sans-serif;
+    --font-title: Poppins, sans-serif;
 
     /* Text colors */
     --text-primary: rgba(245, 245, 245, 1);
     --text-secondary: rgba(136, 131, 131, 1);
     --text-nav: rgba(255, 255, 255, 0.8);
-  }
-
-  html,
-  body {
-    background: rgba(28, 20, 25, 1);
-    padding: 0;
-    margin: 0;
-    font-family: @apply font-primary;
-  }
-
-  * {
-    box-sizing: border-box;
   }
 
   .nav-item-active {
@@ -53,24 +58,15 @@
   }
 
   /* Animations */
-  .fade-in-down {
-    animation: fadeInDown 0.5s ease-out;
-    opacity: 1;
-  }
   .animate-fast-pulse {
     animation: pulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
+  .fade-in-down {
+    animation: fadeInDown 0.5s ease-out;
+    opacity: 1;
   }
-
+  
   @keyframes fadeInDown {
     from {
       opacity: 0;
@@ -139,7 +135,7 @@
     50% {
       box-shadow: 0 0 8px 2px rgba(90, 79, 116, 0.6);
       opacity: 0.9;
-      transform: scale(1.03);
+      transform: scale(1.01);
     }
   }
 }

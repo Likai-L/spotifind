@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 
-import useAuth from '@/hooks/useAuth';
+import useAuth from '../src/hooks/useAuth';
 import Landing from './Landing';
 
 export default function Home() {

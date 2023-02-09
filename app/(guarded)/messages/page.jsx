@@ -34,7 +34,7 @@ export default function Messages() {
           value={username}
         />
         <button
-          className="font-primary text-white text-lg mx-2 my-4"
+          className="font-title text-white text-lg mx-2 my-4"
           onClick={() => createDirectChat(creds)}
           type="submit">
           Create

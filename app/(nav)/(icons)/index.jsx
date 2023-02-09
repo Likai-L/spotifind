@@ -3,16 +3,16 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import {
+  MESSAGES,
+  NOW_PLAYING,
+  PEOPLE,
+  SONGS
+} from 'public/constants/pathNames';
 import ListeningIcon from './ListeningIcon';
 import MessageIcon from './MessageIcon';
 import MusicIcon from './MusicIcon';
 import PeopleIcon from './PeopleIcon';
-import {
-  NOW_PLAYING,
-  PEOPLE,
-  SONGS,
-  MESSAGES
-} from 'public/constants/pathNames';
 
 const menuItems = [
   { id: 1, label: 'Now Playing', icon: ListeningIcon, path: NOW_PLAYING },
@@ -38,7 +38,7 @@ export default function NavItems() {
       {menuItems.map(({ icon: Icon, ...menu }) => {
         return (
           <div
-            className="flex items-center cursor-pointer rounded w-full overflow-hidden whitespace-nowrap hover:animate-fast-pulse"
+            className="flex items-center cursor-pointer rounded w-full overflow-hidden whitespace-nowrap hover:animate-pulse font-title"
             key={menu.id}>
             <Link className={getActivePathClass(menu)} href={menu.path}>
               <div className="w-10">
