@@ -27,7 +27,7 @@ export default function People() {
             <h2 className="text-[1.5vw]">View On Map</h2>
           </button>
         </div>
-        <div className="flex flex-row h-3/4 w-full overflow-x-auto overflow-y-clip items-center">
+        <div className="flex flex-row h-3/4 w-[90%] m-auto overflow-x-auto overflow-y-clip items-center">
           {showMap ? <Map /> : null}
           {/* Will be dynamic and mapped based on search results,
            but for now just pasted like this to see multiple */}
