@@ -25,10 +25,13 @@ export default function SearchBar(props) {
 
   const inputClasses = 'bg-transparent text-xl w-10/12 ml-4 focus:outline-none';
 
-  const labelClasses = classNames('absolute text-xl ml-4 hover:cursor-text', {
-    'fade-out': focus || searchInput,
-    'fade-in hover:animate-pulse': !focus && !searchInput
-  });
+  const labelClasses = classNames(
+    'absolute text-xl ml-4 hover:cursor-text font-semibold',
+    {
+      'fade-out': focus || searchInput,
+      'fade-in hover:animate-pulse': !focus && !searchInput
+    }
+  );
 
   // ! BUG: Can't highlight or place cursor in the input field
   return (
