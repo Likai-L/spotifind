@@ -13,19 +13,24 @@ export function GlobalContextProvider(props) {
   });
 
   // Spotify Profile
-  const [username, setUsername] = useState('');
+  const [profile, setProfile] = useState({
+    name: null,
+    uri: null,
+    avatar: null,
+    handle: null
+  });
 
   const { children } = props;
 
   // TODO: refactor this for better state management patterns
   const globalStates = useMemo(
     () => ({
-      username,
-      setUsername,
       credentials,
-      setCredentials
+      setCredentials,
+      profile,
+      setProfile
     }),
-    [username, credentials.accessToken]
+    [profile.uri, credentials.accessToken]
   );
 
   // Component provider, wrap around other components
