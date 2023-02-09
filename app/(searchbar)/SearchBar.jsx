@@ -21,16 +21,16 @@ export default function SearchBar(props) {
   };
 
   const formClasses =
-    'flex justify-between items-center overflow-hidden bg-primary rounded-3xl w-80 max-w-md h-11 m-4 shadow-[0_0.2rem_0.3rem_0.1rem_rgb(0,0,0,0.2)]';
+    'flex justify-between items-center overflow-hidden bg-primary rounded-3xl w-80 max-w-md h-11 shadow-[0_0.2rem_0.3rem_0.1rem_rgb(0,0,0,0.2)]';
 
-  const inputClasses = 'bg-transparent text-xl w-10/12 ml-4 focus:outline-none';
+  const inputClasses =
+    'bg-transparent text-xl w-10/12 ml-4 focus:outline-none hover:cursor-text z-10';
 
-  const labelClasses = classNames('absolute text-xl ml-4 hover:cursor-text', {
+  const labelClasses = classNames('absolute text-xl ml-4', {
     'fade-out': focus || searchInput,
     'fade-in hover:animate-pulse': !focus && !searchInput
   });
 
-  // ! BUG: Can't highlight or place cursor in the input field
   return (
     <div className="flex font-bold text-[rgb(245,245,245)]/50 fade-in-down">
       <form
