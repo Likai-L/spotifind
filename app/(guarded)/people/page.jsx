@@ -3,6 +3,8 @@
 import SearchBar from 'app/(searchbar)/SearchBar';
 import Map from 'app/(map)/Map';
 import { useState } from 'react';
+import Button from 'app/(button)/Button';
+import { PEOPLE } from 'public/constants/pathNames';
 import UserCard from './UserCard';
 import SongCard from './SongCard';
 
@@ -20,12 +22,13 @@ export default function People() {
       <div className="container m-auto bg-secondary w-4/5 h-3/5 max-h-max rounded-3xl">
         <div className="flex flex-row">
           <h1 className="text-[1.5vw] p-5 cursor-default">x user/s found </h1>
-          <button
-            className="ml-[17vw]"
-            onClick={() => setShowMap(!showMap)}
-            type="submit">
-            <h2 className="text-[1.5vw]">View On Map</h2>
-          </button>
+          <div className="my-auto">
+            <Button
+              content="View on map"
+              onClick={() => setShowMap(!showMap)}
+              path={PEOPLE}
+            />
+          </div>
         </div>
         <div className="flex flex-row h-3/4 w-[90%] m-auto overflow-x-auto overflow-y-clip items-center">
           {showMap ? <Map /> : null}
