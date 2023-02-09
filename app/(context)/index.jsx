@@ -14,10 +14,10 @@ export function GlobalContextProvider(props) {
 
   // Spotify Profile
   const [profile, setProfile] = useState({
-    name: 'Arrival',
-    uri: 'arrival',
-    avatar: '/images/arrival.png',
-    handle: '@bestFilmEver'
+    name: '',
+    uri: '',
+    avatar: '',
+    handle: ''
   });
 
   const { children } = props;
