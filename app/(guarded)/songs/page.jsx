@@ -1,9 +1,9 @@
-import Button from 'app/(button)/Button';
+import SongContainer from './SongContainer';
 
 export default function Home() {
   return (
-    <div className="">
-      <Button content="Home" path="/" />
+    <div className="flex justify-center h-full w-[80vw]">
+      <SongContainer />
     </div>
   );
 }
