@@ -2,11 +2,11 @@ import Image from 'next/image';
 
 export default function SongCard() {
   return (
-    <div className="flex w-full h-full rounded-3xl">
+    <div className="flex w-[92%] h-[92%] m-auto">
       <div className="sticky max-w-1/5 max-h-4/5 aspect-square m-1">
         <Image
           alt="cute cat"
-          className="rounded-lg block m-auto"
+          className="rounded-3xl block m-auto"
           fill
           src="https://thumbs.dreamstime.com/z/dog-cat-above-white-banner-5900263.jpg"
         />
