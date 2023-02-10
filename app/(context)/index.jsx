@@ -31,7 +31,7 @@ export function GlobalContextProvider(props) {
       profile,
       setProfile
     }),
-    [profile.uri, credentials.accessToken]
+    [profile.uri, credentials.accessToken, profile.tracks]
   );
 
   // Component provider, wrap around other components
