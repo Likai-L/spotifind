@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
 import { SPOTIFY_ENDPOINT } from 'public/constants/pathNames';
-import { getHeaders, getTopTracks } from '@/helpers/profileHelpers';
+import { getHeaders, getTracks } from '@/helpers/profileHelpers';
 
 export default function useProfile() {
   const { credentials, profile, setProfile } = useGlobalContext();
@@ -27,13 +27,13 @@ export default function useProfile() {
   useEffect(() => {
     if (credentials.accessToken) {
       axios(
-        `${SPOTIFY_ENDPOINT}/me/top/tracks`,
+        `${SPOTIFY_ENDPOINT}/me/tracks`,
         getHeaders(credentials.accessToken)
       )
         .then(res => {
           setProfile(prev => ({
             ...prev,
-            topTracks: getTopTracks(res.data.items)
+            tracks: getTracks(res.data.items)
           }));
         })
         .catch(err => console.log(err));
