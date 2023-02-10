@@ -1,8 +1,6 @@
-import { AxiosHeaders } from 'axios';
-
-export const sortPlayerStateData = acxiosRes => {
-  if (AxiosHeaders.status !== 200) return null;
-  const playerState = acxiosRes.data;
+export const sortPlayerStateData = axiosRes => {
+  if (axiosRes.status !== 200) return null;
+  const playerState = axiosRes.data;
   return {
     device: playerState.device.name,
     uri: playerState.item.id,
