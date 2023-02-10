@@ -10,7 +10,9 @@ const textColor = {
 
 const backgroundColor = {
   primary: 'var(--bg-primary)',
-  secondary: 'var(--bg-secondary)'
+  secondary: 'var(--bg-secondary)',
+  container: 'var(--bg-container)',
+  'container-light': 'var(--bg-container-light)'
 };
 
 // Gradient backgrounds
@@ -35,6 +37,19 @@ module.exports = {
   important: true,
   theme: {
     ...defaultTheme,
+    screens: {
+      sm: '640px',
+
+      md: '768px',
+
+      lg: '1024px',
+
+      xl: '1280px',
+
+      '2xl': '1536px',
+
+      '3xl': '1920px'
+    },
     extend: {
       textColor,
       backgroundColor,
@@ -42,5 +57,5 @@ module.exports = {
       fontFamily
     }
   },
-  plugins: []
+  plugins: ['tailwind-scrollbar-hide']
 };
