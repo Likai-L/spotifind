@@ -5,7 +5,7 @@ import { SPOTIFY_ENDPOINT } from 'public/constants/pathNames';
 import { getHeaders, getTopTracks } from '@/helpers/profileHelpers';
 
 export default function useProfile() {
-  const { credentials, setProfile } = useGlobalContext();
+  const { credentials, profile, setProfile } = useGlobalContext();
 
   useEffect(() => {
     if (credentials.accessToken) {
@@ -13,6 +13,7 @@ export default function useProfile() {
         .then(res => {
           const profileData = res.data;
           setProfile({
+            ...profile,
             name: profileData.display_name,
             uri: profileData.uri,
             handle: `@${profileData.id}`,
@@ -30,7 +31,10 @@ export default function useProfile() {
         getHeaders(credentials.accessToken)
       )
         .then(res => {
-          console.log(getTopTracks(res.data.items));
+          setProfile(prev => ({
+            ...prev,
+            topTracks: getTopTracks(res.data.items)
+          }));
         })
         .catch(err => console.log(err));
     }
