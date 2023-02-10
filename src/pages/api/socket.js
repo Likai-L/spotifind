@@ -21,28 +21,38 @@ export default function SocketHandler(req, res) {
         axios(`${SPOTIFY_ENDPOINT}/me/player`, getHeaders(socket.token))
           .then(response => {
             const playerState = sortPlayerStateData(response);
-            console.log(playerState);
-            if (!socket.playerState) {
+            if (!playerState) {
+              console.log('no data came back!');
+              // no active player
+              if (socket.playerState) {
+                socket.playerState = null;
+                socket.broadcast.emit('no-active', null);
+              }
+            } else if (!socket.playerState) {
+              // set initial player state and send it to the client
               socket.playerState = playerState;
               socket.broadcast.emit('initial-state', playerState);
             } else {
+              // compare and send changes to the client
+              console.log(socket.playerState.uri);
+              console.log(playerState.uri);
               if (socket.playerState.device !== playerState.device) {
                 socket.playerState.device = playerState.device;
                 socket.broadcast.emit(
                   'device-change',
                   socket.playerState.device
                 );
-                if (socket.playerState.uri !== playerState.uri) {
-                  socket.playerState.uri = playerState.uri;
-                  socket.broadcast.emit('song-change', socket.playerState);
-                }
-                if (socket.playerState.isPlaying !== playerState.isPlaying) {
-                  socket.playerState.isPlaying = playerState.isPlaying;
-                  socket.broadcast.emit(
-                    'play-status-change',
-                    socket.playerState.isPlaying
-                  );
-                }
+              }
+              if (socket.playerState.uri !== playerState.uri) {
+                socket.playerState = playerState;
+                socket.broadcast.emit('track-change', socket.playerState);
+              }
+              if (socket.playerState.isPlaying !== playerState.isPlaying) {
+                socket.playerState.isPlaying = playerState.isPlaying;
+                socket.broadcast.emit(
+                  'play-status-change',
+                  socket.playerState.isPlaying
+                );
               }
             }
 
