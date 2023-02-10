@@ -18,12 +18,10 @@ export default function SocketHandler(req, res) {
         console.log(socket.token);
       });
       socket.poll = () => {
-        // const playerState = await axios(`${SPOTIFY_ENDPOINT}/me/player`);
         axios(`${SPOTIFY_ENDPOINT}/me/player`, getHeaders(socket.token))
           .then(response => {
             const playerState = sortPlayerStateData(response);
             console.log(playerState);
-            // socket.broadcast.emit('update-input', msg)
             if (!socket.playerState) {
               socket.playerState = playerState;
               socket.broadcast.emit('initial-state', playerState);
