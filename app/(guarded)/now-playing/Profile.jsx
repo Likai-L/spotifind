@@ -19,10 +19,10 @@ export default function Profile() {
           {profile.avatar ? (
             <Image
               alt="pfp"
+              className="rounded-3xl"
+              height={200}
               src={profile.avatar}
               width={200}
-              height={200}
-              className="rounded-3xl"
             />
           ) : (
             <Skeleton className="w-[200px] h-[200px] rounded-3xl" />
