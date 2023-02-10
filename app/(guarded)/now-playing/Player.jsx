@@ -5,8 +5,8 @@ import Container from 'app/(container)/Container';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import useCurrentTrack from '@/hooks/useCurrentTrack';
 import { useGlobalContext } from 'app/(context)';
+import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 export default function Player() {
   const { profile } = useGlobalContext();
@@ -18,7 +18,6 @@ export default function Player() {
         <AlbumCover
           src={profile.playerState.albumCoverUrl || '/images/arrival.png'}
           classNames="w-[100%] "
-          src="https://i.scdn.co/image/ab67616d0000b2730c64e752dec4c08362cc4a88"
         />
         <div className="w-[100%] text-center text-xl font-semibold">
           <p className="text-2xl mt-[20px] font-bold">
