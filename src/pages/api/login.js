@@ -9,7 +9,7 @@ export default function handler(req, res) {
   // const state = generateRandomString(16);
 
   const scope =
-    'user-read-private user-read-email user-read-currently-playing user-top-read user-read-recently-played playlist-read-private';
+    'user-read-private user-read-email user-library-read user-read-currently-playing user-top-read user-read-recently-played playlist-read-private';
 
   const queryString = querystring.stringify({
     response_type: 'code',
