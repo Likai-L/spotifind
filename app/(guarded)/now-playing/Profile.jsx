@@ -37,7 +37,7 @@ export default function Profile() {
         </div>
         <Container classNames="lg:w-[500px] xl:w-[800px] 2xl:w-[1000px] 3xl:w-[1200px]  ml-[50px] flex items-center overflow-x-scroll scrollbar-hide">
           {profile.tracks.length > 0 ? (
-            profile.topTracks.map(track => {
+            profile.tracks.map(track => {
               return (
                 <AlbumCover
                   classNames="w-[200px] h-[200px] ml-[30px]"
