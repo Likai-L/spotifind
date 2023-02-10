@@ -1,7 +1,9 @@
+/* eslint-disable no-lonely-if */
 import axios from 'axios';
 import { Server } from 'socket.io';
 import { getHeaders } from 'src/helpers/profileHelpers';
 import { SPOTIFY_ENDPOINT } from 'public/constants/pathNames';
+import { sortPlayerStateData } from '@/helpers/socketHelper';
 
 export default function SocketHandler(req, res) {
   if (res.socket.server.io) {
@@ -19,12 +21,33 @@ export default function SocketHandler(req, res) {
         // const playerState = await axios(`${SPOTIFY_ENDPOINT}/me/player`);
         axios(`${SPOTIFY_ENDPOINT}/me/player`, getHeaders(socket.token))
           .then(response => {
-            console.log(response.data);
-            const playerState = response.data;
+            const playerState = sortPlayerStateData(response);
+            console.log(playerState);
             // socket.broadcast.emit('update-input', msg)
             if (!socket.playerState) {
               socket.playerState = playerState;
+              socket.broadcast.emit('initial-state', playerState);
+            } else {
+              if (socket.playerState.device !== playerState.device) {
+                socket.playerState.device = playerState.device;
+                socket.broadcast.emit(
+                  'device-change',
+                  socket.playerState.device
+                );
+                if (socket.playerState.uri !== playerState.uri) {
+                  socket.playerState.uri = playerState.uri;
+                  socket.broadcast.emit('song-change', socket.playerState);
+                }
+                if (socket.playerState.isPlaying !== playerState.isPlaying) {
+                  socket.playerState.isPlaying = playerState.isPlaying;
+                  socket.broadcast.emit(
+                    'play-status-change',
+                    socket.playerState.isPlaying
+                  );
+                }
+              }
             }
+
             setTimeout(socket.poll, 2000);
           })
           .catch(err => {
