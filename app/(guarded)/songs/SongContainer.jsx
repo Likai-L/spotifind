@@ -1,17 +1,14 @@
 import Image from 'next/image';
 import Button from 'app/(button)/Button';
-import { PEOPLE, SONGS } from 'public/constants/pathNames';
-import SearchBar from 'app/(searchbar)/SearchBar';
+import { PEOPLE } from 'public/constants/pathNames';
+// import SearchBar from 'app/(searchbar)/SearchBar';
 import LyricsContainer from './LyricsContainer';
 
 export default function SongContainer(/* props */) {
   // const { albumArt, songName, artistName, albumName, songLyrics } = props;
 
   return (
-    <div className="flex flex-col justify-between w-full h-full font-primary bg-primary rounded-3xl px-12 cursor-default">
-      <div className="flex justify-center p-8">
-        <SearchBar action={SONGS} label="Search for a song" />
-      </div>
+    <div className="flex flex-col justify-between w-full h-full font-primary bg-primary rounded-3xl px-12 pt-4 cursor-default">
       {/* Body container */}
       <div className="flex justify-evenly">
         {/* album artwork */}
