@@ -11,7 +11,8 @@ const textColor = {
 const backgroundColor = {
   primary: 'var(--bg-primary)',
   secondary: 'var(--bg-secondary)',
-  container: 'var(--bg-container)'
+  container: 'var(--bg-container)',
+  'container-light': 'var(--bg-container-light)'
 };
 
 // Gradient backgrounds
