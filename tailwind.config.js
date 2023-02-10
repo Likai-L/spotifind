@@ -57,5 +57,6 @@ module.exports = {
       fontFamily
     }
   },
+  // eslint-disable-next-line global-require
   plugins: [require('tailwind-scrollbar-hide')]
 };

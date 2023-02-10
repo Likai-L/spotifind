@@ -18,6 +18,7 @@ export default function Player() {
         <AlbumCover
           src={profile.playerState.albumCoverUrl || '/images/arrival.png'}
           classNames="w-[100%] "
+          src="https://i.scdn.co/image/ab67616d0000b2730c64e752dec4c08362cc4a88"
         />
         <div className="w-[100%] text-center text-xl font-semibold">
           <p className="text-2xl mt-[20px] font-bold">
@@ -30,30 +31,30 @@ export default function Player() {
           </p>
         </div>
       </div>
-      <div className="w-[55%]  ">
+      <div className="w-[55%]">
         <p className="text-4xl font-bold my-[30px] ">Lyrics</p>
         <Container classNames="bg-container-light w-[100%] min-h-[300px] overflow-auto scrollbar-hide">
           <div className="w-[100%] text-center text-xl font-bold leading-loose pt-[10px]">
             <p>Glass in the Park</p>
             <p>This is how it feels to be in love</p>
             <p>This is life from above</p>
-            <p>There's no books anymore</p>
-            <p>I'm bound to that summer</p>
+            <p>There’s no books anymore</p>
+            <p>I’m bound to that summer</p>
             <p>Big box office hit</p>
             <p>Making love to a counterfeit</p>
             <p>Why did so many</p>
             <p>Get a rise out of me?</p>
             <p>I love the movies</p>
-            <p>Some people feel what some people don't</p>
+            <p>Some people feel what some people don’t</p>
             <p>Some people-watch until they explode</p>
           </div>
         </Container>
         <div className="flex justify-evenly">
-          <Button content="People" path="" addedclasses="text-3xl mt-[40px]" />
+          <Button addedclasses="text-3xl mt-[40px]" content="People" path="" />
           <Button
+            addedclasses="text-3xl mt-[40px]"
             content="Comments"
             path=""
-            addedclasses="text-3xl mt-[40px]"
           />
         </div>
       </div>
