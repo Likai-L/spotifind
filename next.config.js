@@ -7,7 +7,7 @@ const nextConfig = {
   //   includePaths: [path.join(__dirname, 'styles')]
   // },
   images: {
-    domains: ['thumbs.dreamstime.com']
+    domains: ['thumbs.dreamstime.com', 'i.scdn.co']
   },
   experimental: {
     appDir: true

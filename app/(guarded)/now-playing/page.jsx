@@ -1,5 +1,11 @@
-import styles from '@/styles/Home.module.css';
+import Profile from './Profile';
+import Player from './Player';
 
-export default function Me() {
-  return <div className={`text-green-500 ${styles.main}`}>Now Playing</div>;
+export default function NowPlaying() {
+  return (
+    <div>
+      <Profile />
+      <Player />
+    </div>
+  );
 }
