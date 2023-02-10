@@ -17,7 +17,8 @@ export function GlobalContextProvider(props) {
     name: '',
     uri: '',
     avatar: '',
-    handle: ''
+    handle: '',
+    topTracks: []
   });
 
   const { children } = props;
