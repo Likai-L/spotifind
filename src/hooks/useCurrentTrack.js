@@ -18,16 +18,27 @@ export default function useCurrentTrack() {
       socket.emit('access-token', credentials.accessToken);
     });
     socket.on('initial-state', message => {
-      console.log(`initial-state: ${message}`);
+      console.log('initial-state:', message);
+      setProfile(prev => ({ ...prev, playerState: message }));
     });
+
     socket.on('device-change', message => {
-      console.log(`device-change: ${message}`);
+      console.log('device-change:', message);
+      setProfile(prev => ({
+        ...prev,
+        playerState: { ...prev.playerState, device: message }
+      }));
     });
     socket.on('track-change', message => {
-      console.log(`track-change: ${message}`);
+      console.log('track-change:', message);
+      setProfile(prev => ({ ...prev, playerState: message }));
     });
     socket.on('play-status-change', message => {
-      console.log(`play-status: ${message}`);
+      console.log('player-status-change:', message);
+      setProfile(prev => ({
+        ...prev,
+        playerState: { ...prev.playerState, isPlaying: message }
+      }));
     });
   };
   // establish socket connection
@@ -37,5 +48,5 @@ export default function useCurrentTrack() {
       socket.disconnect(true);
       console.log('Socket disconnected');
     };
-  }, []);
+  }, [true]);
 }
