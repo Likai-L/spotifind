@@ -17,6 +17,18 @@ export default function useCurrentTrack() {
       console.log('Socket connected');
       socket.emit('access-token', credentials.accessToken);
     });
+    socket.on('initial-state', message => {
+      console.log(`initial-state: ${message}`);
+    });
+    socket.on('device-change', message => {
+      console.log(`device-change: ${message}`);
+    });
+    socket.on('track-change', message => {
+      console.log(`track-change: ${message}`);
+    });
+    socket.on('play-status-change', message => {
+      console.log(`play-status: ${message}`);
+    });
   };
   // establish socket connection
   useEffect(() => {
