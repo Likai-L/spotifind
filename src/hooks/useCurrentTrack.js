@@ -7,7 +7,7 @@ import { useGlobalContext } from 'app/(context)';
 let socket;
 
 export default function useCurrentTrack() {
-  const { credentials, profile, setProfile } = useGlobalContext();
+  const { credentials, setProfile } = useGlobalContext();
 
   const initializeSocket = async () => {
     await axios(SOCKET);
