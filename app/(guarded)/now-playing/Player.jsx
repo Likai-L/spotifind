@@ -6,21 +6,28 @@ import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import useCurrentTrack from '@/hooks/useCurrentTrack';
+import { useGlobalContext } from 'app/(context)';
 
 export default function Player() {
+  const { profile } = useGlobalContext();
   useCurrentTrack();
   return (
     <Container classNames="w-[95%] h-[600px] flex justify-evenly mx-auto">
       <div className="w-[20%]">
         <p className="text-4xl font-bold my-[30px]">Now Playing</p>
         <AlbumCover
-          src="https://i.scdn.co/image/ab67616d0000b2730c64e752dec4c08362cc4a88"
+          src={profile.playerState.albumCoverUrl || '/images/arrival.png'}
           classNames="w-[100%] "
         />
         <div className="w-[100%] text-center text-xl font-semibold">
-          <p className="text-2xl mt-[20px] font-bold">Movie</p>
-          <p className="mt-[20px]">Weyes Blood</p>
-          <p className="mt-[5px]">Titanic Rising</p>
+          <p className="text-2xl mt-[20px] font-bold">
+            {profile.playerState.name}
+          </p>
+          <p className="mt-[20px]">{profile.playerState.artist}</p>
+          <p className="mt-[5px]">{profile.playerState.album}</p>
+          <p className="mt-[5px]">
+            {profile.playerState.isPlaying ? 'Playing' : 'Paused'}
+          </p>
         </div>
       </div>
       <div className="w-[55%]  ">
