@@ -1,40 +1,42 @@
 import Image from 'next/image';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
+import LyricsContainer from './LyricsContainer';
 
 export default function SongContainer(/* props */) {
   // const { albumArt, songName, artistName, albumName, songLyrics } = props;
 
   return (
-    <div className="flex flex-col justify-between w-full h-full bg-primary rounded-3xl p-16">
-      {/* overall container */}
-      <div className="flex justify-center h-full">
+    <div className="flex flex-col justify-between w-full h-full font-primary bg-primary rounded-3xl p-20 cursor-default">
+      {/* Body container */}
+      <div className="flex justify-evenly">
         {/* album artwork */}
-        <div className="flex justify-center items-center w-5/12 h-2/4 m-1/12">
+        <div className="flex justify-center items-center w-5/12 h-full">
           <Image
-            alt="album art"
-            className="rounded-3xl"
-            height={300}
+            alt="album artwork"
+            className="rounded-3xl m-4"
+            height={320}
             src="https://f4.bcbits.com/img/a3610945043_10.jpg"
-            width={300}
+            width={320}
           />
+          {/* src={albumArt} */}
         </div>
 
         {/* Song info and buttons */}
-        <div className="flex flex-col justify-center w-7/12 h-2/4 m-1/12">
-          <div className="flex flex-col text-xl font-semibold">
-            <h1>Song Name</h1>
-            <h1>Artist Name</h1>
-            <h1>Album Name</h1>
+        <div className="flex flex-col justify-center items-center h-full w-7/12 p-4">
+          <div className="flex flex-col justify-evenly items-center h-3/4 w-3/4 text-2xl font-semibold m-4">
+            <h1>Song Name</h1> {/* songName */}
+            <h1>Artist Name</h1> {/* artistName */}
+            <h1>Album Name</h1> {/* albumName */}
           </div>
-          <div className="flex">
+          <div className="flex justify-evenly w-3/4">
             <Button
-              addedclasses="text-md rounded-xl"
+              addedclasses="text-md rounded-xl w-40"
               content="People"
               path={PEOPLE}
             />
             <Button
-              addedclasses="text-md rounded-xl"
+              addedclasses="text-md rounded-xl w-40"
               content="Comments"
               path={PEOPLE}
             />
@@ -42,7 +44,12 @@ export default function SongContainer(/* props */) {
         </div>
       </div>
       {/* Song lyrics */}
-      <div className="bg-secondary">Lyrics thing</div>
+      <LyricsContainer /> {/* songLyrics={songLyrics} */}
+      {/* <div className="text-3xl font-bold m-8">Lyrics</div>
+      <div className="bg-secondary h-full mx-8 rounded-3xl">
+        <br />
+        Acutal lyrics
+      </div> */}
     </div>
   );
 }
