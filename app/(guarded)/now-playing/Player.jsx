@@ -5,8 +5,10 @@ import Container from 'app/(container)/Container';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 export default function Player() {
+  useCurrentTrack();
   return (
     <Container classNames="w-[95%] h-[600px] flex justify-evenly mx-auto">
       <div className="w-[20%]">
