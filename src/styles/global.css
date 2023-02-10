@@ -29,6 +29,9 @@
     /* Container color */
     --bg-container: rgba(29, 21, 27, 0.3);
 
+    /* Container color */
+    --bg-container-light: rgb(49, 38, 61);
+
     /* Main app background gradient */
     --bg-main: linear-gradient(180deg, #44355e 0%, rgba(68, 53, 94, 0) 100%);
 
