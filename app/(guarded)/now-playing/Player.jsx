@@ -1,7 +1,6 @@
 'use client';
 
-import Image from 'next/image';
-import { useGlobalContext } from 'app/(context)';
+import Button from 'app/(button)/Button';
 import Container from 'app/(container)/Container';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
@@ -40,6 +39,14 @@ export default function Player() {
             <p>Some people-watch until they explode</p>
           </div>
         </Container>
+        <div className="flex justify-evenly">
+          <Button content="People" path="" addedclasses="text-3xl mt-[40px]" />
+          <Button
+            content="Comments"
+            path=""
+            addedclasses="text-3xl mt-[40px]"
+          />
+        </div>
       </div>
     </Container>
   );
