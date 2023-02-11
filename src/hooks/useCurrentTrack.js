@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import io from 'socket.io-client';
-import { SOCKET } from 'public/constants/pathNames';
+import { LYRICS, SOCKET } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
+import { getLyricsFromData } from 'src/helpers/helpers';
 
 let socket;
 
 export default function useCurrentTrack() {
-  const { credentials, setProfile } = useGlobalContext();
+  const { credentials, profile, setProfile } = useGlobalContext();
 
   const initializeSocket = async () => {
     await axios(SOCKET);
@@ -56,4 +57,30 @@ export default function useCurrentTrack() {
       console.log('Socket disconnected');
     };
   }, [true]);
+
+  // send access token to the server on access token change
+  useEffect(() => {
+    if (socket) {
+      socket.emit('access-token', credentials.accessToken);
+    }
+  }, [credentials.accessToken]);
+
+  // fetch lyrics every time current track changes
+  useEffect(() => {
+    const callLyricsApi = async () => {
+      if (!profile.playerState.name || !profile.playerState.artist) {
+        setProfile(prev => ({ ...prev, lyrics: {} }));
+        return;
+      }
+      const lyricsData = await axios(LYRICS, {
+        params: {
+          track: profile.playerState.name,
+          artist: profile.playerState.artist
+        }
+      });
+      const lyricsInfo = getLyricsFromData(lyricsData.data);
+      setProfile(prev => ({ ...prev, lyrics: lyricsInfo }));
+    };
+    callLyricsApi();
+  }, [profile.playerState.uri]);
 }

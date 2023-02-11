@@ -19,7 +19,8 @@ export function GlobalContextProvider(props) {
     avatar: '',
     handle: '',
     tracks: [],
-    playerState: { noActiveDevice: true }
+    playerState: { noActiveDevice: true },
+    lyrics: {}
   });
 
   // Geolocation
@@ -40,7 +41,13 @@ export function GlobalContextProvider(props) {
       longitude,
       setLongitude
     }),
-    [profile.uri, credentials.accessToken, profile.tracks, profile.playerState]
+    [
+      profile.uri,
+      credentials.accessToken,
+      profile.tracks,
+      profile.playerState,
+      profile.lyrics
+    ]
   );
 
   // Component provider, wrap around other components

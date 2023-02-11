@@ -54,7 +54,10 @@ module.exports = {
       textColor,
       backgroundColor,
       backgroundImage,
-      fontFamily
+      fontFamily,
+      animation: {
+        'spin-slow': 'spin 20s linear infinite'
+      }
     }
   },
   // eslint-disable-next-line global-require
