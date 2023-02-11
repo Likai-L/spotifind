@@ -18,6 +18,7 @@ export default function SocketHandler(req, res) {
     socket.on('access-token', token => {
       socket.token = token;
       console.log(socket.token);
+      socket.poll();
     });
     socket.poll = () => {
       // first checks for token to avoid calling before the token event
@@ -61,7 +62,6 @@ export default function SocketHandler(req, res) {
           socket.poll();
         });
     };
-    socket.poll();
   });
   res.end();
 }
