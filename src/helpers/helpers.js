@@ -49,8 +49,14 @@ export const getLyricsFromData = data => {
     return {};
   }
   // get lyrics_body, lyrics_copyright, script_tracking_url
-  const { lyrics_id, explicit, pixel_tracking_url, updated_time, ...rest } =
-    data.message.body.lyrics;
+  const {
+    lyrics_id,
+    explicit,
+    pixel_tracking_url,
+    lyrics_copyright,
+    updated_time,
+    ...rest
+  } = data.message.body.lyrics;
   const lyricsText = rest.lyrics_body;
   let sortedText = '';
   for (let char of lyricsText) {
@@ -59,5 +65,6 @@ export const getLyricsFromData = data => {
     }
     sortedText += char;
   }
+  sortedText += lyrics_copyright;
   return { ...rest, lyrics_body: sortedText };
 };
