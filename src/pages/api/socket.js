@@ -75,7 +75,11 @@ export default function SocketHandler(req, res) {
           }
           // console.log('1', playerState.name);
           // console.log('2', socket.playerState.name);
-          setTimeout(socket.poll, 1000);
+          setTimeout(socket.poll, 1000); // decrease this to improve responsiveness
+          // for casual testing 1-2s is recommended
+          // could remove the timeout and call it directly (long polling) when doping a demo
+          // 🚨👀 remeber to close the tab/turn off the server when you aren't using because
+          // the requests are continuously firing in the background, wasting request chances
         })
         .catch(err => {
           console.log(err);
