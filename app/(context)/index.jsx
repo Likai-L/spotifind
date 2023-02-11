@@ -22,6 +22,7 @@ export function GlobalContextProvider(props) {
     playerState: { noActiveDevice: true }
   });
 
+  const [recommendedTracks, setRecommendedTracks] = useState({});
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState({});
 
@@ -43,7 +44,9 @@ export function GlobalContextProvider(props) {
       searchInput,
       setSearchInput,
       searchResults,
-      setSearchResults
+      setSearchResults,
+      recommendedTracks,
+      setRecommendedTracks
     }),
     [
       profile.uri,
@@ -51,7 +54,8 @@ export function GlobalContextProvider(props) {
       profile.tracks,
       profile.playerState,
       searchInput,
-      searchResults
+      searchResults,
+      recommendedTracks
     ]
   );
 
