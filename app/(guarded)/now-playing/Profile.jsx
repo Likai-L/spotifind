@@ -43,6 +43,7 @@ export default function Profile() {
               return (
                 <AlbumCover
                   classNames="w-[200px] h-[200px] ml-[30px]"
+                  key={track.uri}
                   src={track.posterUrl}
                 />
               );
