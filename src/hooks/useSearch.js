@@ -9,9 +9,6 @@ export default function useSearch() {
   const { credentials, searchInput, setSearchResults } = useGlobalContext();
   const searchQuery = encodeURIComponent(searchInput);
 
-  console.log(searchInput);
-  console.log(searchQuery);
-
   // todo: STRETCH: Filter options for track/artist/album => '%2Cartist%2Calbum'
   useEffect(() => {
     if (credentials.accessToken && searchQuery) {
