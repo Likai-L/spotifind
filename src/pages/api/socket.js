@@ -33,7 +33,7 @@ export default function SocketHandler(req, res) {
 
           // if error (status code isn't 200 or 204) try again later
           if (!playerState) {
-            setTimeout(socket.poll, 100);
+            setTimeout(socket.poll, 1000);
             return;
           }
           // no active player
@@ -69,16 +69,17 @@ export default function SocketHandler(req, res) {
             }
             if (socket.playerState.isPlaying !== playerState.isPlaying) {
               socket.playerState.isPlaying = playerState.isPlaying;
+              console.log('player status change', playerState.isPlaying);
               socket.emit('play-status-change', socket.playerState.isPlaying);
             }
           }
           // console.log('1', playerState.name);
           // console.log('2', socket.playerState.name);
-          socket.poll();
+          setTimeout(socket.poll, 1000);
         })
         .catch(err => {
           console.log(err);
-          socket.poll();
+          setTimeout(socket.poll, 1000);
         });
     };
   });
