@@ -14,7 +14,7 @@ export default async function lyricsHandler(req, res) {
       }
     })
       .then(response => {
-        res.status(200).json(response.data);
+        res.status(200).send(response.data);
         return resolve();
       })
       .catch(err => {
