@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
-import { SPOTIFY_ENDPOINT } from 'public/constants/pathNames';
-import { getHeaders } from '../helpers/apiHelpers';
+import { SPOTIFY_BASE_URL } from 'public/constants/pathNames';
+import { getHeaders } from '../helpers/helpers';
 import { getSearchResults } from '../helpers/searchHelpers';
 
 export default function useSearch() {
@@ -13,7 +13,7 @@ export default function useSearch() {
   useEffect(() => {
     if (credentials.accessToken && searchQuery) {
       axios(
-        `${SPOTIFY_ENDPOINT}/search?q=${searchQuery}&type=track`,
+        `${SPOTIFY_BASE_URL}/search?q=${searchQuery}&type=track`,
         getHeaders(credentials.accessToken)
       )
         .then(res => {
