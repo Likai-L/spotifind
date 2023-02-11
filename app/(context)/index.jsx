@@ -32,6 +32,10 @@ export function GlobalContextProvider(props) {
     }
   }, [searchInput]);
 
+  // Geolocation
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+
   const { children } = props;
 
   // TODO: refactor this for better state management patterns
@@ -46,7 +50,11 @@ export function GlobalContextProvider(props) {
       searchResults,
       setSearchResults,
       recommendedTracks,
-      setRecommendedTracks
+      setRecommendedTracks,
+      latitude,
+      setLatitude,
+      longitude,
+      setLongitude
     }),
     [
       profile.uri,
