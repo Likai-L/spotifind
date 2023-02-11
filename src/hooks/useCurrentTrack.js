@@ -17,6 +17,12 @@ export default function useCurrentTrack() {
       console.log('Socket connected');
       socket.emit('access-token', credentials.accessToken);
     });
+
+    socket.on('no-active', message => {
+      console.log('initial-state:', message);
+      setProfile(prev => ({ ...prev, playerState: message }));
+    });
+
     socket.on('initial-state', message => {
       console.log('initial-state:', message);
       setProfile(prev => ({ ...prev, playerState: message }));
@@ -33,6 +39,7 @@ export default function useCurrentTrack() {
       console.log('track-change:', message);
       setProfile(prev => ({ ...prev, playerState: message }));
     });
+
     socket.on('play-status-change', message => {
       console.log('player-status-change:', message);
       setProfile(prev => ({
