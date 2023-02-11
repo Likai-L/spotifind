@@ -20,7 +20,7 @@ export function GlobalContextProvider(props) {
     handle: '',
     tracks: [],
     playerState: { noActiveDevice: true },
-    currentLyrics: ''
+    lyrics: {}
   });
 
   const { children } = props;
@@ -38,7 +38,7 @@ export function GlobalContextProvider(props) {
       credentials.accessToken,
       profile.tracks,
       profile.playerState,
-      profile.currentLyrics
+      profile.lyrics
     ]
   );
 
