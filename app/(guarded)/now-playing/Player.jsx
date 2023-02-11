@@ -4,11 +4,11 @@ import Script from 'next/script';
 import Button from 'app/(button)/Button';
 import Container from 'app/(container)/Container';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
-import MusixMatch from './MusixmatchLogo';
 import classNames from 'classnames';
 // import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useGlobalContext } from 'app/(context)';
+import MusixMatch from './MusixmatchLogo';
 import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 export default function Player() {
@@ -22,15 +22,16 @@ export default function Player() {
     }
   );
   useCurrentTrack();
+
   return (
     <Container classNames="w-[1500px] h-[600px] flex justify-evenly mx-auto">
       <div className="w-[20%]">
         <p className="text-3xl font-bold my-[30px]">Now Playing</p>
         <AlbumCover
+          classNames={playerClassNames}
+          height={280}
           src={profile.playerState.albumCoverUrl || '/images/vinyl.webp'}
           width={280}
-          height={280}
-          classNames={playerClassNames}
         />
         <div className=" text-center text-xl font-semibold  ">
           <p className="text-2xl mt-[20px] font-bold whitespace-pre-wrap">

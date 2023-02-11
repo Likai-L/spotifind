@@ -1,22 +1,22 @@
 'use client';
 
 import { useState } from 'react';
+import { useGlobalContext } from 'app/(context)';
 import classNames from 'classnames';
 import SpotifyIcon from 'app/(nav)/(icons)/SpotifyIcon';
 
 export default function SearchBar(props) {
   const { action, label } = props;
+  const { searchInput, setSearchInput } = useGlobalContext();
   const [focus, setFocus] = useState(false);
-  const [searchInput, setSearchInput] = useState('');
 
-  const handleChange = e => {
+  const handleChange = async e => {
     e.preventDefault();
     setSearchInput(e.target.value);
   };
 
-  // TODO: Implement with API / Database
   // TODO: Apply animate-spin to the spotifyicon while loading
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
   };
 

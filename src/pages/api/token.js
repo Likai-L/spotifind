@@ -27,6 +27,7 @@ export default async function handler(req, res) {
     'Content-Type': 'application/x-www-form-urlencoded'
   };
 
+  // eslint-disable-next-line consistent-return
   return new Promise(resolve => {
     axios
       .post(url, data, {

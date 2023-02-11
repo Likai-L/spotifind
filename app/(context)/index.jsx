@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 export const GlobalContext = createContext();
 
@@ -23,6 +23,15 @@ export function GlobalContextProvider(props) {
     lyrics: {}
   });
 
+  const [searchInput, setSearchInput] = useState('');
+  const [searchResults, setSearchResults] = useState({});
+
+  useEffect(() => {
+    if (searchInput === '') {
+      setSearchResults({});
+    }
+  }, [searchInput]);
+
   // Geolocation
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
@@ -36,6 +45,10 @@ export function GlobalContextProvider(props) {
       setCredentials,
       profile,
       setProfile,
+      searchInput,
+      setSearchInput,
+      searchResults,
+      setSearchResults,
       latitude,
       setLatitude,
       longitude,
@@ -46,6 +59,8 @@ export function GlobalContextProvider(props) {
       credentials.accessToken,
       profile.tracks,
       profile.playerState,
+      searchInput,
+      searchResults,
       profile.lyrics
     ]
   );

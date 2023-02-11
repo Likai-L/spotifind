@@ -5,9 +5,9 @@ export default function AlbumCover({ src, width, height, classNames }) {
     <Image
       alt="album-cover"
       className={`rounded-3xl  cursor-pointer transition duration-200 ease-out hover:scale-105 ${classNames}`}
-      width={width}
       height={height}
       src={src}
+      width={width}
     />
   );
 }

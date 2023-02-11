@@ -37,7 +37,9 @@ module.exports = {
   rules: {
     // Possible errors
     'no-console': 'off',
+    'no-nested-ternary': 'off',
     // Best practices
+    camelcase: 'off', // Off for some db stuff...
     'dot-notation': 'error',
     'no-else-return': 'error',
     'no-floating-decimal': 'error',
@@ -70,6 +72,7 @@ module.exports = {
         ignoreDeclarationSort: true
       }
     ],
+    'import/extensions': [0],
     'no-unused-expressions': 'off',
     'no-prototype-builtins': 'off',
     // REACT

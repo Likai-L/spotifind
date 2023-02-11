@@ -47,9 +47,9 @@ export default function Profile() {
                 return (
                   <AlbumCover
                     classNames="ml-[30px]"
-                    width={200}
                     height={200}
                     src={track.posterUrl}
+                    width={200}
                   />
                 );
               })

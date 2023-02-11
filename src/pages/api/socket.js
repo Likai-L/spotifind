@@ -1,9 +1,9 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-lonely-if */
 import axios from 'axios';
 import { Server } from 'socket.io';
-import { getHeaders } from 'src/helpers/helpers';
 import { SPOTIFY_BASE_URL } from 'public/constants/pathNames';
-import { sortPlayerStateData } from 'src/helpers/helpers';
+import { getHeaders, sortPlayerStateData } from '../helpers/helpers';
 
 export default function SocketHandler(req, res) {
   if (res.socket.server.io) {
@@ -11,15 +11,19 @@ export default function SocketHandler(req, res) {
     res.end();
     return;
   }
+
   console.log('Socket is initializing');
   const io = new Server(res.socket.server);
+
   res.socket.server.io = io;
+
   io.on('connection', socket => {
     socket.on('access-token', token => {
       socket.token = token;
       console.log(socket.token);
       socket.poll();
     });
+
     socket.poll = () => {
       // first checks for token to avoid calling before the token event
       if (!socket.token) {
@@ -57,6 +61,7 @@ export default function SocketHandler(req, res) {
               socket.playerState.device = playerState.device;
               socket.emit('device-change', socket.playerState.device);
             }
+
             if (socket.playerState.uri !== playerState.uri) {
               console.log(
                 'uri change',
@@ -67,6 +72,7 @@ export default function SocketHandler(req, res) {
               socket.playerState = playerState;
               socket.emit('track-change', socket.playerState);
             }
+
             if (socket.playerState.isPlaying !== playerState.isPlaying) {
               socket.playerState.isPlaying = playerState.isPlaying;
               console.log('player status change', playerState.isPlaying);
@@ -87,5 +93,6 @@ export default function SocketHandler(req, res) {
         });
     };
   });
+
   res.end();
 }

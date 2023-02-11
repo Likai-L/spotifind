@@ -34,6 +34,7 @@ export const sortPlayerStateData = axiosRes => {
   if (axiosRes.status === 204) return 'no-active';
   if (axiosRes.status !== 200) return null;
   const playerState = axiosRes.data;
+
   return {
     device: playerState.device.name,
     uri: playerState.item.id,
@@ -49,6 +50,7 @@ export const getLyricsFromData = data => {
   if (data.message.header.status_code !== 200) {
     return {};
   }
+
   // get lyrics_body, lyrics_copyright, script_tracking_url
   const {
     lyrics_id,
@@ -60,12 +62,15 @@ export const getLyricsFromData = data => {
   } = data.message.body.lyrics;
   const lyricsText = rest.lyrics_body;
   let sortedText = '';
-  for (let char of lyricsText) {
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const char of lyricsText) {
     if (char === '*') {
       break;
     }
     sortedText += char;
   }
   sortedText += lyrics_copyright;
+
   return { ...rest, lyrics_body: sortedText };
 };
