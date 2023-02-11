@@ -22,6 +22,10 @@ export function GlobalContextProvider(props) {
     playerState: { noActiveDevice: true }
   });
 
+  // Geolocation
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+
   const { children } = props;
 
   // TODO: refactor this for better state management patterns
@@ -30,7 +34,11 @@ export function GlobalContextProvider(props) {
       credentials,
       setCredentials,
       profile,
-      setProfile
+      setProfile,
+      latitude,
+      setLatitude,
+      longitude,
+      setLongitude
     }),
     [profile.uri, credentials.accessToken, profile.tracks, profile.playerState]
   );
