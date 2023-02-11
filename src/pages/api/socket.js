@@ -20,6 +20,11 @@ export default function SocketHandler(req, res) {
       console.log(socket.token);
     });
     socket.poll = () => {
+      // first checks for token to avoid calling before the token event
+      if (!socket.token) {
+        // if no token start from the start again
+        setTimeout(socket.poll, 100);
+      }
       axios(`${SPOTIFY_BASE_URL}/me/player`, getHeaders(socket.token))
         .then(response => {
           const playerState = sortPlayerStateData(response);
@@ -48,7 +53,6 @@ export default function SocketHandler(req, res) {
               socket.emit('play-status-change', socket.playerState.isPlaying);
             }
           }
-
           socket.poll();
         })
         .catch(err => {
