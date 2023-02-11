@@ -5,6 +5,7 @@ import { useState } from 'react';
 import './messages.css';
 import { getOrCreateChat } from 'react-chat-engine';
 import dynamic from 'next/dynamic';
+import { useGlobalContext } from 'app/(context)';
 
 // better to import this way, otherwise importting regularly may cause error if api is not yet ready?
 const ChatEngine = dynamic(() =>
@@ -12,8 +13,8 @@ const ChatEngine = dynamic(() =>
 );
 
 export default function Messages() {
+  const { profile } = useGlobalContext();
   const [username, setUsername] = useState('');
-
   // with maybe a little modification required this function can be called easily to
   // create a new chat and passing in dynamic credentials
   function createDirectChat(creds) {
@@ -50,8 +51,8 @@ export default function Messages() {
         height="80vh"
         projectID="f06a82ab-ee91-4d7d-9b6d-90b79d3392ca"
         renderNewChatForm={creds => renderChatForm(creds)}
-        userName="Bill"
-        userSecret="123qwe"
+        userName={profile.name}
+        userSecret={profile.uri}
       />
     </div>
   );

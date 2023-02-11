@@ -5,6 +5,7 @@ const SONGS = '/songs';
 const PEOPLE = '/people';
 const MESSAGES = '/messages';
 const SPOTIFY_ENDPOINT = 'https://api.spotify.com/v1';
+const SOCKET = 'api/socket';
 
 export {
   LANDING,
@@ -13,5 +14,6 @@ export {
   SONGS,
   PEOPLE,
   MESSAGES,
-  SPOTIFY_ENDPOINT
+  SPOTIFY_ENDPOINT,
+  SOCKET
 };

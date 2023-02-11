@@ -18,7 +18,8 @@ export function GlobalContextProvider(props) {
     uri: '',
     avatar: '',
     handle: '',
-    tracks: []
+    tracks: [],
+    playerState: { noActiveDevice: true }
   });
 
   const [searchInput, setSearchInput] = useState('');
@@ -48,6 +49,7 @@ export function GlobalContextProvider(props) {
       profile.uri,
       credentials.accessToken,
       profile.tracks,
+      profile.playerState,
       searchInput,
       searchResults
     ]

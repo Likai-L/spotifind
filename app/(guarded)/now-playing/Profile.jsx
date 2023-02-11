@@ -7,9 +7,11 @@ import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import useProfile from 'src/hooks/useProfile';
 import 'react-loading-skeleton/dist/skeleton.css';
+import useChatEngine from '@/hooks/useChatEngine';
 
 export default function Profile() {
   useProfile();
+  useChatEngine();
   const { profile } = useGlobalContext();
 
   return (

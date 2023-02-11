@@ -70,6 +70,7 @@ module.exports = {
         ignoreDeclarationSort: true
       }
     ],
+    'import/extensions': [0],
     'no-unused-expressions': 'off',
     'no-prototype-builtins': 'off',
     // REACT
