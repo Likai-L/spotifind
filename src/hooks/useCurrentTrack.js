@@ -3,6 +3,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import { LYRICS, SOCKET } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
+import { getLyricsFromData } from 'src/helpers/helpers';
 
 let socket;
 
@@ -61,7 +62,7 @@ export default function useCurrentTrack() {
   useEffect(() => {
     const callLyricsApi = async () => {
       if (!profile.playerState.name || !profile.playerState.artist) {
-        setProfile(prev => ({ ...prev, currentLyrics: '' }));
+        setProfile(prev => ({ ...prev, lyrics: {} }));
         return;
       }
       const lyricsData = await axios(LYRICS, {
@@ -70,7 +71,9 @@ export default function useCurrentTrack() {
           artist: profile.playerState.artist
         }
       });
-      console.log(lyricsData);
+      console.log(getLyricsFromData(lyricsData.data));
+      const lyricsInfo = getLyricsFromData(lyricsData.data);
+      setProfile(prev => ({ ...prev, lyrics: lyricsInfo }));
     };
     callLyricsApi();
   }, [profile.playerState.uri]);
