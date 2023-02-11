@@ -1,5 +1,6 @@
 'use client';
 
+import Script from 'next/script';
 import Button from 'app/(button)/Button';
 import Container from 'app/(container)/Container';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
@@ -46,6 +47,7 @@ export default function Player() {
               </p>
             )}
             {!profile.lyrics.lyrics_body && <p>No available lyrics</p>}
+            <Script src={profile.lyrics.script_tracking_url || ''} />
           </div>
         </Container>
         <div className="flex justify-evenly">
