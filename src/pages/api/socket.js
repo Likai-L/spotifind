@@ -1,9 +1,9 @@
 /* eslint-disable no-lonely-if */
 import axios from 'axios';
 import { Server } from 'socket.io';
-import { getHeaders } from 'src/helpers/profileHelpers';
+import { getHeaders } from 'src/helpers/helpers';
 import { SPOTIFY_BASE_URL } from 'public/constants/pathNames';
-import { sortPlayerStateData } from '@/helpers/socketHelper';
+import { sortPlayerStateData } from 'src/helpers/helper';
 
 export default function SocketHandler(req, res) {
   if (res.socket.server.io) {

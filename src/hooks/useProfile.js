@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
 import { SPOTIFY_BASE_URL } from 'public/constants/pathNames';
-import { getHeaders, getTracks } from '../helpers/profileHelpers';
+import { getHeaders, getTracks } from '../helpers/helpers';
 
 export default function useProfile() {
   const { credentials, profile, setProfile } = useGlobalContext();
