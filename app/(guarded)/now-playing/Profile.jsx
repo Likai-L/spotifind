@@ -8,10 +8,12 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import useProfile from 'src/hooks/useProfile';
 import 'react-loading-skeleton/dist/skeleton.css';
 import useChatEngine from '@/hooks/useChatEngine';
+import useGeoLocation from '@/hooks/useGeoLocation';
 
 export default function Profile() {
   useProfile();
   useChatEngine();
+  useGeoLocation();
   const { profile } = useGlobalContext();
 
   return (
