@@ -62,7 +62,7 @@ export default function SocketHandler(req, res) {
           setTimeout(socket.poll, 2000);
         })
         .catch(err => {
-          console.log(err);
+          console.log(err.response.data);
           setTimeout(socket.poll, 2000);
         });
     };

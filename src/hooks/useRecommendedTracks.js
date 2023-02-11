@@ -6,8 +6,7 @@ import { getHeaders } from '@/helpers/apiHelpers';
 import { getTopArtistIds, getTopTrackIds } from '@/helpers/profileHelpers';
 
 export default function useRecommendedTracks() {
-  const { credentials, profile, setRecommendedTracks, searchInput } =
-    useGlobalContext();
+  const { credentials, profile, setRecommendedTracks } = useGlobalContext();
   const [genre, setGenre] = useState('');
 
   // Get genre seeds
@@ -26,7 +25,7 @@ export default function useRecommendedTracks() {
         })
         .catch(err => console.log(err));
     }
-  }, [profile, searchInput]);
+  }, [profile]);
 
   // Get recommendations
   useEffect(() => {
@@ -43,19 +42,18 @@ export default function useRecommendedTracks() {
       )
         .then(res => {
           const trackData = res.data.tracks;
+          const tracksMap = trackData.map(track => {
+            return {
+              trackName: track.name,
+              artist: track.artists[0].name,
+              posterUrl: track.album.images[0].url,
+              uri: track.id
+            };
+          });
 
-          setRecommendedTracks(
-            trackData.map(track => {
-              return {
-                trackName: track.name,
-                artist: track.artists[0].name,
-                posterUrl: track.album.images[0].url,
-                uri: track.id
-              };
-            })
-          );
+          setRecommendedTracks(tracksMap);
         })
         .catch(err => console.log(err));
     }
-  }, [profile, searchInput]);
+  }, [profile]);
 }

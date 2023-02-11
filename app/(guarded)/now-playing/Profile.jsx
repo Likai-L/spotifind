@@ -8,9 +8,11 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import useProfile from 'src/hooks/useProfile';
 import 'react-loading-skeleton/dist/skeleton.css';
 import useChatEngine from '@/hooks/useChatEngine';
+import useRecommendedTracks from '@/hooks/useRecommendedTracks';
 
 export default function Profile() {
   useProfile();
+  useRecommendedTracks();
   useChatEngine();
   const { profile } = useGlobalContext();
 
