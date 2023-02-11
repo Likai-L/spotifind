@@ -13,12 +13,17 @@ import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 export default function Player() {
   const { profile } = useGlobalContext();
-  const playerClassNames = classNames('rounded-[50%]', 'animate-spin-slow', {
-    pause: !profile.playerState.isPlaying
-  });
+  const playerClassNames = classNames(
+    'rounded-[50%]',
+    'hover:none',
+    'animate-spin-slow',
+    {
+      pause: !profile.playerState.isPlaying
+    }
+  );
   useCurrentTrack();
   return (
-    <Container classNames="w-[93%] h-[600px] flex justify-evenly mx-auto">
+    <Container classNames="w-[1500px] h-[600px] flex justify-evenly mx-auto">
       <div className="w-[20%]">
         <p className="text-3xl font-bold my-[30px]">Now Playing</p>
         <AlbumCover
@@ -35,13 +40,6 @@ export default function Player() {
             {profile.playerState.artist || 'Not playing.'}
           </p>
           <p className="mt-[5px]">{profile.playerState.album || ''}</p>
-          <p className="mt-[5px]">
-            {profile.playerState.isPlaying
-              ? 'Playing'
-              : profile.playerState.noActiveDevice
-              ? ''
-              : 'Paused'}
-          </p>
         </div>
       </div>
       <div className="w-[55%]">
