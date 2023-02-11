@@ -60,15 +60,17 @@ export default function useCurrentTrack() {
   // fetch lyrics every time current track changes
   useEffect(() => {
     const callLyricsApi = async () => {
-      if (profile.playerState.name && profile.playerState.artist) {
-        const lyricsData = await axios(LYRICS, {
-          params: {
-            track: profile.playerState.name,
-            artist: profile.playerState.artist
-          }
-        });
-        console.log(lyricsData);
+      if (!profile.playerState.name || !profile.playerState.artist) {
+        setProfile(prev => ({ ...prev, currentLyrics: '' }));
+        return;
       }
+      const lyricsData = await axios(LYRICS, {
+        params: {
+          track: profile.playerState.name,
+          artist: profile.playerState.artist
+        }
+      });
+      console.log(lyricsData);
     };
     callLyricsApi();
   }, [profile.playerState.uri]);
