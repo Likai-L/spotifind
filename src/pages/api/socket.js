@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { Server } from 'socket.io';
 import { getHeaders } from 'src/helpers/profileHelpers';
-import { SPOTIFY_ENDPOINT } from 'public/constants/pathNames';
+import { SPOTIFY_BASE_URL } from 'public/constants/pathNames';
 import { sortPlayerStateData } from '@/helpers/socketHelper';
 
 export default function SocketHandler(req, res) {
@@ -20,7 +20,7 @@ export default function SocketHandler(req, res) {
       console.log(socket.token);
     });
     socket.poll = () => {
-      axios(`${SPOTIFY_ENDPOINT}/me/player`, getHeaders(socket.token))
+      axios(`${SPOTIFY_BASE_URL}/me/player`, getHeaders(socket.token))
         .then(response => {
           const playerState = sortPlayerStateData(response);
           if (!playerState) {
