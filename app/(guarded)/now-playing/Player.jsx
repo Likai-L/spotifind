@@ -5,13 +5,17 @@ import Button from 'app/(button)/Button';
 import Container from 'app/(container)/Container';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import MusixMatch from './MusixmatchLogo';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import classNames from 'classnames';
+// import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useGlobalContext } from 'app/(context)';
 import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 export default function Player() {
   const { profile } = useGlobalContext();
+  const playerClassNames = classNames('rounded-[50%]', 'animate-spin-slow', {
+    pause: !profile.playerState.isPlaying
+  });
   useCurrentTrack();
   return (
     <Container classNames="w-[93%] h-[600px] flex justify-evenly mx-auto">
@@ -21,7 +25,7 @@ export default function Player() {
           src={profile.playerState.albumCoverUrl || '/images/vinyl.webp'}
           width={280}
           height={280}
-          classNames="rounded-[50%]"
+          classNames={playerClassNames}
         />
         <div className=" text-center text-xl font-semibold  ">
           <p className="text-2xl mt-[20px] font-bold whitespace-pre-wrap">
