@@ -5,8 +5,9 @@ import { SPOTIFY_ENDPOINT } from 'public/constants/pathNames';
 import { getHeaders } from '@/helpers/apiHelpers';
 import { getTopArtistIds, getTopTrackIds } from '@/helpers/profileHelpers';
 
-export default function useRecommendations() {
-  const { credentials, profile, setRecommendedTracks } = useGlobalContext();
+export default function useRecommendedTracks() {
+  const { credentials, profile, setRecommendedTracks, searchInput } =
+    useGlobalContext();
   const [genre, setGenre] = useState('');
 
   // Get genre seeds
@@ -25,7 +26,7 @@ export default function useRecommendations() {
         })
         .catch(err => console.log(err));
     }
-  }, [profile]);
+  }, [profile, searchInput]);
 
   // Get recommendations
   useEffect(() => {
@@ -41,9 +42,20 @@ export default function useRecommendations() {
         getHeaders(credentials.accessToken)
       )
         .then(res => {
-          setRecommendedTracks(res.data.tracks);
+          const trackData = res.data.tracks;
+
+          setRecommendedTracks(
+            trackData.map(track => {
+              return {
+                trackName: track.name,
+                artist: track.artists[0].name,
+                posterUrl: track.album.images[0].url,
+                uri: track.id
+              };
+            })
+          );
         })
         .catch(err => console.log(err));
     }
-  }, [profile]);
+  }, [profile, searchInput]);
 }
