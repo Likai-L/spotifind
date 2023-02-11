@@ -35,8 +35,6 @@ export default function SocketHandler(req, res) {
             socket.emit('initial-state', playerState);
           } else {
             // compare and send updates to the client
-            console.log(socket.playerState.uri);
-            console.log(playerState.uri);
             if (socket.playerState.device !== playerState.device) {
               socket.playerState.device = playerState.device;
               socket.emit('device-change', socket.playerState.device);
