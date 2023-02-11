@@ -71,7 +71,6 @@ export default function useCurrentTrack() {
           artist: profile.playerState.artist
         }
       });
-      console.log(getLyricsFromData(lyricsData.data));
       const lyricsInfo = getLyricsFromData(lyricsData.data);
       setProfile(prev => ({ ...prev, lyrics: lyricsInfo }));
     };
