@@ -19,7 +19,8 @@ export function GlobalContextProvider(props) {
     avatar: '',
     handle: '',
     tracks: [],
-    playerState: { noActiveDevice: true }
+    playerState: { noActiveDevice: true },
+    currentLyrics: ''
   });
 
   const { children } = props;
@@ -32,7 +33,13 @@ export function GlobalContextProvider(props) {
       profile,
       setProfile
     }),
-    [profile.uri, credentials.accessToken, profile.tracks, profile.playerState]
+    [
+      profile.uri,
+      credentials.accessToken,
+      profile.tracks,
+      profile.playerState,
+      profile.currentLyrics
+    ]
   );
 
   // Component provider, wrap around other components
