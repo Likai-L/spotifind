@@ -49,6 +49,7 @@ export default function Messages() {
     <div className="w-[65vw]">
       <ChatEngine
         height="80vh"
+        offset={-8}
         projectID="f06a82ab-ee91-4d7d-9b6d-90b79d3392ca"
         renderNewChatForm={creds => renderChatForm(creds)}
         userName={profile.name}
