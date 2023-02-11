@@ -10,7 +10,7 @@ export const getSearchResults = tracks => {
       trackName: track.name,
       artist: track.artists[0].name,
       albumName: track.album.name,
-      posterUrl: track.album.images[0].url
+      albumCoverUrl: track.album.images[0].url
     };
   });
   return topResults;

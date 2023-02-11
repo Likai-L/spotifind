@@ -46,7 +46,7 @@ export default function useRecommendedTracks() {
             return {
               trackName: track.name,
               artist: track.artists[0].name,
-              posterUrl: track.album.images[0].url,
+              albumCoverUrl: track.album.images[0].url,
               uri: track.id
             };
           });
