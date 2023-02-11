@@ -16,17 +16,23 @@ export default function Player() {
       <div className="w-[20%]">
         <p className="text-4xl font-bold my-[30px]">Now Playing</p>
         <AlbumCover
-          src={profile.playerState.albumCoverUrl || '/images/arrival.png'}
+          src={profile.playerState.albumCoverUrl || '/images/vinyl.webp'}
           classNames="w-[100%] "
         />
         <div className="w-[100%] text-center text-xl font-semibold">
           <p className="text-2xl mt-[20px] font-bold">
             {profile.playerState.name}
           </p>
-          <p className="mt-[20px]">{profile.playerState.artist}</p>
-          <p className="mt-[5px]">{profile.playerState.album}</p>
+          <p className="mt-[20px]">
+            {profile.playerState.artist || 'Not playing.'}
+          </p>
+          <p className="mt-[5px]">{profile.playerState.album || ''}</p>
           <p className="mt-[5px]">
-            {profile.playerState.isPlaying ? 'Playing' : 'Paused'}
+            {profile.playerState.isPlaying
+              ? 'Playing'
+              : profile.playerState.noActiveDevice
+              ? ''
+              : 'Paused'}
           </p>
         </div>
       </div>
