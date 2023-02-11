@@ -40,18 +40,12 @@ export default function Player() {
         <p className="text-4xl font-bold my-[30px] ">Lyrics</p>
         <Container classNames="bg-container-light w-[100%] min-h-[300px] overflow-auto scrollbar-hide">
           <div className="w-[100%] text-center text-xl font-bold leading-loose pt-[10px]">
-            <p>Glass in the Park</p>
-            <p>This is how it feels to be in love</p>
-            <p>This is life from above</p>
-            <p>There’s no books anymore</p>
-            <p>I’m bound to that summer</p>
-            <p>Big box office hit</p>
-            <p>Making love to a counterfeit</p>
-            <p>Why did so many</p>
-            <p>Get a rise out of me?</p>
-            <p>I love the movies</p>
-            <p>Some people feel what some people don’t</p>
-            <p>Some people-watch until they explode</p>
+            {profile.lyrics.lyrics_body && (
+              <p className="whitespace-pre-line">
+                {profile.lyrics.lyrics_body}
+              </p>
+            )}
+            {!profile.lyrics.lyrics_body && <p>No available lyrics</p>}
           </div>
         </Container>
         <div className="flex justify-evenly">
