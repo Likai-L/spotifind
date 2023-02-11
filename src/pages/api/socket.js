@@ -51,11 +51,11 @@ export default function SocketHandler(req, res) {
             }
           }
 
-          setTimeout(socket.poll, 2000);
+          socket.poll();
         })
         .catch(err => {
           console.log(err);
-          setTimeout(socket.poll, 2000);
+          socket.poll();
         });
     };
     socket.poll();
