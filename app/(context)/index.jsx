@@ -18,7 +18,8 @@ export function GlobalContextProvider(props) {
     uri: '',
     avatar: '',
     handle: '',
-    tracks: []
+    tracks: [],
+    playerState: { noActiveDevice: true }
   });
 
   const { children } = props;
@@ -31,7 +32,7 @@ export function GlobalContextProvider(props) {
       profile,
       setProfile
     }),
-    [profile.uri, credentials.accessToken, profile.tracks]
+    [profile.uri, credentials.accessToken, profile.tracks, profile.playerState]
   );
 
   // Component provider, wrap around other components
