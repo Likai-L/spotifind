@@ -43,3 +43,13 @@ export const sortPlayerStateData = axiosRes => {
     isPlaying: playerState.is_playing
   };
 };
+
+export const getLyricsFromData = data => {
+  if (data.message.header.status_code !== 200) {
+    return {};
+  }
+  // get lyrics_body, lyrics_copyright, script_tracking_url
+  const { lyrics_id, explicit, pixel_tracking_url, updated_time, ...rest } =
+    data.message.body.lyrics;
+  return rest;
+};
