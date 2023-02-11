@@ -31,6 +31,7 @@ export const getTracks = tracks => {
 };
 
 export const sortPlayerStateData = axiosRes => {
+  if (axiosRes.status === 204) return 'no-active';
   if (axiosRes.status !== 200) return null;
   const playerState = axiosRes.data;
   return {

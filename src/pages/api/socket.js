@@ -30,23 +30,40 @@ export default function SocketHandler(req, res) {
       axios(`${SPOTIFY_BASE_URL}/me/player`, getHeaders(socket.token))
         .then(response => {
           const playerState = sortPlayerStateData(response);
+
+          // if error (status code isn't 200 or 204) try again later
           if (!playerState) {
-            // no active player
-            if (socket.playerState) {
+            setTimeout(socket.poll, 100);
+            return;
+          }
+          // no active player
+          if (playerState === 'no-active') {
+            // no socket.playerStatue means front end state is still its initial value which is no-active
+            // no uir key means it's already no-active state
+            if (socket.playerState && socket.playerState.uri) {
               socket.playerState = { noActiveDevice: true };
+              console.log('no active device');
               socket.emit('no-active', socket.playerState);
             }
           } else if (!socket.playerState) {
             // set initial player state and send it to the client
             socket.playerState = playerState;
+            console.log('initial state');
             socket.emit('initial-state', playerState);
           } else {
             // compare and send updates to the client
             if (socket.playerState.device !== playerState.device) {
+              console.log('device change', playerState.device);
               socket.playerState.device = playerState.device;
               socket.emit('device-change', socket.playerState.device);
             }
             if (socket.playerState.uri !== playerState.uri) {
+              console.log(
+                'uri change',
+                socket.playerState.uri,
+                '=>',
+                playerState.uri
+              );
               socket.playerState = playerState;
               socket.emit('track-change', socket.playerState);
             }
@@ -55,6 +72,8 @@ export default function SocketHandler(req, res) {
               socket.emit('play-status-change', socket.playerState.isPlaying);
             }
           }
+          console.log('1', playerState.name);
+          console.log('2', socket.playerState.name);
           socket.poll();
         })
         .catch(err => {
