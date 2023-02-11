@@ -12,7 +12,7 @@ export default function Player() {
   const { profile } = useGlobalContext();
   useCurrentTrack();
   return (
-    <Container classNames="w-[95%] h-[600px] flex justify-evenly mx-auto">
+    <Container classNames="w-[95%] h-[600px] flex justify-evenly mx-auto overflow-scroll scrollbar-hide">
       <div className="w-[20%]">
         <p className="text-4xl font-bold my-[30px]">Now Playing</p>
         <AlbumCover
