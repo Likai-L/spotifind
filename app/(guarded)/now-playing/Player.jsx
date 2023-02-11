@@ -18,6 +18,7 @@ export default function Player() {
         <p className="text-4xl font-bold my-[30px]">Now Playing</p>
         <AlbumCover
           classNames="w-[100%] "
+          priority="true"
           src={profile.playerState.albumCoverUrl || '/images/vinyl.webp'}
         />
         <div className="w-[100%] text-center text-xl font-semibold">
