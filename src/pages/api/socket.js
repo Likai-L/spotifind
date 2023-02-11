@@ -2,7 +2,7 @@
 /* eslint-disable no-lonely-if */
 import axios from 'axios';
 import { Server } from 'socket.io';
-import { getHeaders } from 'src/helpers/profileHelpers';
+import { getHeaders } from 'src/helpers/apiHelpers';
 import { SPOTIFY_ENDPOINT } from 'public/constants/pathNames';
 import { sortPlayerStateData } from '@/helpers/socketHelper';
 
@@ -21,7 +21,7 @@ export default function SocketHandler(req, res) {
   io.on('connection', socket => {
     socket.on('access-token', token => {
       socket.token = token;
-      console.log(socket.token);
+      // console.log(socket.token);
     });
 
     socket.poll = () => {
@@ -40,8 +40,8 @@ export default function SocketHandler(req, res) {
             socket.emit('initial-state', playerState);
           } else {
             // compare and send updates to the client
-            console.log(socket.playerState.uri);
-            console.log(playerState.uri);
+            // console.log(socket.playerState.uri);
+            // console.log(playerState.uri);
 
             if (socket.playerState.device !== playerState.device) {
               socket.playerState.device = playerState.device;

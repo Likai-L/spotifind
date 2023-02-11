@@ -1,7 +1,7 @@
 /**
- * process top tracks data
- * @param   {[]} tracks array of tracks from the saved tracks
- * @return  {[]}      an array of top tracks with needed info
+ * process search data
+ * @param   {[]} tracks array of tracks from the search results
+ * @return  {[]}        an array of the top 20 results
  */
 export const getSearchResults = tracks => {
   const topResults = tracks.map(track => {

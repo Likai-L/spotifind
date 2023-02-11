@@ -3,7 +3,7 @@
 import { useGlobalContext } from 'app/(context)';
 import AlbumTile from './AlbumTile';
 
-export default function Results() {
+export default function SearchResults() {
   const { searchInput, searchResults } = useGlobalContext();
 
   return (
