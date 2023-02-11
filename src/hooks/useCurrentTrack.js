@@ -58,6 +58,13 @@ export default function useCurrentTrack() {
     };
   }, [true]);
 
+  // send access token to the server on access token change
+  useEffect(() => {
+    if (socket) {
+      socket.emit('access-token', credentials.accessToken);
+    }
+  }, [credentials.accessToken]);
+
   // fetch lyrics every time current track changes
   useEffect(() => {
     const callLyricsApi = async () => {
