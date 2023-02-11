@@ -1,7 +1,7 @@
 'use client';
 
 import { useGlobalContext } from 'app/(context)';
-import AlbumTile from './AlbumTile';
+import AlbumGrid from './AlbumGrid';
 
 export default function SearchResults() {
   const { searchInput, searchResults } = useGlobalContext();
@@ -13,11 +13,7 @@ export default function SearchResults() {
         <span className="text-secondary">{` ${searchInput} `}</span>
       </div>
       {searchResults.length > 0 ? (
-        <div className="grid grid-cols-5 col-start-1 h-full overflow-y-scroll scrollbar-hide">
-          {searchResults.map(track => {
-            return <AlbumTile track={track} />;
-          })}
-        </div>
+        <AlbumGrid tracks={searchResults} />
       ) : (
         <div className="flex justify-center items-center h-full text-3xl font-bold">
           No results found.
