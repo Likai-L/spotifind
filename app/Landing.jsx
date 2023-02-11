@@ -19,7 +19,7 @@ export default function Landing() {
               <span>With</span>
               <Image
                 alt="Spotifind logo"
-                className="inline-block w-20 ml-2"
+                className="inline-block w-20 mx-2"
                 src={logo}
               />
               <span className="font-primary">SpotiFind</span>
