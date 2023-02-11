@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 export const GlobalContext = createContext();
 
@@ -21,6 +21,15 @@ export function GlobalContextProvider(props) {
     tracks: []
   });
 
+  const [searchInput, setSearchInput] = useState('');
+  const [searchResults, setSearchResults] = useState({});
+
+  useEffect(() => {
+    if (searchInput === '') {
+      setSearchResults({});
+    }
+  }, [searchInput]);
+
   const { children } = props;
 
   // TODO: refactor this for better state management patterns
@@ -29,9 +38,19 @@ export function GlobalContextProvider(props) {
       credentials,
       setCredentials,
       profile,
-      setProfile
+      setProfile,
+      searchInput,
+      setSearchInput,
+      searchResults,
+      setSearchResults
     }),
-    [profile.uri, credentials.accessToken, profile.tracks]
+    [
+      profile.uri,
+      credentials.accessToken,
+      profile.tracks,
+      searchInput,
+      searchResults
+    ]
   );
 
   // Component provider, wrap around other components
