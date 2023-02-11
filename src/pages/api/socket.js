@@ -24,6 +24,7 @@ export default function SocketHandler(req, res) {
       if (!socket.token) {
         // if no token start from the start again
         setTimeout(socket.poll, 100);
+        return;
       }
       axios(`${SPOTIFY_BASE_URL}/me/player`, getHeaders(socket.token))
         .then(response => {
