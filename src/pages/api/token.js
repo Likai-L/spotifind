@@ -27,12 +27,19 @@ export default async function handler(req, res) {
     'Content-Type': 'application/x-www-form-urlencoded'
   };
 
-  axios
-    .post(url, data, {
-      headers
-    })
-    .then(response => {
-      res.redirect(`/?${querystring.stringify(response.data)}`);
-    })
-    .catch(err => console.log(err.message));
+  return new Promise(resolve => {
+    axios
+      .post(url, data, {
+        headers
+      })
+      .then(response => {
+        res.redirect(`/?${querystring.stringify(response.data)}`);
+        return resolve();
+      })
+      .catch(err => {
+        console.log(err.message);
+        res.status(500).end();
+        return resolve();
+      });
+  });
 }
