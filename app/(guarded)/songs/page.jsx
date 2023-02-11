@@ -10,7 +10,7 @@ import Results from './Results';
 import useSearch from '@/hooks/useSearch';
 
 export default function Songs() {
-  const { searchResults } = useGlobalContext();
+  const { searchInput } = useGlobalContext();
   useSearch();
 
   return (
@@ -18,7 +18,7 @@ export default function Songs() {
       <div className="flex justify-center pb-8">
         <SearchBar action={SONGS} label="Search for a song" />
       </div>
-      {searchResults.length > 0 ? <Results /> : <Recommended />}
+      {searchInput.length > 0 ? <Results /> : <Recommended />}
     </div>
   );
 }

@@ -13,11 +13,17 @@ export default function Results() {
         Results for:
         <span className="text-secondary">{` ${searchInput} `}</span>
       </div>
-      <div className="grid grid-cols-5 overflow-y-scroll scrollbar-hide">
-        {searchResults.map(track => {
-          return <AlbumTile track={track} />;
-        })}
-      </div>
+      {searchResults.length > 0 ? (
+        <div className="grid grid-cols-5 h-full overflow-y-scroll scrollbar-hide">
+          {searchResults.map(track => {
+            return <AlbumTile track={track} />;
+          })}
+        </div>
+      ) : (
+        <div className="flex justify-center items-center h-full text-3xl font-bold">
+          No results found.
+        </div>
+      )}
     </Container>
   );
 }
