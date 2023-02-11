@@ -4,6 +4,7 @@ import Script from 'next/script';
 import Button from 'app/(button)/Button';
 import Container from 'app/(container)/Container';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
+import MusixMatch from './MusixmatchLogo';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useGlobalContext } from 'app/(context)';
@@ -38,7 +39,11 @@ export default function Player() {
         </div>
       </div>
       <div className="w-[55%]">
-        <p className="text-4xl font-bold my-[30px] ">Lyrics</p>
+        <div className="flex justify-between">
+          <div className="text-4xl font-bold my-[30px] ">Lyrics</div>{' '}
+          <MusixMatch />
+        </div>
+
         <Container classNames="bg-container-light w-[100%] min-h-[300px] overflow-auto scrollbar-hide">
           <div className="w-[100%] text-center text-xl font-bold leading-loose pt-[10px]">
             {profile.lyrics.lyrics_body && (
