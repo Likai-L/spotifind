@@ -51,5 +51,13 @@ export const getLyricsFromData = data => {
   // get lyrics_body, lyrics_copyright, script_tracking_url
   const { lyrics_id, explicit, pixel_tracking_url, updated_time, ...rest } =
     data.message.body.lyrics;
-  return rest;
+  const lyricsText = rest.lyrics_body;
+  let sortedText = '';
+  for (let char of lyricsText) {
+    if (char === '*') {
+      break;
+    }
+    sortedText += char;
+  }
+  return { ...rest, lyrics_body: sortedText };
 };
