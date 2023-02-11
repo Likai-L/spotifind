@@ -72,8 +72,8 @@ export default function SocketHandler(req, res) {
               socket.emit('play-status-change', socket.playerState.isPlaying);
             }
           }
-          console.log('1', playerState.name);
-          console.log('2', socket.playerState.name);
+          // console.log('1', playerState.name);
+          // console.log('2', socket.playerState.name);
           socket.poll();
         })
         .catch(err => {
