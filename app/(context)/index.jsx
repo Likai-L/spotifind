@@ -19,7 +19,7 @@ export function GlobalContextProvider(props) {
     avatar: '',
     handle: '',
     tracks: [],
-    playerState: {}
+    playerState: { noActiveDevice: true }
   });
 
   const { children } = props;
