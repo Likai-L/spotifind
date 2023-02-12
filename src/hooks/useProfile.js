@@ -24,7 +24,21 @@ export default function useProfile() {
     }
   }, [credentials.accessToken]);
 
-  useEffect(() => {}, [profile.uri]);
+  useEffect(() => {
+    const prisma = new PrismaClient();
+
+    async function main() {}
+
+    main()
+      .then(async () => {
+        await prisma.$disconnect();
+      })
+      .catch(async e => {
+        console.error(e);
+        await prisma.$disconnect();
+        process.exit(1);
+      });
+  }, [profile.uri, profile.tracks[0]]);
 
   useEffect(() => {
     if (credentials.accessToken) {
