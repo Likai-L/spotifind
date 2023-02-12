@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
 import { SPOTIFY_BASE_URL } from 'public/constants/pathNames';
 import { getHeaders, getTracks } from '../helpers/helpers';
+import { PrismaClient } from '@prisma/client';
 
 export default function useProfile() {
   const { credentials, profile, setProfile } = useGlobalContext();
@@ -15,14 +16,15 @@ export default function useProfile() {
           setProfile({
             ...profile,
             name: profileData.display_name,
-            uri: profileData.uri,
-            handle: `@${profileData.id}`,
+            uri: profileData.id,
             avatar: profileData.images[0].url
           });
         })
         .catch(err => console.log(err));
     }
   }, [credentials.accessToken]);
+
+  useEffect(() => {}, [profile.uri]);
 
   useEffect(() => {
     if (credentials.accessToken) {
