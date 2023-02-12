@@ -30,6 +30,7 @@ export default function Player() {
         <AlbumCover
           classNames={playerClassNames}
           height={280}
+          priority="true"
           src={profile.playerState.albumCoverUrl || '/images/vinyl.webp'}
           width={280}
         />

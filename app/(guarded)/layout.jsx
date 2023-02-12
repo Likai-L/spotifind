@@ -7,7 +7,7 @@ export default function GuardedLayout({
 }) {
   return (
     <GuardPage>
-      <div className="h-screen flex flex-row justify-start fade-in-left">
+      <div className="h-screen w-screen flex flex-row justify-start fade-in-left overflow-hidden">
         <Sidebar />
         {/* Main content will be inside children here */}
         <div className={`bg-main text-primary flex-1 ${styles.main}`}>

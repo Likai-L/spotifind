@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { Server } from 'socket.io';
 import { SPOTIFY_BASE_URL } from 'public/constants/pathNames';
-import { getHeaders, sortPlayerStateData } from 'src/helpers/helpers';
+import { getHeaders, sortPlayerStateData } from '@/helpers/helpers';
 
 export default function SocketHandler(req, res) {
   if (res.socket.server.io) {
@@ -31,6 +31,7 @@ export default function SocketHandler(req, res) {
         setTimeout(socket.poll, 100);
         return;
       }
+
       axios(`${SPOTIFY_BASE_URL}/me/player`, getHeaders(socket.token))
         .then(response => {
           console.log('😎 axios response came back!');
@@ -89,7 +90,7 @@ export default function SocketHandler(req, res) {
           // the requests are continuously firing in the background, wasting request chances
         })
         .catch(err => {
-          console.log(err);
+          console.log(err.response.data);
           setTimeout(socket.poll, 1000);
         });
     };

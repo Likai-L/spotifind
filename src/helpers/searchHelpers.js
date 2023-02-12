@@ -1,7 +1,7 @@
 /**
- * process top tracks data
- * @param   {[]} tracks array of tracks from the saved tracks
- * @return  {[]}      an array of top tracks with needed info
+ * process search data
+ * @param   {[]} tracks array of tracks from the search results
+ * @return  {[]}        an array of the top 20 results
  */
 export const getSearchResults = tracks => {
   const topResults = tracks.map(track => {
@@ -10,7 +10,7 @@ export const getSearchResults = tracks => {
       trackName: track.name,
       artist: track.artists[0].name,
       albumName: track.album.name,
-      posterUrl: track.album.images[0].url
+      albumCoverUrl: track.album.images[0].url
     };
   });
   return topResults;

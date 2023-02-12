@@ -23,6 +23,7 @@ export function GlobalContextProvider(props) {
     lyrics: {}
   });
 
+  const [recommendedTracks, setRecommendedTracks] = useState({});
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState({});
 
@@ -49,6 +50,8 @@ export function GlobalContextProvider(props) {
       setSearchInput,
       searchResults,
       setSearchResults,
+      recommendedTracks,
+      setRecommendedTracks,
       latitude,
       setLatitude,
       longitude,
@@ -61,6 +64,7 @@ export function GlobalContextProvider(props) {
       profile.playerState,
       searchInput,
       searchResults,
+      recommendedTracks,
       profile.lyrics
     ]
   );

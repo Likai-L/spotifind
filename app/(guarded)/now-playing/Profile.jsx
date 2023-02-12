@@ -8,10 +8,12 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import useProfile from 'src/hooks/useProfile';
 import 'react-loading-skeleton/dist/skeleton.css';
 import useChatEngine from '@/hooks/useChatEngine';
+import useRecommendedTracks from '@/hooks/useRecommendedTracks';
 import useGeoLocation from '@/hooks/useGeoLocation';
 
 export default function Profile() {
   useProfile();
+  useRecommendedTracks();
   useChatEngine();
   useGeoLocation();
   const { profile } = useGlobalContext();
@@ -48,7 +50,8 @@ export default function Profile() {
                   <AlbumCover
                     classNames="ml-[30px]"
                     height={200}
-                    src={track.posterUrl}
+                    key={track.uri}
+                    src={track.albumCoverUrl}
                     width={200}
                   />
                 );

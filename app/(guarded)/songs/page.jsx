@@ -7,7 +7,7 @@ import { SONGS } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
 import Container from 'app/(container)/Container';
 import Recommended from './Recommended';
-import Results from './Results';
+import SearchResults from './SearchResults';
 import useSearch from '@/hooks/useSearch';
 
 export default function Songs() {
@@ -20,7 +20,7 @@ export default function Songs() {
         <SearchBar action={SONGS} label="Search for a song" />
       </div>
       <Container classNames="flex flex-col justify-between w-full max-h-5/6 h-5/6 font-primary rounded-3xl px-12 pt-4 cursor-default">
-        {searchInput.length > 0 ? <Results /> : <Recommended />}
+        {searchInput.length > 0 ? <SearchResults /> : <Recommended />}
       </Container>
     </div>
   );

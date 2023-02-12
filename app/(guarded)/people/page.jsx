@@ -1,13 +1,14 @@
 'use client';
 
 import SearchBar from 'app/(searchbar)/SearchBar';
-import Map from 'app/(map)/Map';
+import Map from 'app/(guarded)/people/(map)/Map';
 import { useState } from 'react';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
 import UserCard from './UserCard';
 import SongCard from './SongCard';
 
+// TODO: Fix map pushing sidebar and layout around
 export default function People() {
   const [showMap, setShowMap] = useState(false);
   return (
@@ -30,7 +31,7 @@ export default function People() {
             />
           </div>
         </div>
-        <div className="flex flex-row h-3/4 w-[95%] m-auto overflow-x-auto overflow-y-clip items-center">
+        <div className="flex flex-row h-3/4 w-full m-auto overflow-x-auto overflow-y-hidden scrollbar-hide items-center">
           {showMap ? <Map /> : null}
           {/* Will be dynamic and mapped based on search results,
            but for now just pasted like this to see multiple */}
