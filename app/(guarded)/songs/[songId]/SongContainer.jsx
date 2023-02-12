@@ -7,42 +7,37 @@ export default function SongContainer({ track }) {
   const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
 
   return (
-    <>
-      {/* Body container */}
-      <div className="flex justify-evenly">
-        {/* album artwork */}
-        <div className="flex flex-col justify-center items-center w-5/12 h-full">
-          <Image
-            alt="album artwork"
-            className="rounded-3xl m-4"
-            height={320}
-            src={albumCoverUrl}
-            width={320}
-          />
-          <div className="flex flex-col justify-evenly items-center h-3/4 w-3/4 text-2xl font-semibold p-2 m-4">
-            <h1 className="p-2">{trackName}</h1>
-            <h1 className="p-2">{artistName}</h1>
-            <h1 className="p-2">{albumName}</h1>
-          </div>
-          <div className="flex justify-evenly w-3/4 p-2">
-            <Button
-              addedclasses="text-md rounded-xl w-40"
-              content="People"
-              path={PEOPLE}
-            />
-            <Button
-              addedclasses="text-md rounded-xl w-40"
-              content="Comments"
-              path={PEOPLE}
-            />
-          </div>
+    <div className="flex justify-evenly">
+      <div className="flex flex-col justify-center items-center w-5/12 h-full">
+        <Image
+          alt="album artwork"
+          className="rounded-3xl m-4"
+          height={320}
+          src={albumCoverUrl}
+          width={320}
+        />
+        <div className="flex flex-col justify-evenly items-center h-3/4 w-3/4 text-2xl font-semibold m-4 text-center line-clamp-4">
+          <h1 className="p-2">{trackName}</h1>
+          <h1 className="p-2">{artistName}</h1>
+          <h1 className="p-2">{albumName}</h1>
         </div>
-
-        <div className="flex flex-col justify-start items-center h-full w-7/12 p-4">
-          <LyricsContainer songLyrics={lyrics} />
+        <div className="flex justify-evenly w-3/4 p-2">
+          <Button
+            addedclasses="text-md rounded-xl w-40"
+            content="People"
+            path={PEOPLE}
+          />
+          <Button
+            addedclasses="text-md rounded-xl w-40"
+            content="Comments"
+            path={PEOPLE}
+          />
         </div>
       </div>
-      {/* Song lyrics */}
-    </>
+
+      <div className="flex flex-col justify-start items-center h-full w-7/12 p-4">
+        <LyricsContainer songLyrics={lyrics} />
+      </div>
+    </div>
   );
 }
