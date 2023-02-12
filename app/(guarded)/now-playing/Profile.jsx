@@ -41,9 +41,9 @@ export default function Profile() {
             {profile.handle || <Skeleton />}
           </div>
         </div>
-        <Container classNames="lg:w-[500px] xl:w-[800px] 2xl:w-[1000px] 3xl:w-[1200px]  ml-[50px] flex flex-col justify-evenly  overflow-x-scroll scrollbar-hide">
+        <Container classNames="lg:w-[500px] xl:w-[800px] 2xl:w-[1000px] 3xl:w-[1200px]  ml-[50px] flex flex-col justify-evenly">
           <div className="text-3xl font-bold ml-[30px]">My Taste</div>
-          <div className="flex items-center">
+          <div className="flex items-center overflow-x-scroll scrollbar-hide">
             {profile.tracks.length > 0 ? (
               profile.tracks.map(track => {
                 return (
@@ -52,6 +52,7 @@ export default function Profile() {
                     height={200}
                     key={track.uri}
                     src={track.albumCoverUrl}
+                    trackUri={track.uri}
                     width={200}
                   />
                 );

@@ -32,6 +32,7 @@ export default function Player() {
           height={280}
           priority="true"
           src={profile.playerState.albumCoverUrl || '/images/vinyl.webp'}
+          trackUri={profile.playerState.uri}
           width={280}
         />
         <div className=" text-center text-xl font-semibold  ">
