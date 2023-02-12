@@ -37,18 +37,15 @@ export default function Profile() {
           <div className="text-2xl mt-4 truncate">
             {profile.name || <Skeleton />}
           </div>
-          <div className="mt-1 opacity-30 truncate">
-            {profile.handle || <Skeleton />}
-          </div>
         </div>
-        <Container classNames="lg:w-[500px] xl:w-[800px] 2xl:w-[1000px] 3xl:w-[1200px]  ml-[50px] flex flex-col justify-evenly">
+        <Container classNames="lg:w-[500px] xl:w-[800px] 2xl:w-[1000px] 3xl:w-[1200px] ml-[50px] flex flex-col justify-evenly">
           <div className="text-3xl font-bold ml-[30px]">My Taste</div>
-          <div className="flex items-center overflow-x-scroll scrollbar-hide">
+          <div className="flex justify-evenly items-center overflow-x-scroll overflow-y-hidden scrollbar-hide mx-[15px]">
             {profile.tracks.length > 0 ? (
               profile.tracks.map(track => {
                 return (
                   <AlbumCover
-                    classNames="ml-[30px]"
+                    classNames="mx-[15px]"
                     height={200}
                     key={track.uri}
                     src={track.albumCoverUrl}

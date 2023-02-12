@@ -7,8 +7,8 @@ export default function SongContainer({ track }) {
   const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
 
   return (
-    <div className="flex justify-evenly">
-      <div className="flex flex-col justify-center items-center w-5/12 h-full">
+    <div className="flex justify-evenly font-primary">
+      <div className="flex flex-col justify-center items-center w-5/12 h-full ">
         <Image
           alt="album artwork"
           className="rounded-3xl m-4"
@@ -18,8 +18,8 @@ export default function SongContainer({ track }) {
         />
         <div className="flex flex-col justify-evenly items-center h-3/4 w-3/4 text-2xl font-semibold m-4 text-center line-clamp-4">
           <h1 className="p-2">{trackName}</h1>
-          <h1 className="p-2">{artistName}</h1>
-          <h1 className="p-2">{albumName}</h1>
+          <h1 className="p-2 text-secondary text-xl">{artistName}</h1>
+          <h1 className="p-2 text-secondary text-lg">{albumName}</h1>
         </div>
         <div className="flex justify-evenly w-3/4 p-2">
           <Button
