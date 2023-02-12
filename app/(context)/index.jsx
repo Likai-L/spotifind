@@ -16,8 +16,7 @@ export function GlobalContextProvider(props) {
   const [profile, setProfile] = useState({
     name: '',
     uri: '',
-    avatar: '',
-    handle: '',
+    pfp: '',
     tracks: [],
     playerState: { noActiveDevice: true },
     lyrics: {}
