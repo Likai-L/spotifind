@@ -22,12 +22,12 @@ export default function Profile() {
     <div className="p-12 flex justify-center">
       <SkeletonTheme baseColor="#31243a" highlightColor="#44345d">
         <div className="text-center w-[200px] ">
-          {profile.avatar ? (
+          {profile.pfp ? (
             <Image
               alt="pfp"
               className="rounded-3xl"
               height={200}
-              src={profile.avatar}
+              src={profile.pfp}
               width={200}
             />
           ) : (

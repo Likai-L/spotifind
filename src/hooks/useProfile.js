@@ -17,7 +17,7 @@ export default function useProfile() {
             ...profile,
             name: profileData.display_name,
             uri: profileData.id,
-            avatar: profileData.images[0].url
+            pfp: profileData.images[0].url
           });
         })
         .catch(err => console.log(err));
