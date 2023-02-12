@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
-import { PROFILE, SPOTIFY_BASE_URL } from 'public/constants/pathNames';
+import {
+  PROFILE,
+  RECENTLIKES,
+  SPOTIFY_BASE_URL
+} from 'public/constants/pathNames';
 import { getHeaders, getTracks } from '../helpers/helpers';
-import { PrismaClient } from '@prisma/client';
 
 export default function useProfile() {
   const { credentials, profile, setProfile } = useGlobalContext();
@@ -25,7 +28,7 @@ export default function useProfile() {
   }, [credentials.accessToken]);
 
   useEffect(() => {
-    if (!profile.uri || !profile.tracks[0]) return;
+    if (!profile.uri) return;
     axios
       .post(PROFILE, {
         spotifyUserUri: profile.uri,
@@ -35,10 +38,24 @@ export default function useProfile() {
         recentLikes: profile.tracks
       })
       .then(response => {
-        console.log('prisma data', response.data);
+        console.log(response);
       })
       .catch(err => console.log('prisma error', err));
-  }, [profile.uri, profile.tracks[0]]);
+  }, [profile.uri]);
+
+  // if the first liked track changes call /api/recentLikes to update the db
+  useEffect(() => {
+    if (!profile.tracks[0]) return;
+    axios
+      .post(RECENTLIKES, {
+        recentLikes: profile.tracks,
+        spotifyUserUris: profile.uri
+      })
+      .then(() => {
+        console.log('recent likes updated');
+      })
+      .catch(err => console.log('error when updating recent likes', err));
+  }, [profile.tracks[0]]);
 
   useEffect(() => {
     if (credentials.accessToken) {
