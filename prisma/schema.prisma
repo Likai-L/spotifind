@@ -17,9 +17,10 @@ model User {
   updatedAt         DateTime  @updatedAt @map("updated_at")
   Comment           Comment[]
   Like              Like[]
-  currentSongUri    String    @map("current_song_uri")
-  nowPlaying        Song      @relation(fields: [currentSongUri], references: [spotifySongUri])
-  geoLocation       String    @map("geo_location")
+  currentSongUri    String?    @map("current_song_uri")
+  nowPlaying        Song?      @relation(fields: [currentSongUri], references: [spotifySongUri])
+  Latitude          String?
+  Longitude         String?
 
   @@map("users")
 }
