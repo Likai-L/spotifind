@@ -22,9 +22,6 @@ export default function useSongId(songId) {
           uri: res.data.id
         };
 
-        console.log('trackData');
-        console.log(trackData);
-
         setSong(trackData);
       });
     }

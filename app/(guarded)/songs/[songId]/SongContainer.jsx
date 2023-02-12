@@ -6,8 +6,6 @@ import LyricsContainer from './LyricsContainer';
 export default function SongContainer({ track }) {
   const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
 
-  console.log(lyrics);
-
   return (
     <>
       {/* Body container */}
