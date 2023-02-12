@@ -39,6 +39,7 @@ module.exports = {
     'no-console': 'off',
     'no-nested-ternary': 'off',
     // Best practices
+    camelcase: 'off', // Off for some db stuff...
     'dot-notation': 'error',
     'no-else-return': 'error',
     'no-floating-decimal': 'error',

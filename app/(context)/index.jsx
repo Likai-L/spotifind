@@ -19,7 +19,8 @@ export function GlobalContextProvider(props) {
     avatar: '',
     handle: '',
     tracks: [],
-    playerState: { noActiveDevice: true }
+    playerState: { noActiveDevice: true },
+    lyrics: {}
   });
 
   const [recommendedTracks, setRecommendedTracks] = useState({});
@@ -63,7 +64,8 @@ export function GlobalContextProvider(props) {
       profile.playerState,
       searchInput,
       searchResults,
-      recommendedTracks
+      recommendedTracks,
+      profile.lyrics
     ]
   );
 
