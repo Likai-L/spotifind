@@ -8,11 +8,9 @@ import { useGlobalContext } from 'app/(context)';
 import Container from 'app/(container)/Container';
 import Recommended from './Recommended';
 import SearchResults from './SearchResults';
-import useSearch from '@/hooks/useSearch';
 
 export default function Songs() {
   const { searchInput } = useGlobalContext();
-  useSearch();
 
   return (
     <div className="flex flex-col justify-center max-h-[90vh] h-[90vh] w-[80vw]">
