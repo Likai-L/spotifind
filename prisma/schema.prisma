@@ -19,7 +19,8 @@ model User {
   Like              Like[]
   currentSongUri    String    @map("current_song_uri")
   nowPlaying        Song      @relation(fields: [currentSongUri], references: [spotifySongUri])
-  geoLocation       String    @map("geo_location")
+  Latitude          String
+  Longitude         String
 
   @@map("users")
 }
