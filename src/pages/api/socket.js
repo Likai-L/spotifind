@@ -31,6 +31,7 @@ export default function SocketHandler(req, res) {
         setTimeout(socket.poll, 100);
         return;
       }
+
       axios(`${SPOTIFY_BASE_URL}/me/player`, getHeaders(socket.token))
         .then(response => {
           const playerState = sortPlayerStateData(response);
