@@ -8,6 +8,7 @@ const SPOTIFY_BASE_URL = 'https://api.spotify.com/v1';
 const SOCKET = 'api/socket';
 const MUSIXMATCH_BASE_URL = 'https://api.musixmatch.com/ws/1.1';
 const LYRICS = '/api/lyrics';
+const PROFILE = '/api/profile';
 
 export {
   LANDING,
@@ -19,5 +20,6 @@ export {
   SPOTIFY_BASE_URL,
   MUSIXMATCH_BASE_URL,
   SOCKET,
-  LYRICS
+  LYRICS,
+  PROFILE
 };
