@@ -17,7 +17,6 @@ export function GlobalContextProvider(props) {
     name: '',
     uri: '',
     avatar: '',
-    handle: '',
     tracks: [],
     playerState: { noActiveDevice: true },
     lyrics: {}
