@@ -9,6 +9,7 @@ const SOCKET = 'api/socket';
 const MUSIXMATCH_BASE_URL = 'https://api.musixmatch.com/ws/1.1';
 const LYRICS = '/api/lyrics';
 const PROFILE = '/api/profile';
+const RECENTLIKES = '/api/recentLikes';
 
 export {
   LANDING,
@@ -21,5 +22,6 @@ export {
   MUSIXMATCH_BASE_URL,
   SOCKET,
   LYRICS,
-  PROFILE
+  PROFILE,
+  RECENTLIKES
 };
