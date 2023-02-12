@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { useGlobalContext } from 'app/(context)';
 import classNames from 'classnames';
 import SpotifyIcon from 'app/(nav)/(icons)/SpotifyIcon';
+import useSearch from '@/hooks/useSearch';
 
 export default function SearchBar(props) {
   const { action, label } = props;
   const { searchInput, setSearchInput } = useGlobalContext();
   const [focus, setFocus] = useState(false);
+  useSearch();
 
   const handleChange = async e => {
     e.preventDefault();

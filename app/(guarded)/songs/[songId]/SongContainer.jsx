@@ -1,11 +1,16 @@
 import Image from 'next/image';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
-// import SearchBar from 'app/(searchbar)/SearchBar';
 import LyricsContainer from './LyricsContainer';
 
-export default function SongContainer(/* props */) {
-  // const { albumArt, songName, artistName, albumName, songLyrics } = props;
+export default function SongContainer() {
+  //   {
+  //   albumCoverUrl,
+  //   songName,
+  //   artistName,
+  //   albumName,
+  //   songLyrics
+  // }
 
   return (
     <div className="flex flex-col justify-between w-full h-full font-primary bg-primary rounded-3xl px-12 pt-4 cursor-default">
@@ -20,7 +25,7 @@ export default function SongContainer(/* props */) {
             src="https://f4.bcbits.com/img/a3610945043_10.jpg"
             width={320}
           />
-          {/* src={albumArt} */}
+          {/* src={albumCoverUrl} */}
         </div>
 
         {/* Song info and buttons */}
