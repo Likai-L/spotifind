@@ -4,7 +4,6 @@ import axios from 'axios';
 const apiKey = process.env.MUSIXMATCH_API_KEY;
 
 export default async function lyricsHandler(req, res) {
-  console.log(req.query.track, req.query.artist);
   return new Promise(resolve => {
     axios(`${MUSIXMATCH_BASE_URL}/matcher.lyrics.get`, {
       params: {
