@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
-import { SPOTIFY_BASE_URL } from 'public/constants/pathNames';
+import { PROFILE, SPOTIFY_BASE_URL } from 'public/constants/pathNames';
 import { getHeaders, getTracks } from '../helpers/helpers';
 import { PrismaClient } from '@prisma/client';
 
@@ -25,19 +25,19 @@ export default function useProfile() {
   }, [credentials.accessToken]);
 
   useEffect(() => {
-    const prisma = new PrismaClient();
-
-    async function main() {}
-
-    main()
-      .then(async () => {
-        await prisma.$disconnect();
+    if (!profile.uri || !profile.tracks[0]) return;
+    axios
+      .post(PROFILE, {
+        spotifyUserUri: profile.uri,
+        username: profile.name,
+        profilePictureUrl: profile.pfp,
+        currentSongUri: profile.playerState.name,
+        recentLikes: profile.tracks
       })
-      .catch(async e => {
-        console.error(e);
-        await prisma.$disconnect();
-        process.exit(1);
-      });
+      .then(response => {
+        console.log('prisma data', response.data);
+      })
+      .catch(err => console.log('prisma error', err));
   }, [profile.uri, profile.tracks[0]]);
 
   useEffect(() => {
