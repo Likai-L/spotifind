@@ -50,6 +50,7 @@ export default function Profile() {
                   <AlbumCover
                     classNames="ml-[30px]"
                     height={200}
+                    key={track.uri}
                     src={track.albumCoverUrl}
                     width={200}
                   />

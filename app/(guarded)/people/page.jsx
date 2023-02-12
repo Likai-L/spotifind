@@ -30,7 +30,7 @@ export default function People() {
             />
           </div>
         </div>
-        <div className="flex flex-row h-3/4 w-[95%] m-auto overflow-x-auto overflow-y-clip items-center">
+        <div className="flex flex-row h-3/4 w-[95%] m-auto overflow-x-auto overflow-y-hidden scrollbar-hide items-center">
           {showMap ? <Map /> : null}
           {/* Will be dynamic and mapped based on search results,
            but for now just pasted like this to see multiple */}

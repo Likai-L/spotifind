@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
-import { SPOTIFY_ENDPOINT } from 'public/constants/pathNames';
-import { getHeaders } from '@/helpers/apiHelpers';
-import { getTopArtistIds, getTopTrackIds } from '@/helpers/profileHelpers';
+import { SPOTIFY_BASE_URL } from 'public/constants/pathNames';
+import { getHeaders, getTopArtistIds, getTopTrackIds } from '@/helpers/helpers';
 
 export default function useRecommendedTracks() {
   const { credentials, profile, setRecommendedTracks } = useGlobalContext();
@@ -13,7 +12,7 @@ export default function useRecommendedTracks() {
   useEffect(() => {
     if (credentials.accessToken && !genre) {
       axios(
-        `${SPOTIFY_ENDPOINT}/recommendations/available-genre-seeds`,
+        `${SPOTIFY_BASE_URL}/recommendations/available-genre-seeds`,
         getHeaders(credentials.accessToken)
       )
         .then(res => {
@@ -37,7 +36,7 @@ export default function useRecommendedTracks() {
 
     if (credentials.accessToken && genre) {
       axios(
-        `${SPOTIFY_ENDPOINT}/recommendations?limit=20&seed_artists=${artistSeeds}&seed_genres=${genre}&seed_tracks=${trackSeeds}`,
+        `${SPOTIFY_BASE_URL}/recommendations?limit=20&seed_artists=${artistSeeds}&seed_genres=${genre}&seed_tracks=${trackSeeds}`,
         getHeaders(credentials.accessToken)
       )
         .then(res => {
