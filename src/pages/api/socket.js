@@ -33,6 +33,7 @@ export default function SocketHandler(req, res) {
       }
       axios(`${SPOTIFY_BASE_URL}/me/player`, getHeaders(socket.token))
         .then(response => {
+          console.log('😎 axios response came back!');
           const playerState = sortPlayerStateData(response);
 
           // if error (status code isn't 200 or 204) try again later
@@ -92,6 +93,14 @@ export default function SocketHandler(req, res) {
           setTimeout(socket.poll, 1000);
         });
     };
+
+    // on disconnection, pause polling by reassigning the function
+    // socket.poll will be defined upon next connection(access-token event)
+    socket.on('disconnect', () => {
+      socket.poll = () => {
+        console.log('polling paused');
+      };
+    });
   });
 
   res.end();
