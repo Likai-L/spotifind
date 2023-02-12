@@ -20,7 +20,7 @@ model User {
   currentSongUri    String?    @map("current_song_uri")
   nowPlaying        Song?      @relation(fields: [currentSongUri], references: [spotifySongUri])
   Latitude          String?
-  Longitude         String
+  Longitude         String?
 
   @@map("users")
 }
