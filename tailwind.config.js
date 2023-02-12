@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /** @type {import('tailwindcss').Config} */
 
 const defaultTheme = require('tailwindcss/defaultConfig');
@@ -60,6 +61,8 @@ module.exports = {
       }
     }
   },
-  // eslint-disable-next-line global-require
-  plugins: [require('tailwind-scrollbar-hide')]
+  plugins: [
+    require('tailwind-scrollbar-hide'),
+    require('@tailwindcss/line-clamp')
+  ]
 };
