@@ -11,7 +11,7 @@ const LYRICS = '/api/lyrics';
 const PROFILE = '/api/profile';
 const RECENTLIKES = '/api/recentLikes';
 const NOWPLAYING = '/api/nowPlaying';
-const USERSEARCH = 'api/userSearch';
+const USERSEARCH = '/api/userSearch';
 
 export {
   LANDING,
