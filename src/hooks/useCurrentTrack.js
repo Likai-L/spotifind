@@ -90,7 +90,8 @@ export default function useCurrentTrack() {
         spotifyUserUri: profile.uri,
         spotifySongUri: profile.playerState.uri,
         name: profile.playerState.name,
-        artist: profile.playerState.artist
+        artist: profile.playerState.artist,
+        album: profile.playerState.album
       })
       .then(() => {
         console.log('nowPlaying updated');
