@@ -36,7 +36,7 @@ export default function SongContainer({ track }) {
         </div>
       </div>
 
-      <div className="flex flex-col justify-start items-center h-full w-7/12 p-4">
+      <div className="flex flex-col justify-start items-center h-full w-7/12 p-4 mt-[-25px]">
         <LyricsContainer songLyrics={lyrics} />
       </div>
     </div>
