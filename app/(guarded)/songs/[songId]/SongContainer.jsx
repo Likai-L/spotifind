@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
 import LyricsContainer from './LyricsContainer';
+import CommentsContainer from './CommentsContainer';
 
 export default function SongContainer({ track }) {
   const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
@@ -39,14 +40,18 @@ export default function SongContainer({ track }) {
                 setView('lyrics');
               }
             }}
-            content={view === 'lyrics' ? 'Lyrics' : 'Comments'}
+            content={view === 'lyrics' ? 'Comments' : 'Lyrics'}
             path="#"
           />
         </div>
       </div>
 
       <div className="flex flex-col justify-start items-center h-full w-7/12 p-4 mt-[-25px]">
-        <LyricsContainer songLyrics={lyrics} />
+        {view === 'lyrics' ? (
+          <LyricsContainer songLyrics={lyrics} />
+        ) : (
+          <CommentsContainer />
+        )}
       </div>
     </div>
   );
