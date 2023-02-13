@@ -26,6 +26,7 @@ export default function SongContainer({ track }) {
             addedclasses="text-md rounded-xl w-40"
             content="People"
             path={PEOPLE}
+            prefetch="true"
           />
           <Button
             addedclasses="text-md rounded-xl w-40"
