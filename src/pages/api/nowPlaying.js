@@ -16,7 +16,7 @@ export default async function nowPlayingHandler(req, res) {
     return;
   }
   await prisma.song.upsert({
-    where: { spotifySongUri: currentSong.spotifyUserUri },
+    where: { spotifySongUri: currentSong.spotifySongUri },
     update: { ...currentSong, playedBy: { connect: { spotifyUserUri } } },
     create: { ...currentSong, playedBy: { connect: { spotifyUserUri } } }
   });
