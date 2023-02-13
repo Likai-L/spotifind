@@ -15,12 +15,12 @@ model User {
   profilePictureUrl String    @map("profile_picture_url")
   createdAt         DateTime  @default(now()) @map("created_at")
   updatedAt         DateTime  @updatedAt @map("updated_at")
+  currentSongUri    String?   @map("current_song_uri")
+  latitude          String?
+  longitude         String?
   Comment           Comment[]
   Like              Like[]
-  currentSongUri    String?    @map("current_song_uri")
-  nowPlaying        Song?      @relation(fields: [currentSongUri], references: [spotifySongUri])
-  Latitude          String?
-  Longitude         String?
+  nowPlaying        Song?     @relation(fields: [currentSongUri], references: [spotifySongUri])
 
   @@map("users")
 }
@@ -32,7 +32,7 @@ model Song {
   spotifySongUri String    @unique @map("spotify_song_uri")
   Comment        Comment[]
   Like           Like[]
-  playedBy       User[] 
+  playedBy       User[]
 
   @@map("songs")
 }
@@ -48,12 +48,13 @@ model Comment {
 
   @@map("comments")
 }
+
 model Like {
-  id        String   @id @default(cuid())
-  userId    String
-  songId    String
-  song_id   Song     @relation(fields: [songId], references: [id])
-  user_id   User     @relation(fields: [userId], references: [id])
+  id      String @id @default(cuid())
+  userId  String
+  songId  String
+  song_id Song   @relation(fields: [songId], references: [id])
+  user_id User   @relation(fields: [userId], references: [id])
 
   @@map("likes")
 }
