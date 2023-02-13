@@ -1,10 +1,12 @@
 import Image from 'next/image';
+import { useState } from 'react';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
 import LyricsContainer from './LyricsContainer';
 
 export default function SongContainer({ track }) {
   const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
+  const [view, setView] = useState('lyrics');
 
   return (
     <div className="flex justify-evenly font-primary">
@@ -30,8 +32,15 @@ export default function SongContainer({ track }) {
           />
           <Button
             addedclasses="text-md rounded-xl w-40"
-            content="Comments"
-            path={PEOPLE}
+            onClick={() => {
+              if (view === 'lyrics') {
+                setView('comments');
+              } else {
+                setView('lyrics');
+              }
+            }}
+            content={view === 'lyrics' ? 'Lyrics' : 'Comments'}
+            path="#"
           />
         </div>
       </div>
