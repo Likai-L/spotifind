@@ -61,16 +61,16 @@ export default function useProfile() {
   }, [credentials.accessToken]);
 
   // if the first liked track changes call /api/recentLikes to update the db
-  // useEffect(() => {
-  //   if (!profile.tracks[0]) return;
-  //   axios
-  //     .post(RECENTLIKES, {
-  //       recentLikes: profile.tracks,
-  //       spotifyUserUri: profile.uri
-  //     })
-  //     .then(() => {
-  //       console.log('recent likes updated');
-  //     })
-  //     .catch(err => console.log('error when updating recent likes', err));
-  // }, [profile.tracks[0]]);
+  useEffect(() => {
+    if (!profile.tracks[0]) return;
+    axios
+      .post(RECENTLIKES, {
+        recentLikes: profile.tracks,
+        spotifyUserUri: profile.uri
+      })
+      .then(() => {
+        console.log('recent likes updated');
+      })
+      .catch(err => console.log('error when updating recent likes', err));
+  }, [profile.tracks[0]]);
 }
