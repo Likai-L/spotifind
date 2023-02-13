@@ -8,7 +8,6 @@ import { PEOPLE } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
 import UserCard from './UserCard';
 import SongCard from './SongCard';
-import UserSearch from './userSearch';
 import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 // TODO: Fix map pushing sidebar and layout around
