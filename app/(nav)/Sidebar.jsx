@@ -6,11 +6,15 @@ import NavLogo from './Logo';
 import NavItems from './(icons)/index';
 
 export default function Sidebar() {
-  const { setCredentials } = useGlobalContext();
+  const { setCredentials, setProfile, setRecommendedTracks, setDisplayTrack } =
+    useGlobalContext();
 
   const logout = e => {
     e.preventDefault();
     setCredentials({});
+    setProfile({});
+    setRecommendedTracks({});
+    setDisplayTrack({});
   };
 
   return (
