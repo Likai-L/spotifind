@@ -1,18 +1,19 @@
 'use client';
 
+import { useEffect } from 'react';
 import Script from 'next/script';
 import Button from 'app/(button)/Button';
 import Container from 'app/(container)/Container';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import classNames from 'classnames';
-// import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useGlobalContext } from 'app/(context)';
+import { PEOPLE } from 'public/constants/pathNames';
 import MusixMatch from './MusixmatchLogo';
 import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 export default function Player() {
-  const { profile } = useGlobalContext();
+  const { profile, setDisplayTrack } = useGlobalContext();
   const playerClassNames = classNames(
     'rounded-[50%]',
     'hover:none',
@@ -22,6 +23,17 @@ export default function Player() {
     }
   );
   useCurrentTrack();
+
+  // Reset display track
+  useEffect(() => {
+    setDisplayTrack({
+      trackName: profile.playerState.name,
+      artistName: profile.playerState.artist,
+      albumName: profile.playerState.album,
+      albumCoverUrl: profile.playerState.albumCoverUrl,
+      uri: profile.playerState.uri
+    });
+  }, [profile.playerState]);
 
   return (
     <Container classNames="w-[1500px] h-[600px] flex justify-evenly mx-auto">
@@ -61,7 +73,12 @@ export default function Player() {
           <Script src={profile.lyrics.script_tracking_url || ''} />
         </Container>
         <div className="flex justify-evenly">
-          <Button addedclasses="text-3xl mt-[40px]" content="People" path="" />
+          <Button
+            addedclasses="text-3xl mt-[40px]"
+            content="People"
+            path={PEOPLE}
+            prefetch="true"
+          />
           <Button
             addedclasses="text-3xl mt-[40px]"
             content="Comments"

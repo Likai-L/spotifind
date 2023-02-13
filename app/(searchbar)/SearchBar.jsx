@@ -12,7 +12,7 @@ export default function SearchBar(props) {
   const [focus, setFocus] = useState(false);
   useSearch();
 
-  const handleChange = async e => {
+  const handleChange = e => {
     e.preventDefault();
     setSearchInput(e.target.value);
   };
