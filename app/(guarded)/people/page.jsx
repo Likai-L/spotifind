@@ -7,6 +7,7 @@ import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
 import UserCard from './UserCard';
 import SongCard from './SongCard';
+import UserSearch from './userSearch';
 
 // TODO: Fix map pushing sidebar and layout around
 export default function People() {
@@ -15,7 +16,7 @@ export default function People() {
     <div className="w-full h-full flex-col space-y-8 overflow-hidden text-primary font-primary">
       <h1 className="text-[2.3vh] font-primary font-semibold ml-10 cursor-default">
         Find people with similar taste
-        <SearchBar action="/people" label="Search for a song" />
+        <UserSearch />
       </h1>
       <div className="flex m-auto w-4/5 h-1/5 rounded-xl bg-secondary">
         <SongCard />
