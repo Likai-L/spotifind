@@ -6,7 +6,6 @@ import Button from 'app/(button)/Button';
 import Container from 'app/(container)/Container';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import classNames from 'classnames';
-import 'react-loading-skeleton/dist/skeleton.css';
 import { useGlobalContext } from 'app/(context)';
 import { PEOPLE } from 'public/constants/pathNames';
 import MusixMatch from './MusixmatchLogo';

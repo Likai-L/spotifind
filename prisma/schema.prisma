@@ -28,6 +28,7 @@ model Song {
   id             String    @id @default(cuid())
   name           String
   artist        String
+  album         String?
   spotifySongUri String    @unique @map("spotify_song_uri")
   comments       Comment[]
   likedBy        User[]    @relation("Likes")
