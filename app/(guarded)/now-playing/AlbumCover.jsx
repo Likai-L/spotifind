@@ -9,7 +9,7 @@ export default function AlbumCover({
   trackUri
 }) {
   return (
-    <Link href={`/songs/${trackUri}`}>
+    <Link className="flex shrink-0" href={`/songs/${trackUri}`}>
       <Image
         alt="album-cover"
         className={`rounded-3xl cursor-pointer transition duration-200 ease-out hover:scale-105 ${classNames}`}
