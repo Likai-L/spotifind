@@ -1,4 +1,4 @@
-import { getUserByName } from 'prisma/users';
+import { getUserByName } from '@/helpers/users';
 import User from './user';
 
 const Page = async ({ params }) => {
