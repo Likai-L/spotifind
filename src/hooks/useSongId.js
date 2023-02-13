@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
 import { LYRICS, SPOTIFY_BASE_URL } from 'public/constants/pathNames';
 import { getHeaders, getLyricsFromData } from '@/helpers/helpers';
 
 export default function useSongId(songId) {
-  const { credentials } = useGlobalContext();
-  const [song, setSong] = useState({});
+  const { credentials, displayTrack, setDisplayTrack } = useGlobalContext();
 
   useEffect(() => {
     if (credentials.accessToken && songId) {
@@ -22,27 +21,27 @@ export default function useSongId(songId) {
           uri: res.data.id
         };
 
-        setSong(trackData);
+        setDisplayTrack(trackData);
       });
     }
   }, []);
 
   useEffect(() => {
     const callLyricsApi = async () => {
-      if (song && !song.lyrics) {
+      if (displayTrack.trackName && !displayTrack.lyrics) {
         const lyricsData = await axios(LYRICS, {
           params: {
-            track: song.trackName,
-            artist: song.artistName
+            track: displayTrack.trackName,
+            artist: displayTrack.artistName
           }
         });
         const lyricsInfo = getLyricsFromData(lyricsData.data);
 
-        setSong(prev => ({ ...prev, lyrics: lyricsInfo.lyrics_body }));
+        setDisplayTrack(prev => ({ ...prev, lyrics: lyricsInfo.lyrics_body }));
       }
     };
     callLyricsApi();
-  }, [song]);
+  }, [displayTrack]);
 
-  return song;
+  return displayTrack;
 }

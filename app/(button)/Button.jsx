@@ -2,7 +2,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 
 export default function Button(props) {
-  const { content, path, addedclasses } = props;
+  const { content, path, addedclasses, prefetch } = props;
 
   // Will take in addedClasses prop, overwriting any of the same class types set by default here.
   const buttonClasses = classNames(
@@ -11,7 +11,7 @@ export default function Button(props) {
   );
 
   return (
-    <Link href={path} prefetch={false}>
+    <Link href={path} prefetch={!!prefetch}>
       <button className={buttonClasses} type="button" {...props}>
         {content}
       </button>
