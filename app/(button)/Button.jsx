@@ -10,6 +10,13 @@ export default function Button(props) {
     addedclasses
   );
 
+  if (path === '#') {
+    return (
+      <button className={buttonClasses} type="button" {...props}>
+        {content}
+      </button>
+    );
+  }
   return (
     <Link href={path} prefetch={!!prefetch}>
       <button className={buttonClasses} type="button" {...props}>
