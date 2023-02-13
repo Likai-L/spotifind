@@ -35,8 +35,6 @@ export default async function recentLikesHandler(req, res) {
       })
     );
   }
-  // console.log('old likes😈😈😈', oldLikes);
-  // console.log('recent likes😈😈😈', sortedLikes);
   const newLikes = sortedLikes.filter(like => {
     return oldLikes.every(oldLike => {
       if (oldLike.spotifySongUri === like.spotifySongUri) {
@@ -45,7 +43,22 @@ export default async function recentLikesHandler(req, res) {
       return true;
     });
   });
-  console.log('💀💀💀new likes: ', newLikes);
+  await Promise.all(
+    newLikes.map(like => {
+      // return a promise that connects or creates a song
+      return prisma.user.update({
+        where: { spotifyUserUri },
+        data: {
+          recentLikes: {
+            connectOrCreate: {
+              create: like,
+              where: { spotifySongUri: like.spotifySongUri }
+            }
+          }
+        }
+      });
+    })
+  );
 
   res.end();
 }
