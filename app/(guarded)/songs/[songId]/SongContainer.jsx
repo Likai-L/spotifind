@@ -11,7 +11,7 @@ export default function SongContainer({ track }) {
 
   return (
     <div className="flex justify-evenly font-primary">
-      <div className="flex flex-col justify-center items-center w-5/12 h-full ">
+      <div className="flex flex-col justify-start items-center w-5/12 h-full  min-h-[800px] mt-[60px]">
         <Image
           alt="album artwork"
           className="rounded-3xl m-4"
@@ -19,7 +19,7 @@ export default function SongContainer({ track }) {
           src={albumCoverUrl}
           width={320}
         />
-        <div className="flex flex-col justify-evenly items-center h-3/4 w-3/4 text-2xl font-semibold m-4 text-center line-clamp-4">
+        <div className="flex flex-col justify-evenly items-center h-[150px] w-3/4 text-2xl font-semibold m-4 text-center line-clamp-4">
           <h1 className="p-2">{trackName}</h1>
           <h1 className="p-2 text-secondary text-xl">{artistName}</h1>
           <h1 className="p-2 text-secondary text-lg">{albumName}</h1>
