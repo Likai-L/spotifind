@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import io from 'socket.io-client';
-import { LYRICS, SOCKET } from 'public/constants/pathNames';
+import { LYRICS, NOWPLAYING, SOCKET } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
 import { getLyricsFromData } from 'src/helpers/helpers';
 
@@ -82,5 +82,19 @@ export default function useCurrentTrack() {
       setProfile(prev => ({ ...prev, lyrics: lyricsInfo }));
     };
     callLyricsApi();
+  }, [profile.playerState.uri]);
+
+  useEffect(() => {
+    axios
+      .post(NOWPLAYING, {
+        spotifyUserUri: profile.uri,
+        spotifySongUri: profile.playerState.uri,
+        name: profile.playerState.name,
+        artist: profile.playerState.artist
+      })
+      .then(() => {
+        console.log('nowPlaying updated');
+      })
+      .catch(err => console.log('error when updating nowPlaying', err));
   }, [profile.playerState.uri]);
 }
