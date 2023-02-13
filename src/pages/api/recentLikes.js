@@ -43,6 +43,7 @@ export default async function recentLikesHandler(req, res) {
       return true;
     });
   });
+  // TODO: pick up songs that aren't recently liked and disconnect them
   await Promise.all(
     newLikes.map(like => {
       // return a promise that connects or creates a song
