@@ -2,23 +2,60 @@
 
 import SearchBar from 'app/(searchbar)/SearchBar';
 import Map from 'app/(guarded)/people/(map)/Map';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
+import { useGlobalContext } from 'app/(context)';
 import UserCard from './UserCard';
 import SongCard from './SongCard';
+import useSearch from '@/hooks/useSearch';
+import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 // TODO: Fix map pushing sidebar and layout around
 export default function People() {
   const [showMap, setShowMap] = useState(false);
+  const { profile, setSearchInput, displayTrack, setDisplayTrack } =
+    useGlobalContext();
+  useSearch();
+  useCurrentTrack();
+  let currentTrack = {};
+
+  useEffect(() => {
+    if (profile.playerState.isPlaying) {
+      currentTrack = {
+        trackName: profile.playerState.name,
+        artistName: profile.playerState.artist,
+        albumName: profile.playerState.album,
+        albumCoverUrl: profile.playerState.albumCoverUrl,
+        uri: profile.playerState.uri
+      };
+    }
+  }, [profile.playerState]);
+
+  useEffect(() => {
+    if (!displayTrack.trackName) {
+      setDisplayTrack(currentTrack);
+    }
+  }, [profile.playerState]);
+
+  useEffect(() => {
+    setSearchInput('');
+  }, []);
+
   return (
     <div className="w-full h-full flex-col space-y-8 overflow-hidden text-primary font-primary">
       <h1 className="text-[2.3vh] font-primary font-semibold ml-10 cursor-default">
         Find people with similar taste
-        <SearchBar action="/people" label="Search for a song" />
+        <SearchBar action={PEOPLE} label="Search for a user" />
       </h1>
-      <div className="flex m-auto w-4/5 h-1/5 rounded-xl bg-secondary">
-        <SongCard />
+      <div className="flex m-auto w-4/5 h-1/5 rounded-xl bg-secondary font-semibold text-xl px-4">
+        {displayTrack.trackName ? (
+          <SongCard track={displayTrack} />
+        ) : (
+          <span className="flex items-center">
+            Start listening or search for a song.
+          </span>
+        )}
       </div>
       <div className="container m-auto bg-secondary min-w-[80%] w-4/5 h-3/5 max-h-max rounded-xl">
         <div className="flex flex-row">
