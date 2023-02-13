@@ -1,8 +1,7 @@
-import prisma from "./prisma";
 import { USERSEARCH } from 'public/constants/pathNames';
 import axios from 'axios';
 
-export default async function useUserSearch(search) {
+export default async function getUserByName(search) {
   // make request to database to find a user with that name!
   await axios
     .get(USERSEARCH, {
