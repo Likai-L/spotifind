@@ -16,25 +16,27 @@ export default function People() {
   const { profile, setSearchInput, displayTrack, setDisplayTrack } =
     useGlobalContext();
   useCurrentTrack();
-  let currentTrack = {};
 
-  useEffect(() => {
-    if (profile.playerState.isPlaying) {
-      currentTrack = {
-        trackName: profile.playerState.name,
-        artistName: profile.playerState.artist,
-        albumName: profile.playerState.album,
-        albumCoverUrl: profile.playerState.albumCoverUrl,
-        uri: profile.playerState.uri
-      };
-    }
-  }, [profile.playerState]);
+  const formatCurrentTrack = track => {
+    return {
+      trackName: track.name,
+      artistName: track.artist,
+      albumName: track.album,
+      albumCoverUrl: track.albumCoverUrl,
+      uri: track.uri
+    };
+  };
 
   useEffect(() => {
     if (!displayTrack.trackName) {
-      setDisplayTrack(currentTrack);
+      setDisplayTrack(formatCurrentTrack(profile.playerState));
     }
   }, [profile.playerState]);
+
+  const setNowPlaying = e => {
+    e.preventDefault();
+    setDisplayTrack(formatCurrentTrack(profile.playerState));
+  };
 
   useEffect(() => {
     setSearchInput('');
@@ -42,10 +44,19 @@ export default function People() {
 
   return (
     <div className="w-full h-full flex-col space-y-8 overflow-hidden text-primary font-primary">
-      <h1 className="text-[2.3vh] font-primary font-semibold ml-10 cursor-default">
-        Find people with similar taste
-        <SearchBar action={PEOPLE} label="Search for a user" />
-      </h1>
+      <div className="flex">
+        <h1 className="text-[2.3vh] font-primary font-semibold ml-10 cursor-default">
+          Find people with similar taste
+          <SearchBar action={PEOPLE} label="Search for a user" />
+        </h1>
+        <Button
+          addedclasses="text-md mx-4 mt-8"
+          content="Set to Now Playing"
+          onClick={setNowPlaying}
+          path={PEOPLE}
+          prefetch="true"
+        />
+      </div>
       <div className="flex m-auto w-4/5 h-1/5 rounded-xl bg-secondary font-semibold text-xl px-4">
         {displayTrack.trackName ? (
           <SongCard track={displayTrack} />
