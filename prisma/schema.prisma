@@ -15,11 +15,11 @@ model User {
   createdAt         DateTime  @default(now()) @map("created_at")
   updatedAt         DateTime  @updatedAt @map("updated_at")
   comments           Comment[]
-  likes              Like[]
+  recentLikes       Song[]    @relation("Likes")
   currentSongUri    String?    @map("current_song_uri")
-  nowPlaying        Song?      @relation(fields: [currentSongUri], references: [spotifySongUri])
+  nowPlaying        Song?      @relation(name: "NowPlaying", fields: [currentSongUri], references: [spotifySongUri])
   latitude          String?
-  longitude         String?
+  longitude         String? 
 
   @@map("users")
 }
@@ -30,8 +30,8 @@ model Song {
   artist        String
   spotifySongUri String    @unique @map("spotify_song_uri")
   comments       Comment[]
-  likes          Like[]
-  playedBy       User[] 
+  likedBy        User[]    @relation("Likes")
+  playedBy       User[]    @relation("NowPlaying")
 
   @@map("songs")
 }
@@ -46,13 +46,4 @@ model Comment {
   user_id   User     @relation(fields: [userId], references: [id])
 
   @@map("comments")
-}
-model Like {
-  id        String   @id @default(cuid())
-  userId    String
-  songId    String
-  song_id   Song     @relation(fields: [songId], references: [id])
-  user_id   User     @relation(fields: [userId], references: [id])
-
-  @@map("likes")
 }
