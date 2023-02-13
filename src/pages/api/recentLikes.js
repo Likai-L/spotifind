@@ -1,4 +1,5 @@
 import prisma from '@/helpers/prisma';
+import { sortLikedTrack } from '@/helpers/helpers';
 
 export default async function recentLikesHandler(req, res) {
   const { recentLikes, spotifyUserUri } = req.body;
@@ -12,24 +13,21 @@ export default async function recentLikesHandler(req, res) {
   });
 
   const oldLikes = user.recentLikes;
+  const sortedLikes = recentLikes.map(like => sortLikedTrack(like));
 
   if (!oldLikes[0]) {
     // first time updating likes
     // use Promise.all to run all queries concurrently
     await Promise.all(
-      recentLikes.map(like => {
+      sortedLikes.map(like => {
         // return a promise that connects or creates a song
         return prisma.user.update({
           where: { spotifyUserUri },
           data: {
             recentLikes: {
               connectOrCreate: {
-                create: {
-                  spotifySongUri: like.uri,
-                  name: like.trackName,
-                  artist: like.artist.name
-                },
-                where: { spotifySongUri: like.uri }
+                create: like,
+                where: { spotifySongUri: like.spotifySongUri }
               }
             }
           }
@@ -37,15 +35,17 @@ export default async function recentLikesHandler(req, res) {
       })
     );
   }
-  // const newLikes = recentLikes.filter(like => {
-  //   oldLikes.forEach(oldLike => {
-  //     if (oldLike.uri === like.uri) {
-  //       return false;
-  //     }
-  //   });
-  //   return true;
-  // });
-  // console.log(newLikes);
+  // console.log('old likes😈😈😈', oldLikes);
+  // console.log('recent likes😈😈😈', sortedLikes);
+  const newLikes = sortedLikes.filter(like => {
+    return oldLikes.every(oldLike => {
+      if (oldLike.spotifySongUri === like.spotifySongUri) {
+        return false;
+      }
+      return true;
+    });
+  });
+  console.log('💀💀💀new likes: ', newLikes);
 
   res.end();
 }
