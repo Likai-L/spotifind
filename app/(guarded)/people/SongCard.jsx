@@ -21,8 +21,8 @@ export default function SongCard({ track }) {
         </div>
         <div className="flex flex-col justify-center items-evenly m-4 mt-1 ml-[2vh] text-[2.3vh] font-semibold">
           <h1>{trackName}</h1>
-          <h1>{artistName}</h1>
-          <h1>{albumName}</h1>
+          <h1 className="text-lg">{artistName}</h1>
+          <h1 className="text-secondary text-lg">{albumName}</h1>
         </div>
       </div>
     </Link>

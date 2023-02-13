@@ -9,7 +9,7 @@ export default function AlbumTile({
       <p className="font-bold text-2xl text-primary pt-2 pb-1 text-center  line-clamp-2">
         {trackName}
       </p>
-      <p className="font-semibold text-lg text-secondary pt-1 pb-2 text-center">
+      <p className="font-semibold text-xl text-secondary pt-1 pb-2 text-center">
         {artist}
       </p>
     </div>
