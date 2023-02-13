@@ -8,7 +8,6 @@ import { PEOPLE } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
 import UserCard from './UserCard';
 import SongCard from './SongCard';
-import useSearch from '@/hooks/useSearch';
 import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 // TODO: Fix map pushing sidebar and layout around
@@ -16,7 +15,6 @@ export default function People() {
   const [showMap, setShowMap] = useState(false);
   const { profile, setSearchInput, displayTrack, setDisplayTrack } =
     useGlobalContext();
-  useSearch();
   useCurrentTrack();
   let currentTrack = {};
 
