@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/prisma-client-js"
 }
 
 datasource db {
@@ -15,12 +14,12 @@ model User {
   profilePictureUrl String    @map("profile_picture_url")
   createdAt         DateTime  @default(now()) @map("created_at")
   updatedAt         DateTime  @updatedAt @map("updated_at")
-  Comment           Comment[]
-  Like              Like[]
+  comments           Comment[]
+  likes              Like[]
   currentSongUri    String?    @map("current_song_uri")
   nowPlaying        Song?      @relation(fields: [currentSongUri], references: [spotifySongUri])
-  Latitude          String?
-  Longitude         String?
+  latitude          String?
+  longitude         String?
 
   @@map("users")
 }
@@ -28,10 +27,10 @@ model User {
 model Song {
   id             String    @id @default(cuid())
   name           String
-  artists        String[]
+  artist        String
   spotifySongUri String    @unique @map("spotify_song_uri")
-  Comment        Comment[]
-  Like           Like[]
+  comments       Comment[]
+  likes          Like[]
   playedBy       User[] 
 
   @@map("songs")
