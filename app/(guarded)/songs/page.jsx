@@ -1,16 +1,20 @@
-/* eslint-disable import/extensions */
-
 'use client';
 
 import SearchBar from 'app/(searchbar)/SearchBar';
 import { SONGS } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
 import Container from 'app/(container)/Container';
+import { useEffect } from 'react';
 import Recommended from './Recommended';
 import SearchResults from './SearchResults';
 
 export default function Songs() {
-  const { searchInput } = useGlobalContext();
+  const { searchInput, setSearchInput, setDisplayTrack } = useGlobalContext();
+
+  useEffect(() => {
+    setSearchInput('');
+    setDisplayTrack({});
+  }, []);
 
   return (
     <div className="flex flex-col justify-center max-h-[90vh] h-[90vh] w-[80vw]">
