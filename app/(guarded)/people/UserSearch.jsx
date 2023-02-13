@@ -1,16 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import { USERSEARCH } from 'public/constants.pathNames';
 
 export default function UserSearch() {
   const [title, setTitle] = useState('');
   const handleSubmit = e => {
     e.preventDefault();
-    const searched = { title };
-    // make request to database to find a user
-    fetch('', {
-      method: 'GET'
-    });
+    const search = { title };
+    // make request to database to find a user with that name!
+    axios
+      .post(USERSEARCH, {
+        name: search
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
   return (
     <div className="">
