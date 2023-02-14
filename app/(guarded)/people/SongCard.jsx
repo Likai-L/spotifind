@@ -12,7 +12,7 @@ export default function SongCard({ track }) {
           {albumCoverUrl && (
             <Image
               alt="album-cover"
-              className="rounded-3xl cursor-pointer transition duration-200 ease-out hover:scale-105"
+              className="rounded-2xl cursor-pointer transition duration-200 ease-out hover:scale-105"
               height={200}
               src={albumCoverUrl}
               width={200}
