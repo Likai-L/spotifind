@@ -4,7 +4,9 @@ import Comment from './Comment';
 
 export default function CommentsContainer() {
   const { comments } = useGlobalContext();
-  const commentsArray = comments.map(comment => <Comment {...comment} />);
+  const commentsArray = comments.map(comment => (
+    <Comment {...comment} key={comment.id} />
+  ));
   return (
     <div className="h-3/4">
       <div className="text-3xl font-bold my-6">Comments</div>
