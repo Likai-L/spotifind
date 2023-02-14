@@ -31,18 +31,34 @@ export default function UserCardRenderer({ track }) {
 
   // I know it's best practice to put this straight in the return statement and forego the const userCardsComponent,
   // but this caused it not to render in this instance, maybe because its an api call?
-  if (userCards.length > 1) {
-    const distance = getDistance(
-      Number(userCards[0].latitude),
-      Number(userCards[0].longitude),
-      Number(userCards[1].latitude),
-      Number(userCards[1].longitude)
+  if (userCards.length > 0) {
+    //
+    const userCardsFiltered = userCards.filter(
+      user => user.spotifyUserUri !== profile.uri
     );
-    console.log('DISTANCE HERE', distance);
-    const userCardsComponent = userCards.map(userCard => (
+    const currentUserFiltered = userCards.filter(
+      user => user.spotifyUserUri === profile.uri
+    );
+    console.log('currentUserFiltered', currentUserFiltered);
+    console.log('userCardsFiltered', userCardsFiltered);
+    // const distance = getDistance(
+    //   Number(userCards[0].latitude),
+    //   Number(userCards[0].longitude),
+    //   Number(userCards[1].latitude),
+    //   Number(userCards[1].longitude)
+    // );
+    // console.log('DISTANCE HERE', distance);
+    const userCardsComponent = userCardsFiltered.map(userCard => (
       <UserCard
         alt={`${userCard.username}'s profile photo`}
-        distance="4km"
+        distance={`${Math.round(
+          getDistance(
+            Number(currentUserFiltered[0].latitude),
+            Number(currentUserFiltered[0].longitude),
+            Number(userCard.latitude),
+            Number(userCard.longitude)
+          )
+        )} km away`}
         image={userCard.profilePictureUrl}
         key={userCard.uri}
         name={userCard.username}
@@ -52,9 +68,9 @@ export default function UserCardRenderer({ track }) {
       <div className="container m-auto bg-secondary min-w-[80%] w-4/5 h-3/5 max-h-max rounded-xl">
         <div className="flex flex-row">
           <h1 className="text-[2vh] p-5 cursor-default">
-            {userCards.length === 1
-              ? `${userCards.length} user found`
-              : `${userCards.length} users found`}
+            {userCardsFiltered.length === 1
+              ? `${userCardsFiltered.length} user found`
+              : `${userCardsFiltered.length} users found`}
           </h1>
           <div className="my-auto">
             <Button
