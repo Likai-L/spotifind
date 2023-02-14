@@ -11,6 +11,7 @@ const LYRICS = '/api/lyrics';
 const PROFILE = '/api/profile';
 const RECENTLIKES = '/api/recentLikes';
 const NOWPLAYING = '/api/nowPlaying';
+const COMMENTS = '/api/comments';
 
 export {
   LANDING,
@@ -25,5 +26,6 @@ export {
   LYRICS,
   PROFILE,
   RECENTLIKES,
-  NOWPLAYING
+  NOWPLAYING,
+  COMMENTS
 };
