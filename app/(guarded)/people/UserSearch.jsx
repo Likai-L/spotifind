@@ -7,20 +7,19 @@ export default function UserSearch() {
   const [title, setTitle] = useState('');
   const handleSubmit = async e => {
     e.preventDefault();
-    const search = { title };
     // make request to database to find a user with that name!
-    getUserByName(search);
+    getUserByName({ title });
   };
   return (
     <div className="">
-      <form onSubmit={() => handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
           onChange={e => setTitle(e.target.value)}
           required
           type="text"
           value={title}
         />
-        <button type="button">Submit</button>
+        <button type="submit">Submit</button>
       </form>
       {title}
     </div>
