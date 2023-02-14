@@ -1,8 +1,8 @@
+import Image from 'next/image';
+import { FaTrash, FaEdit, FaHeart, FaReply } from 'react-icons/fa';
+import formatDistance from 'date-fns/formatDistance';
 import Container from 'app/(container)/Container';
 import IconButton from './IconButton';
-import Image from 'next/image';
-import { FaHeart } from 'react-icons/fa';
-import formatDistance from 'date-fns/formatDistance';
 
 export default function Comment(props) {
   const { author, content, createdAt } = props;
@@ -29,18 +29,12 @@ export default function Comment(props) {
             })}
           </p>
           <div className="flex justify-between">
-            <IconButton Icon={FaHeart} aria-label="Like">
+            <IconButton aria-label="Like" Icon={FaHeart}>
               2
             </IconButton>
-            <IconButton Icon={FaHeart} aria-label="Like">
-              2
-            </IconButton>
-            <IconButton Icon={FaHeart} aria-label="Like">
-              2
-            </IconButton>
-            <IconButton Icon={FaHeart} aria-label="Like">
-              2
-            </IconButton>
+            <IconButton aria-label="Reply" Icon={FaReply} />
+            <IconButton aria-label="Edit" Icon={FaEdit} />
+            <IconButton aria-label="Delete" Icon={FaTrash} />
           </div>
         </div>
       </Container>
