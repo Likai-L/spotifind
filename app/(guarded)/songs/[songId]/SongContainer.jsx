@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import LyricsContainer from './LyricsContainer';
 
 export default function SongContainer({ track }) {
@@ -14,19 +14,16 @@ export default function SongContainer({ track }) {
     artistName,
     albumName,
     lyrics,
-    spotifyUrl,
+    // spotifyUrl,
     trackPreview
   } = track;
 
-  const { volume, setDisplayTrack } = useGlobalContext();
-  const [audioPreview, setAudioPreview] = useState({ isPlaying: false });
+  const { volume, setVolume, setDisplayTrack, audioPreview, setAudioPreview } =
+    useGlobalContext();
 
   // Update state of track as track data loads
   useEffect(() => {
-    setAudioPreview(prev => ({
-      ...prev,
-      audio: new Audio(trackPreview)
-    }));
+    setAudioPreview({ audio: new Audio(trackPreview) });
   }, [track]);
 
   useEffect(() => {
@@ -36,7 +33,7 @@ export default function SongContainer({ track }) {
   }, [volume, audioPreview]);
 
   const playPause = () => {
-    const { isPlaying } = audioPreview;
+    const { isPlaying } = volume;
 
     if (isPlaying) {
       audioPreview.audio.pause();
@@ -45,11 +42,8 @@ export default function SongContainer({ track }) {
       setDisplayTrack(track);
     }
 
-    setAudioPreview(prev => ({ ...prev, isPlaying: !isPlaying }));
+    setVolume(prev => ({ ...prev, isPlaying: !isPlaying }));
   };
-
-  console.log(audioPreview);
-  console.log(volume);
 
   useEffect(() => {
     return () => {
