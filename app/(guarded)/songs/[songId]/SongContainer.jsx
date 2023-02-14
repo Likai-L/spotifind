@@ -1,10 +1,61 @@
+'use client';
+
 import Image from 'next/image';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
+import { useGlobalContext } from 'app/(context)';
+import { useEffect, useState } from 'react';
 import LyricsContainer from './LyricsContainer';
 
 export default function SongContainer({ track }) {
-  const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
+  const {
+    albumCoverUrl,
+    trackName,
+    artistName,
+    albumName,
+    lyrics,
+    spotifyUrl,
+    trackPreview
+  } = track;
+
+  const { volume, setDisplayTrack } = useGlobalContext();
+  const [audioPreview, setAudioPreview] = useState({ isPlaying: false });
+
+  // Update state of track as track data loads
+  useEffect(() => {
+    setAudioPreview(prev => ({
+      ...prev,
+      audio: new Audio(trackPreview)
+    }));
+  }, [track]);
+
+  useEffect(() => {
+    if (audioPreview.audio) {
+      audioPreview.audio.volume = volume.finalVolume;
+    }
+  }, [volume, audioPreview]);
+
+  const playPause = () => {
+    const { isPlaying } = audioPreview;
+
+    if (isPlaying) {
+      audioPreview.audio.pause();
+    } else {
+      audioPreview.audio.play();
+      setDisplayTrack(track);
+    }
+
+    setAudioPreview(prev => ({ ...prev, isPlaying: !isPlaying }));
+  };
+
+  console.log(audioPreview);
+  console.log(volume);
+
+  useEffect(() => {
+    return () => {
+      setAudioPreview({});
+    };
+  }, []);
 
   return (
     <div className="flex justify-evenly font-primary">
@@ -14,6 +65,7 @@ export default function SongContainer({ track }) {
             alt="album artwork"
             className="rounded-3xl m-4"
             height={320}
+            onClick={playPause}
             src={albumCoverUrl}
             width={320}
           />
