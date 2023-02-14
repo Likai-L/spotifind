@@ -26,6 +26,7 @@ export default function SongContainer({ track }) {
     setAudioPreview({ audio: new Audio(trackPreview) });
   }, [track]);
 
+  // Set volume to match global volume bar once audio is loaded
   useEffect(() => {
     if (audioPreview.audio) {
       audioPreview.audio.volume = volume.finalVolume;
@@ -45,6 +46,7 @@ export default function SongContainer({ track }) {
     setVolume(prev => ({ ...prev, isPlaying: !isPlaying }));
   };
 
+  // TODO: Stop playback and reset state of audio preview on leaving...
   useEffect(() => {
     return () => {
       setAudioPreview({});

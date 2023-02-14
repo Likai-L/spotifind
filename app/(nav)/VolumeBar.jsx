@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
-
-const { useGlobalContext } = require('app/(context)');
+import { useGlobalContext } from 'app/(context)';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeHigh, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function VolumeBar() {
   const { volume, setVolume } = useGlobalContext();
@@ -10,6 +11,16 @@ export default function VolumeBar() {
   const toggleMute = e => {
     e.preventDefault();
     setVolume(prev => ({ ...prev, muted: !prev.muted }));
+
+    // Set back to default value of 0.25 on click if bar was dragged to 0.
+    if (volume.volume === 0) {
+      setVolume(prev => ({
+        ...prev,
+        muted: false,
+        volume: 0.25,
+        finalVolume: 0.25
+      }));
+    }
   };
 
   // Set finalVolume depending on mute state
@@ -23,27 +34,46 @@ export default function VolumeBar() {
   }, [volume.muted]);
 
   const changeVolume = e => {
+    let isMuted = false;
+
+    if (e.target.valueAsNumber === 0) {
+      isMuted = true;
+    }
+
     setVolume(prev => ({
       ...prev,
       volume: e.target.valueAsNumber,
-      finalVolume: e.target.valueAsNumber
+      finalVolume: e.target.valueAsNumber,
+      muted: isMuted
     }));
   };
 
   return (
-    <div className="flex flex-col justify-between items-center font-primary text-nav">
+    <div className="flex justify-between font-primary text-nav mb-44">
+      {volume.finalVolume === 0 ? (
+        <FontAwesomeIcon
+          className="ml-12 cursor-pointer hover:animate-pulse"
+          icon={faVolumeXmark}
+          onClick={toggleMute}
+          style={{ fontSize: 22 }}
+        />
+      ) : (
+        <FontAwesomeIcon
+          className="ml-12 cursor-pointer hover:animate-pulse"
+          icon={faVolumeHigh}
+          onClick={toggleMute}
+          style={{ fontSize: 22 }}
+        />
+      )}
       <input
-        className="mx-8"
+        className="mr-10 cursor-pointer"
         max={1}
         min={0}
         onChange={changeVolume}
         step={0.05}
         type="range"
-        value={volume.muted ? 0 : volume.volume}
+        value={volume.finalVolume}
       />
-      <button className="mx-8" onClick={toggleMute} type="button">
-        {volume.muted ? 'Muted' : 'Unmuted'}
-      </button>
     </div>
   );
 }

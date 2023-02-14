@@ -1,6 +1,12 @@
+// Import FontAwesome.
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { config } from '@fortawesome/fontawesome-svg-core';
+
 import Sidebar from 'app/(nav)/Sidebar';
 import styles from '@/styles/Home.module.css';
 import GuardPage from './(guardPage)/GuardPage';
+
+config.autoAddCss = false;
 
 export default function GuardedLayout({
   children // will be a page or nested layout
