@@ -2,11 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FINDUSERSBYSONG } from 'public/constants/pathNames';
+import { FINDUSERSBYSONG, PEOPLE } from 'public/constants/pathNames';
+import Button from 'app/(button)/Button';
 import UserCard from './UserCard';
+import Map from './(map)/Map';
 // import getUsersBySong from '@/helpers/getUsersBySong';
 
 export default function UserCardRenderer({ track }) {
+  const [showMap, setShowMap] = useState(false);
   const { uri } = track;
   const [userCards, setUserCards] = useState('');
   useEffect(() => {
@@ -32,8 +35,26 @@ export default function UserCardRenderer({ track }) {
       />
     ));
     return (
-      <div className="flex flex-row h-3/4 w-full m-auto overflow-x-auto overflow-y-hidden scrollbar-hide items-center">
-        {userCardsComponent}
+      <div className="container m-auto bg-secondary min-w-[80%] w-4/5 h-3/5 max-h-max rounded-xl">
+        <div className="flex flex-row">
+          <h1 className="text-[2vh] p-5 cursor-default">
+            {userCards.length === 1
+              ? `${userCards.length} user found`
+              : `${userCards.length} users found`}
+          </h1>
+          <div className="my-auto">
+            <Button
+              content="View map"
+              onClick={() => setShowMap(!showMap)}
+              path={PEOPLE}
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-row h-3/4 w-full m-auto overflow-x-auto overflow-y-hidden scrollbar-hide items-center">
+          {showMap ? <Map /> : null}
+          {userCardsComponent}
+        </div>
       </div>
     );
   }
