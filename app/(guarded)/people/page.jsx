@@ -9,7 +9,7 @@ import { useGlobalContext } from 'app/(context)';
 // import UserCard from './UserCard';
 import SongCard from './SongCard';
 import useCurrentTrack from '@/hooks/useCurrentTrack';
-import UserSearch from './UserSearch';
+// import UserSearch from './UserSearch';
 import UserCardRenderer from './UserCardRenderer';
 
 // TODO: Fix map pushing sidebar and layout around
@@ -48,7 +48,7 @@ export default function People() {
       <div className="flex">
         <h1 className="text-[2.3vh] font-primary font-semibold ml-10 cursor-default">
           Find people with similar taste
-          <UserSearch />
+          {/* <UserSearch /> */}
         </h1>
         <Button
           addedclasses="text-md mx-4 mt-8"
@@ -67,8 +67,11 @@ export default function People() {
           </span>
         )}
       </div>
-
-      <UserCardRenderer track={displayTrack} />
+      {displayTrack.trackName ? (
+        <UserCardRenderer track={displayTrack} />
+      ) : (
+        <div className="container m-auto bg-secondary min-w-[80%] w-4/5 h-3/5 max-h-max rounded-xl" />
+      )}
     </div>
   );
 }
