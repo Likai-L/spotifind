@@ -33,8 +33,16 @@ export default function Comment(props) {
               2
             </IconButton>
             <IconButton aria-label="Reply" Icon={FaReply} />
-            <IconButton aria-label="Edit" Icon={FaEdit} />
-            <IconButton aria-label="Delete" Icon={FaTrash} />
+            <IconButton
+              aria-label="Edit"
+              hover="hover:text-blue-400"
+              Icon={FaEdit}
+            />
+            <IconButton
+              aria-label="Delete"
+              hover="hover:text-red-400"
+              Icon={FaTrash}
+            />
           </div>
         </div>
       </Container>

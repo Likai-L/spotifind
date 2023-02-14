@@ -1,14 +1,14 @@
 export default function IconButton({
   Icon,
   isActive,
-  color,
+  hover,
   children,
   ...props
 }) {
   return (
     <button
       className={`flex justify-evenly items-center mr-4 ${
-        color ? `text-${color}` : ''
+        hover ? `${hover}` : ''
       }`}
       type="button">
       <span className={`${children ? 'mr-1' : ''}`}>
