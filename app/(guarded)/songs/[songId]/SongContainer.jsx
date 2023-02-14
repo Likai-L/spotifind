@@ -25,7 +25,7 @@ export default function SongContainer({ track }) {
   // Update state of track as track data loads
   useEffect(() => {
     setAudioPreview({ audio: new Audio(trackPreview) });
-  }, [track]);
+  }, [trackPreview]);
 
   // Set volume to match global volume bar once audio is loaded
   useEffect(() => {
@@ -38,11 +38,13 @@ export default function SongContainer({ track }) {
     e.preventDefault();
     const { isPlaying } = volume;
 
-    if (isPlaying) {
-      audioPreview.audio.pause();
-    } else {
-      audioPreview.audio.play();
-      setDisplayTrack(track);
+    if (audioPreview.audio) {
+      if (isPlaying) {
+        audioPreview.audio.pause();
+      } else {
+        audioPreview.audio.play();
+        setDisplayTrack(track);
+      }
     }
 
     setVolume(prev => ({ ...prev, isPlaying: !isPlaying }));
@@ -75,6 +77,7 @@ export default function SongContainer({ track }) {
               width={320}
             />
             <Button
+              addedclasses="text-md rounded-xl w-36"
               content={
                 <span>
                   <span className={playIconClasses} /> Preview
