@@ -43,15 +43,15 @@ export default function Player() {
           height={280}
           priority
           src={profile.playerState.albumCoverUrl || '/images/vinyl.webp'}
-          trackUri={profile.playerState.uri}
+          uri={profile.playerState.uri || ''}
           width={280}
         />
-        <div className=" text-center text-xl font-semibold  ">
+        <div className="text-center text-xl font-semibold">
           <p className="text-2xl mt-[20px] font-bold whitespace-pre-wrap">
             {profile.playerState.name}
           </p>
           <p className="mt-[20px]">
-            {profile.playerState.artist || 'Not playing.'}
+            {profile.playerState.artist || 'No song currently playing'}
           </p>
           <p className="mt-[5px]">{profile.playerState.album || ''}</p>
         </div>
