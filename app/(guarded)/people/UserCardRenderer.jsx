@@ -4,14 +4,20 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FINDUSERSBYSONG, PEOPLE } from 'public/constants/pathNames';
 import Button from 'app/(button)/Button';
+import { useGlobalContext } from 'app/(context)';
 import UserCard from './UserCard';
 import Map from './(map)/Map';
+import getDistance from '@/helpers/getDistance';
 // import getUsersBySong from '@/helpers/getUsersBySong';
 
 export default function UserCardRenderer({ track }) {
+  const { profile, setSearchInput, displayTrack, setDisplayTrack } =
+    useGlobalContext();
+
   const [showMap, setShowMap] = useState(false);
   const { uri } = track;
   const [userCards, setUserCards] = useState('');
+  console.log('DISPLAY TRACK', displayTrack);
   useEffect(() => {
     axios
       .post(FINDUSERSBYSONG, {
@@ -19,12 +25,20 @@ export default function UserCardRenderer({ track }) {
       })
       .then(res => setUserCards(res.data))
       .catch(err => console.log(err));
-  }, []);
+  }, [displayTrack]);
   console.log('usercards object under here', userCards);
   console.log(userCards);
+
   // I know it's best practice to put this straight in the return statement and forego the const userCardsComponent,
   // but this caused it not to render in this instance, maybe because its an api call?
-  if (userCards.length > 0) {
+  if (userCards.length > 1) {
+    const distance = getDistance(
+      Number(userCards[0].latitude),
+      Number(userCards[0].longitude),
+      Number(userCards[1].latitude),
+      Number(userCards[1].longitude)
+    );
+    console.log('DISTANCE HERE', distance);
     const userCardsComponent = userCards.map(userCard => (
       <UserCard
         alt={`${userCard.username}'s profile photo`}
@@ -52,7 +66,7 @@ export default function UserCardRenderer({ track }) {
         </div>
 
         <div className="flex flex-row h-3/4 w-full m-auto overflow-x-auto overflow-y-hidden scrollbar-hide items-center">
-          {showMap ? <Map /> : null}
+          {showMap ? <Map users={userCards} /> : null}
           {userCardsComponent}
         </div>
       </div>
