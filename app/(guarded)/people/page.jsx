@@ -14,7 +14,6 @@ import UserCardRenderer from './UserCardRenderer';
 
 // TODO: Fix map pushing sidebar and layout around
 export default function People() {
-  const [showMap, setShowMap] = useState(false);
   const { profile, setSearchInput, displayTrack, setDisplayTrack } =
     useGlobalContext();
   useCurrentTrack();
@@ -68,21 +67,8 @@ export default function People() {
           </span>
         )}
       </div>
-      <div className="container m-auto bg-secondary min-w-[80%] w-4/5 h-3/5 max-h-max rounded-xl">
-        <div className="flex flex-row">
-          <h1 className="text-[2vh] p-5 cursor-default">x user/s found </h1>
-          <div className="my-auto">
-            <Button
-              content="View on map"
-              onClick={() => setShowMap(!showMap)}
-              path={PEOPLE}
-            />
-          </div>
-        </div>
 
-        {/* {showMap ? <Map /> : null} */}
-        <UserCardRenderer track={displayTrack} />
-      </div>
+      <UserCardRenderer track={displayTrack} />
     </div>
   );
 }
