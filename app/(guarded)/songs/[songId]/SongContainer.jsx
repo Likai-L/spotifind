@@ -15,8 +15,9 @@ export default function SongContainer({ track }) {
     artistName,
     albumName,
     lyrics,
-    // spotifyUrl,
-    trackPreview
+    spotifyUrl,
+    trackPreview,
+    uri
   } = track;
 
   const { volume, setVolume, setDisplayTrack, audioPreview, setAudioPreview } =
@@ -50,10 +51,10 @@ export default function SongContainer({ track }) {
     setVolume(prev => ({ ...prev, isPlaying: !isPlaying }));
   };
 
-  // TODO: Stop playback and reset state of audio preview on leaving...
+  // Stop playback when leaving component
   useEffect(() => {
     return () => {
-      setAudioPreview({});
+      setVolume(prev => ({ ...prev, isPlaying: false }));
     };
   }, []);
 
@@ -76,17 +77,27 @@ export default function SongContainer({ track }) {
               src={albumCoverUrl}
               width={320}
             />
-            <Button
-              addedclasses="text-md rounded-xl w-36"
-              content={
-                <span>
-                  <span className={playIconClasses} /> Preview
-                </span>
-              }
-              onClick={playPause}
-              path={SONGS}
-              type="button"
-            />
+            <div className="flex justify-evenly w-3/4">
+              <Button
+                addedclasses="text-md rounded-xl w-40"
+                content={
+                  <span>
+                    <span className={playIconClasses} /> Preview
+                  </span>
+                }
+                onClick={playPause}
+                path={SONGS}
+                prefetch="true"
+                type="button"
+              />
+              <Button
+                addedclasses="text-md rounded-xl w-48"
+                content="Open in Spotify"
+                path={spotifyUrl || `/songs/${uri}`}
+                prefetch="true"
+                target="_blank"
+              />
+            </div>
           </>
         )}
         <div className="flex flex-col justify-evenly items-center h-3/4 w-3/4 text-2xl font-semibold m-4 text-center line-clamp-4">

@@ -87,7 +87,7 @@
       border-style: double;
       border-width: 0px 1rem 0px 1rem;
     }
-  
+
     &:hover {
       border-color: transparent transparent transparent rgba(245, 245, 245, 1);
     }

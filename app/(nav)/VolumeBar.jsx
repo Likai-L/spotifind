@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeHigh, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function VolumeBar() {
-  const { volume, setVolume } = useGlobalContext();
+  const { volume, setVolume, audioPreview } = useGlobalContext();
 
   const toggleMute = e => {
     e.preventDefault();
@@ -48,8 +48,18 @@ export default function VolumeBar() {
     }));
   };
 
+  useEffect(() => {
+    if (
+      !volume.isPlaying &&
+      audioPreview.audio?.currentTime > 0 &&
+      !audioPreview.audio?.ended
+    ) {
+      audioPreview.audio.pause();
+    }
+  }, [volume.isPlaying]);
+
   return (
-    <div className="flex justify-between font-primary text-nav mb-44">
+    <div className="flex justify-evenly font-primary text-nav mb-44">
       {volume.finalVolume === 0 ? (
         <FontAwesomeIcon
           className="ml-12 cursor-pointer hover:animate-pulse"
@@ -66,7 +76,7 @@ export default function VolumeBar() {
         />
       )}
       <input
-        className="mr-10 cursor-ew-resize"
+        className="mr-8 cursor-ew-resize"
         max={1}
         min={0}
         onChange={changeVolume}
