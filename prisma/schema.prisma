@@ -17,6 +17,7 @@ model User {
   currentSongUri    String?   @map("current_song_uri")
   latitude          String?
   longitude         String?
+  Like              Like[]
   comments          Comment[]
   nowPlaying        Song?     @relation("NowPlaying", fields: [currentSongUri], references: [spotifySongUri])
   recentLikes       Song[]    @relation("Likes")
@@ -29,6 +30,7 @@ model Song {
   name           String
   spotifySongUri String    @unique @map("spotify_song_uri")
   artist         String
+  album          String?
   comments       Comment[]
   playedBy       User[]    @relation("NowPlaying")
   likedBy        User[]    @relation("Likes")
@@ -37,13 +39,27 @@ model Song {
 }
 
 model Comment {
-  id        String   @id @default(cuid())
-  userId    String
-  songId    String
-  text      String
-  createdAt DateTime @default(now()) @map("created_at")
-  song_id   Song     @relation(fields: [songId], references: [id])
-  user_id   User     @relation(fields: [userId], references: [id])
+  id             String    @id @default(cuid())
+  createdAt      DateTime  @default(now()) @map("created_at")
+  authorUri      String
+  content        String
+  parentId       String?
+  songUri        String
+  updated_at     DateTime  @default(now())
+  Like           Like[]
+  users          User      @relation(fields: [authorUri], references: [spotifyUserUri], onDelete: Cascade)
+  comments       Comment?  @relation("commentsTocomments", fields: [parentId], references: [id], onDelete: Cascade)
+  other_comments Comment[] @relation("commentsTocomments")
+  songs          Song      @relation(fields: [songUri], references: [spotifySongUri], onDelete: Cascade)
 
   @@map("comments")
+}
+
+model Like {
+  userUri   String
+  commentId String
+  comments  Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  users     User    @relation(fields: [userUri], references: [spotifyUserUri], onDelete: Cascade)
+
+  @@id([userUri, commentId])
 }
