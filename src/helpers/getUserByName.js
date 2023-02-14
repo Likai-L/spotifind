@@ -1,12 +1,13 @@
 import { USERSEARCH } from 'public/constants/pathNames';
 import axios from 'axios';
 
-export default async function getUserByName(search) {
-  // make request to database to find a user with that name!
-  await axios
-    .get(USERSEARCH, {
-      name: search
+export default function getUserByName(props) {
+  const { title } = props;
+
+  axios
+    .post(USERSEARCH, {
+      username: title
     })
-    .then(res => console.log('response from handleSubmit', res))
-    .catch(err => console.log('error from handleSubmit', err));
+    .then(res => console.log(res.data))
+    .catch(err => console.log('error from getUserByName', err));
 }
