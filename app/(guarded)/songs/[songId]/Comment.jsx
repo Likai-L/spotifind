@@ -16,7 +16,7 @@ export default function Comment({
   const childrenHidden = false;
   return (
     <>
-      <div className="h-[150px]] flex justify-center mt-[20px]">
+      <div className="h-[150px]] w-[calc(100%-60px)] flex justify-center mt-[20px] mx-auto">
         <div className="flex flex-col justify-between mr-[20px] w-[80px]">
           <Image
             alt="user-pfp"
@@ -29,7 +29,7 @@ export default function Comment({
             {author?.username || ''}
           </p>
         </div>
-        <Container classNames="bg-container px-[25px] py-[15px] w-[720px] h-[120px] overflow-auto scrollbar-hide flex flex-col justify-between">
+        <Container classNames="bg-container px-[25px] py-[15px] w-[100%] h-[120px] overflow-auto scrollbar-hide flex flex-col justify-between shrink">
           <p>{content || ''}</p>
           <div className="flex justify-between">
             <p className="text-secondary text-base">
@@ -65,18 +65,16 @@ export default function Comment({
       </div>
       <div>
         {childComments?.length > 0 && (
-          <>
-            <div className=" flex justify-center">
-              <button
-                aria-label="Hide Replies"
-                className="collapse-line  w-[30px]  relative"></button>
-              <div>
-                <CommentList
-                  comments={childComments}
-                  getReplies={getReplies}></CommentList>
-              </div>
+          <div className="flex ">
+            <button
+              aria-label="Hide Replies"
+              className="collapse-line  w-[30px]  relative"></button>
+            <div className="grow">
+              <CommentList
+                comments={childComments}
+                getReplies={getReplies}></CommentList>
             </div>
-          </>
+          </div>
         )}
       </div>
     </>
