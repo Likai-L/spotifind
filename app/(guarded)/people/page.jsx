@@ -79,10 +79,9 @@ export default function People() {
             />
           </div>
         </div>
-        <div className="flex flex-row h-3/4 w-full m-auto overflow-x-auto overflow-y-hidden scrollbar-hide items-center">
-          {showMap ? <Map /> : null}
-          <UserCardRenderer track={displayTrack} />
-        </div>
+
+        {/* {showMap ? <Map /> : null} */}
+        <UserCardRenderer track={displayTrack} />
       </div>
     </div>
   );
