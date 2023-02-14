@@ -8,10 +8,15 @@ import { useGlobalContext } from 'app/(context)';
 import SongContainer from './SongContainer';
 import SearchResults from '../SearchResults';
 import useSongId from '@/hooks/useSongId';
+// import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 export default function SongDetails({ params: { songId } }) {
   const track = useSongId(songId);
   const { searchInput, setSearchInput } = useGlobalContext();
+
+  // Uncomment useCurrentTrack() to hide axios errors to api/socket in
+  // /people when we do our presentation.
+  // useCurrentTrack();
 
   useEffect(() => {
     setSearchInput('');
