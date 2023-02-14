@@ -66,7 +66,7 @@ export default function VolumeBar() {
         />
       )}
       <input
-        className="mr-10 cursor-pointer"
+        className="mr-10 cursor-ew-resize"
         max={1}
         min={0}
         onChange={changeVolume}

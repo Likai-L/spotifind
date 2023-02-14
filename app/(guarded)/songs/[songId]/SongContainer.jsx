@@ -2,9 +2,10 @@
 
 import Image from 'next/image';
 import Button from 'app/(button)/Button';
-import { PEOPLE } from 'public/constants/pathNames';
+import { PEOPLE, SONGS } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
 import { useEffect } from 'react';
+import classNames from 'classnames';
 import LyricsContainer from './LyricsContainer';
 
 export default function SongContainer({ track }) {
@@ -33,7 +34,8 @@ export default function SongContainer({ track }) {
     }
   }, [volume, audioPreview]);
 
-  const playPause = () => {
+  const playPause = e => {
+    e.preventDefault();
     const { isPlaying } = volume;
 
     if (isPlaying) {
@@ -53,18 +55,36 @@ export default function SongContainer({ track }) {
     };
   }, []);
 
+  const playIconClasses = classNames(
+    'play-button inline-block fade-in hover:animate-pulse',
+    {
+      paused: volume.isPlaying
+    }
+  );
+
   return (
-    <div className="flex justify-evenly font-primary">
-      <div className="flex flex-col justify-center items-center w-5/12 h-full ">
+    <div className="flex justify-evenly font-primary fade-in">
+      <div className="flex flex-col justify-center items-center w-5/12 h-full">
         {albumCoverUrl && (
-          <Image
-            alt="album artwork"
-            className="rounded-3xl m-4"
-            height={320}
-            onClick={playPause}
-            src={albumCoverUrl}
-            width={320}
-          />
+          <>
+            <Image
+              alt="album artwork"
+              className="rounded-3xl m-4"
+              height={320}
+              src={albumCoverUrl}
+              width={320}
+            />
+            <Button
+              content={
+                <span>
+                  <span className={playIconClasses} /> Preview
+                </span>
+              }
+              onClick={playPause}
+              path={SONGS}
+              type="button"
+            />
+          </>
         )}
         <div className="flex flex-col justify-evenly items-center h-3/4 w-3/4 text-2xl font-semibold m-4 text-center line-clamp-4">
           <h1 className="p-2">{trackName}</h1>
