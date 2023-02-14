@@ -27,6 +27,12 @@ export function GlobalContextProvider(props) {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState({});
 
+  const [volume, setVolume] = useState({
+    volume: 0.25,
+    finalVolume: 0.25,
+    muted: false
+  });
+
   useEffect(() => {
     if (searchInput === '') {
       setSearchResults({});
@@ -54,6 +60,8 @@ export function GlobalContextProvider(props) {
       setRecommendedTracks,
       displayTrack,
       setDisplayTrack,
+      volume,
+      setVolume,
       latitude,
       setLatitude,
       longitude,
@@ -68,7 +76,8 @@ export function GlobalContextProvider(props) {
       searchResults,
       recommendedTracks,
       displayTrack,
-      profile.lyrics
+      profile.lyrics,
+      volume
     ]
   );
 

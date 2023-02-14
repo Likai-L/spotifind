@@ -1,5 +1,6 @@
 import NavLogo from './Logo';
 import NavItems from './(icons)/index';
+import VolumeBar from './VolumeBar';
 
 export default function Sidebar() {
   return (
@@ -11,6 +12,8 @@ export default function Sidebar() {
           <NavItems />
         </div>
       </div>
+
+      <VolumeBar />
 
       {/* TODO: Finish this thing */}
       <div className="text-primary">Logout</div>
