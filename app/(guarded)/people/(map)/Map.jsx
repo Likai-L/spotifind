@@ -27,6 +27,8 @@ function Map() {
   // latitude: 49.868556 longitude: -97.1713925
 
   if (users.length > 0) {
+    // I need a center or else the map wont work, ill make this dynamic in the future, if there's more than
+    // one user being rendered on the map, zoom out. or change this to [1] or [2] if you want to play around
     const centerLat = users[0].latitude;
     const centerLong = users[0].longitude;
     const center = [Number(centerLat), Number(centerLong)];
