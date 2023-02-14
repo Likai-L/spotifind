@@ -13,6 +13,7 @@ const RECENTLIKES = '/api/recentLikes';
 const NOWPLAYING = '/api/nowPlaying';
 const USERSEARCH = '/api/userSearch';
 const LOCATION = '/api/location';
+const FINDUSERSBYSONG = '/api/usersBySong';
 
 export {
   LANDING,
@@ -29,5 +30,6 @@ export {
   RECENTLIKES,
   NOWPLAYING,
   USERSEARCH,
-  LOCATION
+  LOCATION,
+  FINDUSERSBYSONG
 };
