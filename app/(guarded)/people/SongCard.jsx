@@ -7,12 +7,12 @@ export default function SongCard({ track }) {
 
   return (
     <Link className="flex shrink-0" href={`${SONGS}/${uri}`}>
-      <div className="flex w-full h-full m-auto cursor-default">
+      <div className="flex w-full h-full m-auto cursor-pointer">
         <div className="flex shrink-0 sticky max-w-1/5 max-h-5/5 aspect-square m-4 ml-6">
           {albumCoverUrl && (
             <Image
               alt="album-cover"
-              className="rounded-2xl"
+              className="rounded-3xl cursor-pointer transition duration-200 ease-out hover:scale-105"
               height={200}
               src={albumCoverUrl}
               width={200}
