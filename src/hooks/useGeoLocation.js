@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 
 export default function useGeoLocation() {
-  const { name, latitude, setLatitude, longitude, setLongitude, profile } =
+  const { latitude, setLatitude, longitude, setLongitude, profile } =
     useGlobalContext();
 
   navigator.geolocation.getCurrentPosition(position => {
