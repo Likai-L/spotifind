@@ -1,5 +1,7 @@
 import Container from 'app/(container)/Container';
+import IconButton from './IconButton';
 import Image from 'next/image';
+import { FaHeart } from 'react-icons/fa';
 import formatDistance from 'date-fns/formatDistance';
 
 export default function Comment(props) {
@@ -20,12 +22,26 @@ export default function Comment(props) {
       </div>
       <Container classNames="bg-container px-[25px] py-[15px] w-[80%] h-[120px] overflow-auto scrollbar-hide flex flex-col justify-between">
         <p>{content || ''}</p>
-        <div>
+        <div className="flex justify-between">
           <p className="text-secondary text-base">
             {formatDistance(new Date(createdAt), new Date(), {
               addSuffix: true
             })}
           </p>
+          <div className="flex justify-between">
+            <IconButton Icon={FaHeart} aria-label="Like">
+              2
+            </IconButton>
+            <IconButton Icon={FaHeart} aria-label="Like">
+              2
+            </IconButton>
+            <IconButton Icon={FaHeart} aria-label="Like">
+              2
+            </IconButton>
+            <IconButton Icon={FaHeart} aria-label="Like">
+              2
+            </IconButton>
+          </div>
         </div>
       </Container>
     </div>
