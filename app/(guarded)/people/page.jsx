@@ -1,7 +1,7 @@
 'use client';
 
 // import SearchBar from 'app/(searchbar)/SearchBar';
-import Map from 'app/(guarded)/people/(map)/Map';
+// import Map from 'app/(guarded)/people/(map)/Map';
 import { useEffect, useState } from 'react';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
