@@ -6,10 +6,11 @@ import { useEffect, useState } from 'react';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
-import UserCard from './UserCard';
+// import UserCard from './UserCard';
 import SongCard from './SongCard';
 import useCurrentTrack from '@/hooks/useCurrentTrack';
 import UserSearch from './UserSearch';
+import UserCardRenderer from './UserCardRenderer';
 
 // TODO: Fix map pushing sidebar and layout around
 export default function People() {
@@ -80,13 +81,7 @@ export default function People() {
         </div>
         <div className="flex flex-row h-3/4 w-full m-auto overflow-x-auto overflow-y-hidden scrollbar-hide items-center">
           {showMap ? <Map /> : null}
-          {/* Will be dynamic and mapped based on search results,
-           but for now just pasted like this to see multiple */}
-          <UserCard />
-          <UserCard />
-          <UserCard />
-          <UserCard />
-          <UserCard />
+          <UserCardRenderer track={displayTrack} />
         </div>
       </div>
     </div>
