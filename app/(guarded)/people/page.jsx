@@ -1,6 +1,6 @@
 'use client';
 
-import SearchBar from 'app/(searchbar)/SearchBar';
+// import SearchBar from 'app/(searchbar)/SearchBar';
 import Map from 'app/(guarded)/people/(map)/Map';
 import { useEffect, useState } from 'react';
 import Button from 'app/(button)/Button';
@@ -9,6 +9,7 @@ import { useGlobalContext } from 'app/(context)';
 import UserCard from './UserCard';
 import SongCard from './SongCard';
 import useCurrentTrack from '@/hooks/useCurrentTrack';
+import UserSearch from './UserSearch';
 
 // TODO: Fix map pushing sidebar and layout around
 export default function People() {
@@ -47,7 +48,7 @@ export default function People() {
       <div className="flex">
         <h1 className="text-[2.3vh] font-primary font-semibold ml-10 cursor-default">
           Find people with similar taste
-          <SearchBar action={PEOPLE} label="Search for a user" />
+          <UserSearch />
         </h1>
         <Button
           addedclasses="text-md mx-4 mt-8"
