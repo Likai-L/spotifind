@@ -33,6 +33,7 @@ export default function SongContainer({ track }) {
           />
           <Button
             addedclasses="text-md rounded-xl w-40"
+            content={view === 'lyrics' ? 'Comments' : 'Lyrics'}
             onClick={() => {
               if (view === 'lyrics') {
                 setView('comments');
@@ -40,7 +41,6 @@ export default function SongContainer({ track }) {
                 setView('lyrics');
               }
             }}
-            content={view === 'lyrics' ? 'Comments' : 'Lyrics'}
             path="#"
           />
         </div>
