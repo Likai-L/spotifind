@@ -54,8 +54,12 @@ export default function Player() {
           <p className="text-2xl mt-[20px] font-bold whitespace-pre-wrap">
             {profile.playerState.name}
           </p>
-          <p className="mt-[20px]">{profile.playerState.artist || ''}</p>
-          <p className="mt-[5px]">{profile.playerState.album || ''}</p>
+          <p className="mt-[20px] text-secondary">
+            {profile.playerState.artist || ''}
+          </p>
+          <p className="mt-[15px] text-secondary">
+            {profile.playerState.album || ''}
+          </p>
         </div>
       </div>
       <div className="w-[55%]">
