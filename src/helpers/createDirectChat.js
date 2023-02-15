@@ -1,50 +1,23 @@
 import axios from 'axios';
-
-
-const createDirectChat = async e => {
-  e.preventDefault();
+// loggedInUser should be a user object
+// userToDM is just a string of the user you want to create/go to dm
+export default async function createDirectChat(loggedInUser, userToDM) {
+  const authObject = {
+    'Project-ID': 'f06a82ab-ee91-4d7d-9b6d-90b79d3392ca',
+    'User-Name': loggedInUser.username,
+    'User-Secret': loggedInUser.spotifyUserUri
+  };
+  try {
+    await axios.put(
+      'https://api.chatengine.io/chats/',
+      {
+        usernames: [loggedInUser.username, userToDM],
+        title: userToDM,
+        is_direct_chat: true
+      },
+      { headers: authObject }
+    );
+  } catch (err) {
+    console.log('somethign went wrong as usual', err);
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export default async function createDirectChat(
-//   username1,
-//   username1Secret,
-//   username2
-// ) {
-//   console.log('inside create direct chat!');
-//   console.log(username1);
-//   console.log(username2);
-//   const projectID = process.env.NEXT_PUBLIC_REACT_APP_CHAT_ENGINE_PROJECT_ID;
-//   const privateKey = process.env.NEXT_PUBLIC_REACT_APP_CHAT_ENGINE_PRIVATE_KEY;
-//   const data = {
-//     usernames: [username1, username2],
-//     id_direct_chat: true
-//   };
-//   const config = {
-//     method: 'put',
-//     url: 'https://api.chatengine.io/chats/',
-//     { headers: {
-//       'PROJECT-ID': projectID,
-//       'User-Name': username1,
-//       'User-Secret': username1Secret
-//     }}
-//     data
-//   };
-//   axios(config)
-//     .then(res => console.log('success! got or created chat', res))
-//     .catch(err => console.log('error, couldnt get or create chat', err));
-// }
