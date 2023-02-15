@@ -10,6 +10,7 @@ import {
 import formatDistance from 'date-fns/formatDistance';
 import Container from 'app/(container)/Container';
 import IconButton from './IconButton';
+// eslint-disable-next-line import/no-cycle
 import CommentList from './CommentList';
 
 export default function Comment({
@@ -21,6 +22,9 @@ export default function Comment({
 }) {
   const childComments = getReplies(id);
   const [childrenHidden, setChildrenHidden] = useState(false);
+  const [isReplying, setIsReplying] = useState(false);
+  const [isEditting, setIsEditting] = useState(false);
+
   return (
     <>
       <div className="h-[150px]] w-[calc(100%-30px)] flex justify-center mt-[20px] mx-auto">
@@ -47,23 +51,27 @@ export default function Comment({
             <div className="flex justify-between">
               <IconButton
                 aria-label="Like"
-                hover="hover:text-pink-300"
+                color="text-pink-300"
                 Icon={FaHeart}>
                 2
               </IconButton>
               <IconButton
                 aria-label="Reply"
-                hover="hover:text-green-300"
+                color="text-green-300"
+                onClick={() => setIsReplying(prev => !prev)}
+                isActive={isReplying}
                 Icon={FaReply}
               />
               <IconButton
                 aria-label="Edit"
-                hover="hover:text-blue-300"
+                color="text-blue-300"
+                onClick={() => setIsEditting(prev => !prev)}
+                isActive={isEditting}
                 Icon={FaEdit}
               />
               <IconButton
                 aria-label="Delete"
-                hover="hover:text-red-400"
+                color="text-red-400"
                 Icon={FaTrash}
               />
             </div>
