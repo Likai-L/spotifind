@@ -37,7 +37,11 @@ export default function Player() {
   return (
     <Container classNames="w-[1500px] h-[600px] flex justify-evenly mx-auto">
       <div className="w-[20%]">
-        <p className="text-3xl font-bold my-[30px]">Now Playing</p>
+        <p className="text-[28px] font-bold my-[30px]">
+          {profile.playerState.device
+            ? `Playing on ${profile.playerState.device}`
+            : 'No active device'}
+        </p>
         <AlbumCover
           classNames={playerClassNames}
           height={280}
@@ -46,13 +50,11 @@ export default function Player() {
           trackUri={profile.playerState.uri}
           width={280}
         />
-        <div className=" text-center text-xl font-semibold  ">
+        <div className="text-center text-xl font-semibold">
           <p className="text-2xl mt-[20px] font-bold whitespace-pre-wrap">
             {profile.playerState.name}
           </p>
-          <p className="mt-[20px]">
-            {profile.playerState.artist || 'Not playing.'}
-          </p>
+          <p className="mt-[20px]">{profile.playerState.artist || ''}</p>
           <p className="mt-[5px]">{profile.playerState.album || ''}</p>
         </div>
       </div>
