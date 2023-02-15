@@ -8,21 +8,25 @@ export default async function createCommentHandler(req, res) {
     return;
   }
   const { track, ...commentData } = req.body;
-  await prisma.song.upsert({
-    where: { spotifySongUri: track.uri },
-    update: {
-      spotifySongUri: track.uri,
-      name: track.trackName,
-      artist: track.artistName,
-      album: track.albumName
-    },
-    create: {
-      spotifySongUri: track.uri,
-      name: track.trackName,
-      artist: track.artistName,
-      album: track.albumName
-    }
-  });
+  if (track) {
+    // if track is in req.body it means we this is a root comment, need to check if the song exists
+    await prisma.song.upsert({
+      where: { spotifySongUri: track.uri },
+      update: {
+        spotifySongUri: track.uri,
+        name: track.trackName,
+        artist: track.artistName,
+        album: track.albumName
+      },
+      create: {
+        spotifySongUri: track.uri,
+        name: track.trackName,
+        artist: track.artistName,
+        album: track.albumName
+      }
+    });
+  }
+
   try {
     const comment = await prisma.comment.create({
       data: commentData,
