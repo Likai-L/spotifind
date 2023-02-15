@@ -9,11 +9,9 @@ import UserCard from './UserCard';
 import Map from './(map)/Map';
 import getDistance from '@/helpers/getDistance';
 // import getUsersBySong from '@/helpers/getUsersBySong';
-import createDirectChat from '@/helpers/createDirectChat';
 
 export default function UserCardRenderer({ track }) {
-  const { profile, setSearchInput, displayTrack, setDisplayTrack } =
-    useGlobalContext();
+  const { profile, displayTrack } = useGlobalContext();
 
   const [showMap, setShowMap] = useState(false);
   const { uri } = track;
@@ -42,13 +40,6 @@ export default function UserCardRenderer({ track }) {
     );
     console.log('currentUserFiltered', currentUserFiltered);
     console.log('userCardsFiltered', userCardsFiltered);
-    // const distance = getDistance(
-    //   Number(userCards[0].latitude),
-    //   Number(userCards[0].longitude),
-    //   Number(userCards[1].latitude),
-    //   Number(userCards[1].longitude)
-    // );
-    // console.log('DISTANCE HERE', distance);
     const userCardsComponent = userCardsFiltered.map(userCard => (
       <UserCard
         alt={`${userCard.username}'s profile photo`}
@@ -104,7 +95,9 @@ export default function UserCardRenderer({ track }) {
         </div>
 
         <div className="flex flex-row h-3/4 w-full m-auto overflow-x-auto overflow-y-hidden scrollbar-hide items-center">
-          {showMap ? <Map users={userCards} /> : null}
+          {showMap ? (
+            <Map currentUser={currentUserFiltered} users={userCardsFiltered} />
+          ) : null}
           {userCardsComponent}
         </div>
       </div>
