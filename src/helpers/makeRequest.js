@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function makeRequest(url, options) {
+export default function makeRequest(url, options) {
   return axios(url, options)
     .then(res => res.data)
     .catch(err =>
