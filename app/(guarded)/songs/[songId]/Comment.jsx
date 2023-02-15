@@ -32,7 +32,7 @@ export default function Comment({
             src={author?.profilePictureUrl || ''}
             width={80}
           />
-          <p className="text-md text-center w-full truncate">
+          <p className="text-md font-bold text-center w-full truncate">
             {author?.username || ''}
           </p>
         </div>
