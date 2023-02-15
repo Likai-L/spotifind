@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
 import {
-  NOWPLAYING,
   PROFILE,
   RECENTLIKES,
   SPOTIFY_BASE_URL

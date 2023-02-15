@@ -5,7 +5,7 @@ export default function AlbumTile({
 }) {
   return (
     <div className="flex flex-col items-center font-primary p-8">
-      <AlbumCover height={200} src={albumCoverUrl} trackUri={uri} width={200} />
+      <AlbumCover height={200} src={albumCoverUrl} uri={uri} width={200} />
       <p className="font-bold text-2xl text-primary pt-2 pb-1 text-center  line-clamp-2">
         {trackName}
       </p>
