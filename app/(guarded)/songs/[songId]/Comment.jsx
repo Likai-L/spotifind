@@ -71,9 +71,8 @@ export default function Comment({
               <IconButton
                 aria-label="Like"
                 color="text-pink-300"
-                Icon={FaHeart}>
-                2
-              </IconButton>
+                Icon={FaHeart}></IconButton>
+
               <IconButton
                 aria-label="Reply"
                 color="text-green-300"
