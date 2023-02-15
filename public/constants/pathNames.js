@@ -12,6 +12,7 @@ const PROFILE = '/api/profile';
 const RECENTLIKES = '/api/recentLikes';
 const NOWPLAYING = '/api/nowPlaying';
 const COMMENTS = '/api/comments';
+const CREATECOMMENT = '/api/comments/create';
 
 export {
   LANDING,
@@ -27,5 +28,6 @@ export {
   PROFILE,
   RECENTLIKES,
   NOWPLAYING,
-  COMMENTS
+  COMMENTS,
+  CREATECOMMENT
 };
