@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useGlobalContext } from 'app/(context)';
 import Container from 'app/(container)/Container';
+import ToolTip from 'app/(tooltip)/ToolTip';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import useProfile from 'src/hooks/useProfile';
@@ -39,19 +40,22 @@ export default function Profile() {
           </div>
         </div>
         <Container classNames="lg:w-[500px] xl:w-[800px] 2xl:w-[1000px] 3xl:w-[1200px] ml-[50px] flex flex-col justify-evenly">
-          <div className="text-3xl font-bold ml-[30px]">My Taste</div>
+          <div className="text-3xl font-bold ml-[30px]">My Recent Taste</div>
           <div className="flex items-center overflow-x-scroll overflow-y-hidden scrollbar-hide mx-[15px]">
             {profile.tracks.length > 0 ? (
               profile.tracks.map(track => {
                 return (
-                  <AlbumCover
-                    classNames="mx-[15px]"
-                    height={200}
-                    key={track.uri}
-                    src={track.albumCoverUrl}
-                    trackUri={track.uri}
-                    width={200}
-                  />
+                  <ToolTip
+                    tooltip={`${track.trackName} by ${track.artist.name}`}>
+                    <AlbumCover
+                      classNames="mx-[15px]"
+                      height={160}
+                      key={track.uri}
+                      src={track.albumCoverUrl}
+                      uri={track.uri}
+                      width={160}
+                    />
+                  </ToolTip>
                 );
               })
             ) : (

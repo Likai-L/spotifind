@@ -14,6 +14,9 @@ const NOWPLAYING = '/api/nowPlaying';
 const USERSEARCH = '/api/userSearch';
 const LOCATION = '/api/location';
 const FINDUSERSBYSONG = '/api/usersBySong';
+const COMMENTS = '/api/comments';
+const CREATECOMMENT = '/api/comments/create';
+const UPDATECOMMENT = '/api/comments/update';
 
 export {
   LANDING,
@@ -31,5 +34,8 @@ export {
   NOWPLAYING,
   USERSEARCH,
   LOCATION,
-  FINDUSERSBYSONG
+  FINDUSERSBYSONG,
+  COMMENTS,
+  CREATECOMMENT,
+  UPDATECOMMENT
 };
