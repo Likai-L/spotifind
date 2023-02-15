@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
-import { LYRICS, SPOTIFY_BASE_URL } from 'public/constants/pathNames';
+import { COMMENTS, LYRICS, SPOTIFY_BASE_URL } from 'public/constants/pathNames';
 import { getHeaders, getLyricsFromData } from '@/helpers/helpers';
 
 export default function useSongId(songId) {
-  const { credentials, displayTrack, setDisplayTrack } = useGlobalContext();
+  const { credentials, displayTrack, setDisplayTrack, setComments } =
+    useGlobalContext();
 
   useEffect(() => {
     if (credentials.accessToken && songId) {
@@ -42,6 +43,17 @@ export default function useSongId(songId) {
     };
     callLyricsApi();
   }, [displayTrack]);
+
+  useEffect(() => {
+    console.log('calling /api/comments');
+    axios(`${COMMENTS}/${songId}`)
+      .then(response => {
+        setComments(response.data);
+      })
+      .catch(err => {
+        console.log('error when calling /api/comments', err);
+      });
+  }, [songId]);
 
   return displayTrack;
 }
