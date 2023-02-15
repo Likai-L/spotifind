@@ -18,10 +18,10 @@ export default function useChatEngine() {
   };
 
   axios(config)
-    .then(response => {
-      console.log(JSON.stringify(response.data));
+    .then(() => {
+      console.log(JSON.stringify('chat engine working'));
     })
-    .catch(error => {
-      console.log(error);
+    .catch(() => {
+      console.log('insignificant chat engine error 500');
     });
 }

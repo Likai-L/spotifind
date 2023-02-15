@@ -11,6 +11,9 @@ const LYRICS = '/api/lyrics';
 const PROFILE = '/api/profile';
 const RECENTLIKES = '/api/recentLikes';
 const NOWPLAYING = '/api/nowPlaying';
+const USERSEARCH = '/api/userSearch';
+const LOCATION = '/api/location';
+const FINDUSERSBYSONG = '/api/usersBySong';
 const COMMENTS = '/api/comments';
 const CREATECOMMENT = '/api/comments/create';
 const UPDATECOMMENT = '/api/comments/update';
@@ -29,6 +32,9 @@ export {
   PROFILE,
   RECENTLIKES,
   NOWPLAYING,
+  USERSEARCH,
+  LOCATION,
+  FINDUSERSBYSONG,
   COMMENTS,
   CREATECOMMENT,
   UPDATECOMMENT

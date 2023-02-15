@@ -21,7 +21,6 @@ model User {
   latitude          String?
   longitude         String? 
   likes             Like[]
-
   @@map("users")
 }
 
@@ -34,7 +33,6 @@ model Song {
   comments       Comment[]
   likedBy        User[]    @relation("Likes")
   playedBy       User[]    @relation("NowPlaying")
-
   @@map("songs")
 }
 
@@ -51,7 +49,6 @@ model Comment {
   parent       Comment?  @relation(name: "ParentChild",fields: [parentId], references: [id], onDelete: Cascade)
   chilren      Comment[] @relation(name: "ParentChild")
   likes        Like[]
-
   @@map("comments")
 }
 
@@ -62,3 +59,4 @@ model Like {
   commentId  String
   @@id([userUri, commentId])
 } 
+
