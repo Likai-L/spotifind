@@ -43,6 +43,9 @@ export default function CommentForm({
           content="Reset"
           path="#"
           prefetch="true"
+          onClick={() => {
+            setNewComment('');
+          }}
         />
       </div>
       <div className="text-red-400 text-center mt-[20px]">{error}</div>
