@@ -46,7 +46,7 @@ export default function Comment({
 
   return (
     <>
-      <div className="h-[150px]] w-[calc(100%-30px)] flex justify-center mt-[20px] mx-auto">
+      <div className=" w-[calc(100%-30px)] flex justify-center mt-[20px] mx-auto">
         <div className="flex flex-col justify-evenly mr-[20px] w-[80px]">
           <Image
             alt="user-pfp"
