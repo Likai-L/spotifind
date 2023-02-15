@@ -1,8 +1,9 @@
-import Comment from './Comment';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+// eslint-disable-next-line import/no-cycle
+import Comment from './Comment';
 
 export default function CommentList({ comments, getReplies }) {
-  const [parent, enableAnimations] = useAutoAnimate();
+  const [parent] = useAutoAnimate();
   return (
     <div ref={parent}>
       {comments.map(comment => (
