@@ -13,6 +13,7 @@ export default function SongContainer({ track }) {
   const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
   const [view, setView] = useState('lyrics');
   const { profile } = useGlobalContext();
+  const { setComments } = useGlobalContext();
 
   const {
     error,
@@ -25,8 +26,10 @@ export default function SongContainer({ track }) {
       songUri: track.uri,
       authorUri: profile.uri,
       content
-    }).then(res => {
-      console.log('in side Create Comment fn', res);
+    }).then(comment => {
+      setComments(prev => {
+        return [comment, ...prev];
+      });
     });
   };
 
