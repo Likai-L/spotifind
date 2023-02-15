@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useState } from 'react';
 import { FaTrash, FaEdit, FaHeart, FaReply } from 'react-icons/fa';
 import formatDistance from 'date-fns/formatDistance';
 import Container from 'app/(container)/Container';
@@ -13,7 +14,7 @@ export default function Comment({
   getReplies
 }) {
   const childComments = getReplies(id);
-  const childrenHidden = false;
+  const [childrenHidden, setChildrenHidden] = useState(true);
   return (
     <>
       <div className="h-[150px]] w-[calc(100%-30px)] flex justify-center mt-[20px] mx-auto">
@@ -65,12 +66,24 @@ export default function Comment({
       </div>
       <div>
         {childComments?.length > 0 && (
-          <div className="flex ">
-            <div className="border-r-2 border-[#ffffff18] border-solid w-[30px]"></div>
-            <div className="grow">
-              <CommentList comments={childComments} getReplies={getReplies} />
+          <>
+            <div className={`${childrenHidden ? 'hidden' : ''}`}>
+              <div className="flex ">
+                <div
+                  className="border-r-2 border-[#ffffff18] border-solid w-[30px] hover:border-r-3 hover:border-[#ffffff87] hover:cursor-pointer"
+                  onClick={() => setChildrenHidden(true)}></div>
+                <div className="grow">
+                  <CommentList
+                    comments={childComments}
+                    getReplies={getReplies}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
+            <button onClick={() => setChildrenHidden(false)} type="button">
+              Show Replies
+            </button>
+          </>
         )}
       </div>
     </>
