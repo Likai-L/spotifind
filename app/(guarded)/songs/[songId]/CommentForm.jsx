@@ -30,6 +30,7 @@ export default function CommentForm({
           disabled={loading}
           path="#"
           prefetch="true"
+          type="submit"
         />
 
         <Button
