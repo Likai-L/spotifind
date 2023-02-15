@@ -1,11 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'app/(button)/Button';
 import { PEOPLE, SONGS } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
-import { useEffect } from 'react';
 import classNames from 'classnames';
 import LyricsContainer from './LyricsContainer';
 import CommentsContainer from './CommentsContainer';
@@ -25,8 +24,15 @@ export default function SongContainer({ track }) {
     uri
   } = track;
 
-  const { volume, setVolume, setDisplayTrack, audioPreview, setAudioPreview, setComments, profile } =
-    useGlobalContext();
+  const {
+    volume,
+    setVolume,
+    setDisplayTrack,
+    audioPreview,
+    setAudioPreview,
+    setComments,
+    profile
+  } = useGlobalContext();
   const [view, setView] = useState('lyrics');
 
   // Update state of track as track data loads
