@@ -1,6 +1,12 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import { FaTrash, FaEdit, FaHeart, FaReply } from 'react-icons/fa';
+import {
+  FaAngleDoubleDown,
+  FaEdit,
+  FaHeart,
+  FaReply,
+  FaTrash
+} from 'react-icons/fa';
 import formatDistance from 'date-fns/formatDistance';
 import Container from 'app/(container)/Container';
 import IconButton from './IconButton';
@@ -80,12 +86,15 @@ export default function Comment({
                 </div>
               </div>
             </div>
-            <button
+
+            <IconButton
+              aria-label="Expand"
+              hover="hover:text-blue-300"
+              Icon={FaAngleDoubleDown}
               onClick={() => setChildrenHidden(false)}
-              type="button"
-              className={`${childrenHidden ? '' : 'hidden'}`}>
-              Show Replies
-            </button>
+              hidden={`${childrenHidden ? '' : 'hidden'}`}
+              position="ml-[40px]"
+            />
           </>
         )}
       </div>
