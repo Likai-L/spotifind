@@ -4,7 +4,7 @@
 // import Map from 'app/(guarded)/people/(map)/Map';
 import { useEffect, useState } from 'react';
 import Button from 'app/(button)/Button';
-import { PEOPLE } from 'public/constants/pathNames';
+import { PEOPLE, SONGS } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
 // import UserCard from './UserCard';
 import SongCard from './SongCard';
@@ -55,6 +55,12 @@ export default function People() {
           content="Set to Now Playing"
           onClick={setNowPlaying}
           path={PEOPLE}
+          prefetch="true"
+        />
+        <Button
+          addedclasses="text-md mx-4 mt-8"
+          content="Search for a song"
+          path={SONGS}
           prefetch="true"
         />
       </div>
