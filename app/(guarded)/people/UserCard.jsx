@@ -3,7 +3,7 @@ import Button from 'app/(button)/Button';
 import { MESSAGES } from 'public/constants/pathNames';
 
 export default function UserCard(props) {
-  const { alt, image, name, distance } = props;
+  const { alt, image, name, distance, DmClickHandler } = props;
   return (
     <div className="flex max-w-[250px] w-[20%] min-w-[12.5rem] m-5 flex-col justify-evenly bg-primary p-2 h-[95%] max-h-[25rem] rounded-2xl ">
       <div className="sticky aspect-square max-w-full w-auto min-h-[20%] h-[50%] self-center my-3">
@@ -24,7 +24,12 @@ export default function UserCard(props) {
         {distance || '5.6km away'}
       </h2>
       <div className="flex justify-center text-[1.8vh]">
-        <Button addedclasses="text-sm" content="Send DM" path={MESSAGES} />
+        <Button
+          addedclasses="text-sm"
+          content="Send DM"
+          onClick={DmClickHandler}
+          path={MESSAGES}
+        />
       </div>
     </div>
   );
