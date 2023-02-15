@@ -93,16 +93,6 @@
     }
   }
 
-  /* This animates the circle when it switches to play */
-  #circle {
-    transition: stroke-dashoffset 300ms ease-in;
-    stroke-dashoffset: 0;
-    fill: none;
-  }
-  #circle.play {
-    stroke-dashoffset: 314;
-  }
-
   /* Animations */
   .animate-fast-pulse {
     animation: pulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
