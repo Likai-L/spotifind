@@ -6,6 +6,7 @@ import LyricsContainer from './LyricsContainer';
 import CommentsContainer from './CommentsContainer';
 import { useGlobalContext } from 'app/(context)';
 import Container from 'app/(container)/Container';
+import CommentForm from './CommentForm';
 
 export default function SongContainer({ track }) {
   const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
@@ -87,23 +88,11 @@ export default function SongContainer({ track }) {
               </div>
             </div>
           </div>
-          <div className="w-[92%]">
-            <Container classNames="bg-container-light w-full h-[240px] mt-[50px]"></Container>
-            <div className="flex justify-between w-[85%] mx-auto mt-[30px]">
-              <Button
-                addedclasses="text-md rounded-2xl w-[100px]"
-                content="Post"
-                path="#"
-                prefetch="true"
-              />
-              <Button
-                addedclasses="text-md rounded-2xl w-[100px]"
-                content="Reset"
-                path="#"
-                prefetch="true"
-              />
-            </div>
-          </div>
+          <CommentForm
+            loading
+            error="ReferenceError: location is not defined
+    at navigate"
+          />
         </div>
       )}
 
