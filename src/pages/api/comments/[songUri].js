@@ -17,7 +17,8 @@ export default async function songCommentsHandler(req, res) {
         select: {
           spotifyUserUri: true,
           username: true,
-          profilePictureUrl: true
+          profilePictureUrl: true,
+          recentLikes: true
         }
       }
     }
