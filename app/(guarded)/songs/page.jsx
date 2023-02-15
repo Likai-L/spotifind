@@ -7,9 +7,14 @@ import Container from 'app/(container)/Container';
 import { useEffect } from 'react';
 import Recommended from './Recommended';
 import SearchResults from './SearchResults';
+// import useCurrentTrack from '@/hooks/useCurrentTrack';
 
 export default function Songs() {
   const { searchInput, setSearchInput, setDisplayTrack } = useGlobalContext();
+
+  // Uncomment useCurrentTrack() to hide axios errors to api/socket in
+  // /people when we do our presentation.
+  // useCurrentTrack();
 
   useEffect(() => {
     setSearchInput('');

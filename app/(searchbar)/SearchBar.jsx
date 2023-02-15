@@ -17,7 +17,6 @@ export default function SearchBar(props) {
     setSearchInput(e.target.value);
   };
 
-  // TODO: Apply animate-spin to the spotifyicon while loading
   const handleSubmit = e => {
     e.preventDefault();
   };

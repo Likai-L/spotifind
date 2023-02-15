@@ -24,7 +24,9 @@ export const getTracks = tracks => {
       trackName: track.track.name,
       artist: track.track.artists[0],
       albumName: track.track.album.name,
-      albumCoverUrl: track.track.album.images[0].url
+      albumCoverUrl: track.track.album.images[0].url,
+      spotifyUrl: track.track.external_urls.spotify,
+      trackPreview: track.track.preview_url
     };
   });
   return topTracks;

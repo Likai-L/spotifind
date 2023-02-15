@@ -19,7 +19,9 @@ export default function useSongId(songId) {
           artistName: res.data.artists[0].name,
           albumCoverUrl: res.data.album.images[0].url,
           albumName: res.data.album.name,
-          uri: res.data.id
+          uri: res.data.id,
+          spotifyUrl: res.data.external_urls.spotify,
+          trackPreview: res.data.preview_url
         };
 
         setDisplayTrack(trackData);

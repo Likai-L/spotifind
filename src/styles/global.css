@@ -72,6 +72,27 @@
     text-shadow: 0px 0px 10px #f4cdee;
   }
 
+  /* Play/Pause Preview Button */
+  .play-button {
+    --wide: 0.55rem;
+    box-sizing: border-box;
+    width: 0;
+    height: 1rem;
+    border-color: transparent transparent transparent rgba(245, 245, 245, 0.8);
+    border-style: solid;
+    border-width: var(--wide) 1rem var(--wide) calc(var(--wide)*60/37) ;
+    transition: 100ms all ease;
+
+    &.paused {
+      border-style: double;
+      border-width: 0px 1rem 0px 1rem;
+    }
+
+    &:hover {
+      border-color: transparent transparent transparent rgba(245, 245, 245, 1);
+    }
+  }
+
   /* Animations */
   .animate-fast-pulse {
     animation: pulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
