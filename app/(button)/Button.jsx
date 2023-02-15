@@ -2,7 +2,8 @@ import Link from 'next/link';
 import classNames from 'classnames';
 
 export default function Button(props) {
-  const { content, path, addedclasses, prefetch, disabled, type } = props;
+  const { content, path, addedclasses, prefetch, disabled, type, onClick } =
+    props;
   // Will take in addedClasses prop, overwriting any of the same class types set by default here.
   const buttonClasses = classNames(
     'btn bg-button text-primary font-primary font-bold rounded-2xl button-hover-pulse text-xl py-2 px-4',
@@ -13,6 +14,7 @@ export default function Button(props) {
   if (path === '#') {
     return (
       <button
+        onClick={onClick}
         className={buttonClasses}
         type={type === 'submit' ? 'submit' : 'button'}
         {...props}
