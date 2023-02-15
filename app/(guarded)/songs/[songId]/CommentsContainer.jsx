@@ -22,20 +22,24 @@ export default function CommentsContainer() {
   const getReplies = parentId => {
     return commentsByParentId[parentId];
   };
-  console.log(commentsByParentId);
   const rootComments = getReplies(null)?.map(comment => (
     <Comment {...comment} getReplies={getReplies} key={comment.id} />
   ));
   return (
-    <div className="h-3/4">
-      <div className="text-3xl font-bold my-6">Comments</div>
-      <Container classNames="bg-container-light max-w-[90%] min-h-[600px] overflow-auto scrollbar-hide">
+    <>
+      <div className="text-3xl font-bold my-6 text-start">Comments</div>
+      <Container classNames="bg-container-light w-full min-h-[600px] overflow-auto scrollbar-hide">
         {rootComments && (
           <div className="mx-[20px] mb-[30px] mt-[10px]">
             <CommentList comments={getReplies(null)} getReplies={getReplies} />
           </div>
         )}
+        {!rootComments && (
+          <p className="text-2xl text-center leading-[500px]">
+            Be the first to comment!
+          </p>
+        )}
       </Container>
-    </div>
+    </>
   );
 }
