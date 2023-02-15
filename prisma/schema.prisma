@@ -1,3 +1,5 @@
+
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,14 +16,12 @@ model User {
   profilePictureUrl String    @map("profile_picture_url")
   createdAt         DateTime  @default(now()) @map("created_at")
   updatedAt         DateTime  @updatedAt @map("updated_at")
-  currentSongUri    String?   @map("current_song_uri")
-  latitude          String?
-  longitude         String?
-  Like              Like[]
-  comments          Comment[]
-  nowPlaying        Song?     @relation("NowPlaying", fields: [currentSongUri], references: [spotifySongUri])
+  comments           Comment[]
   recentLikes       Song[]    @relation("Likes")
-
+  currentSongUri    String?    @map("current_song_uri")
+  nowPlaying        Song?      @relation(name: "NowPlaying", fields: [currentSongUri], references: [spotifySongUri])
+  latitude          String?
+  longitude         String? 
   @@map("users")
 }
 
@@ -32,34 +32,20 @@ model Song {
   album         String?
   spotifySongUri String    @unique @map("spotify_song_uri")
   comments       Comment[]
-  playedBy       User[]    @relation("NowPlaying")
   likedBy        User[]    @relation("Likes")
-
+  playedBy       User[]    @relation("NowPlaying")
   @@map("songs")
 }
 
 model Comment {
-  id             String    @id @default(cuid())
-  createdAt      DateTime  @default(now()) @map("created_at")
-  authorUri      String
-  content        String
-  parentId       String?
-  songUri        String
-  updated_at     DateTime  @default(now())
-  Like           Like[]
-  users          User      @relation(fields: [authorUri], references: [spotifyUserUri], onDelete: Cascade)
-  comments       Comment?  @relation("commentsTocomments", fields: [parentId], references: [id], onDelete: Cascade)
-  other_comments Comment[] @relation("commentsTocomments")
-  songs          Song      @relation(fields: [songUri], references: [spotifySongUri], onDelete: Cascade)
-
+  id        String   @id @default(cuid())
+  userId    String
+  songId    String
+  text      String
+  createdAt DateTime @default(now()) @map("created_at")
+  song_id   Song     @relation(fields: [songId], references: [id])
+  user_id   User     @relation(fields: [userId], references: [id])
   @@map("comments")
 }
 
-model Like {
-  userUri   String
-  commentId String
-  comments  Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
-  users     User    @relation(fields: [userUri], references: [spotifyUserUri], onDelete: Cascade)
 
-  @@id([userUri, commentId])
-}
