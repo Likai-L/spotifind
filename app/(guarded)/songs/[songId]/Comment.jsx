@@ -13,6 +13,9 @@ import CommentForm from './CommentForm';
 import IconButton from './IconButton';
 // eslint-disable-next-line import/no-cycle
 import CommentList from './CommentList';
+import { useGlobalContext } from 'app/(context)';
+import createComment from '@/helpers/createComment';
+import { useAsyncFn } from '@/hooks/useAsync';
 
 export default function Comment({
   author,
@@ -22,9 +25,24 @@ export default function Comment({
   getReplies
 }) {
   const childComments = getReplies(id);
+  const { setComments, displayTrack, profile } = useGlobalContext();
   const [childrenHidden, setChildrenHidden] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const createCommentFn = useAsyncFn(createComment);
+  const onReplyComment = replyContent => {
+    return createCommentFn
+      .execute({
+        songUri: displayTrack.uri,
+        authorUri: profile.uri,
+        content: replyContent,
+        parentId: id
+      })
+      .then(comment => {
+        setIsReplying(false);
+        setComments(prev => [comment, ...prev]);
+      });
+  };
 
   return (
     <>
@@ -82,9 +100,12 @@ export default function Comment({
       {isReplying && (
         <div className="">
           <CommentForm
-            autoFocus={true}
+            autoFocus
             containerClasses="h-[110px] w-[calc(100%-30px)] bg-[#2b2133] mt-[10px] mx-auto"
+            error={createCommentFn.error}
             footerClasses="mt-[10px]"
+            loading={createCommentFn.loading}
+            onSubmit={onReplyComment}
           />
         </div>
       )}
