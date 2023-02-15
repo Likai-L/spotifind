@@ -62,17 +62,17 @@ export default function VolumeBar() {
     <div className="flex justify-evenly font-primary text-nav mb-44">
       {volume.finalVolume === 0 ? (
         <FontAwesomeIcon
-          className="ml-12 cursor-pointer hover:animate-pulse"
+          className="ml-8 cursor-pointer hover:animate-pulse"
           icon={faVolumeXmark}
           onClick={toggleMute}
-          style={{ fontSize: 22 }}
+          style={{ fontSize: 21 }}
         />
       ) : (
         <FontAwesomeIcon
-          className="ml-12 cursor-pointer hover:animate-pulse"
+          className="ml-8 cursor-pointer hover:animate-pulse"
           icon={faVolumeHigh}
           onClick={toggleMute}
-          style={{ fontSize: 22 }}
+          style={{ fontSize: 21 }}
         />
       )}
       <input
