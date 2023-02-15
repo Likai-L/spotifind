@@ -14,7 +14,7 @@ import IconButton from './IconButton';
 // eslint-disable-next-line import/no-cycle
 import CommentList from './CommentList';
 import { useGlobalContext } from 'app/(context)';
-import createComment from '@/helpers/createComment';
+import { createComment } from '@/helpers/comments';
 import { useAsyncFn } from '@/hooks/useAsync';
 
 export default function Comment({
