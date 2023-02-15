@@ -8,12 +8,13 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 function Map(props) {
-  const { users } = props;
+  const { users, currentUser } = props;
   console.log('props from inside map component', props);
   console.log('users.length', users.length);
 
   if (users.length > 0) {
     const center = [0, 0];
+    const currentUserLat = currentUser[0].latitude;
     const userMarkers = users.map(userMarker => (
       <Marker
         // turn string lat and long back into Number by calling Number()
@@ -24,7 +25,6 @@ function Map(props) {
         </Popup>
       </Marker>
     ));
-
     return (
       <div className="min-h-[30vh] min-w-[30vw] w-2/4 h-[80%]">
         <MapContainer
@@ -36,6 +36,18 @@ function Map(props) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+          {currentUserLat ? (
+            <Marker
+              position={[
+                Number(currentUser[0].latitude),
+                Number(currentUser[0].longitude)
+              ]}>
+              <Popup>
+                {currentUser[0].username}
+                <br />
+              </Popup>
+            </Marker>
+          ) : null}
           {userMarkers}
         </MapContainer>
       </div>
