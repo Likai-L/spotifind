@@ -1,4 +1,5 @@
 import prisma from '@/helpers/prisma';
+import { COMMENT_SELECT_FIELD } from 'public/constants/prismaConstants';
 
 export default async function songCommentsHandler(req, res) {
   const { songUri } = req.query;
@@ -14,12 +15,7 @@ export default async function songCommentsHandler(req, res) {
       parentId: true,
       createdAt: true,
       author: {
-        select: {
-          spotifyUserUri: true,
-          username: true,
-          profilePictureUrl: true,
-          recentLikes: true
-        }
+        select: COMMENT_SELECT_FIELD
       }
     }
   });
