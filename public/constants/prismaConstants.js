@@ -1,6 +1,14 @@
 export const COMMENT_SELECT_FIELD = {
-  spotifyUserUri: true,
-  username: true,
-  profilePictureUrl: true,
-  recentLikes: true
+  id: true,
+  content: true,
+  parentId: true,
+  createdAt: true,
+  author: {
+    select: {
+      spotifyUserUri: true,
+      username: true,
+      profilePictureUrl: true,
+      recentLikes: true
+    }
+  }
 };
