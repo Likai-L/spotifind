@@ -15,7 +15,7 @@ export default function Player() {
   const { profile, setDisplayTrack } = useGlobalContext();
   const playerClassNames = classNames(
     'rounded-[50%]',
-    'hover:none',
+    'hover:scale-100',
     'animate-spin-slow',
     {
       pause: !profile.playerState.isPlaying
