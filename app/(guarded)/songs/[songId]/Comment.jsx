@@ -17,7 +17,7 @@ export default function Comment({
   return (
     <>
       <div className="h-[150px]] w-[calc(100%-30px)] flex justify-center mt-[20px] mx-auto">
-        <div className="flex flex-col justify-between mr-[20px] w-[80px]">
+        <div className="flex flex-col justify-evenly mr-[20px] w-[80px]">
           <Image
             alt="user-pfp"
             className="rounded-2xl cursor-pointer transition duration-200 ease-out hover:scale-105"
