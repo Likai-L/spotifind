@@ -23,10 +23,10 @@ export default function SongContainer({ track }) {
     // returned from useAsyncFn, it calls createComment and keeps track of the request loading status and results
     return createCommentFn({
       songUri: track.uri,
-      authorId: profile.uri,
+      authorUri: profile.uri,
       content
-    }).then(comment => {
-      console.log(comment);
+    }).then(res => {
+      console.log('in side Create Comment fn', res);
     });
   };
 
