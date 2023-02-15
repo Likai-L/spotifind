@@ -2,8 +2,11 @@
 
 import { useGlobalContext } from 'app/(context)';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import NavLogo from './Logo';
 import NavItems from './(icons)/index';
+import VolumeBar from './VolumeBar';
 
 export default function Sidebar() {
   const { setCredentials, setProfile, setRecommendedTracks, setDisplayTrack } =
@@ -27,14 +30,18 @@ export default function Sidebar() {
         </div>
       </div>
 
+      <VolumeBar />
+
       <div className="flex cursor-pointer w-full overflow-hidden whitespace-nowrap hover:animate-pulse font-title">
         <Link
           className="flex py-4 px-4 w-full h-full hover:nav-item-active"
           href="/"
           onClick={logout}>
-          {/* <div className="w-4">
-            <LogoutIcon />
-          </div> */}
+          <FontAwesomeIcon
+            className="mx-3 mt-1 text-nav rotate-180"
+            icon={faRightFromBracket}
+            style={{ fontSize: 22 }}
+          />
           <span className="text-lg font-medium text-nav">Logout</span>
         </Link>
       </div>

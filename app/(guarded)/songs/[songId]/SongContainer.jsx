@@ -1,8 +1,11 @@
+'use client';
+
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'app/(button)/Button';
-import { PEOPLE } from 'public/constants/pathNames';
+import { PEOPLE, SONGS } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
+import classNames from 'classnames';
 import LyricsContainer from './LyricsContainer';
 import CommentsContainer from './CommentsContainer';
 import CommentForm from './CommentForm';
@@ -10,10 +13,69 @@ import { useAsyncFn } from '@/hooks/useAsync';
 import { createComment } from '@/helpers/comments';
 
 export default function SongContainer({ track }) {
-  const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
+  const {
+    albumCoverUrl,
+    trackName,
+    artistName,
+    albumName,
+    lyrics,
+    spotifyUrl,
+    trackPreview,
+    uri
+  } = track;
+
+  const {
+    volume,
+    setVolume,
+    setDisplayTrack,
+    audioPreview,
+    setAudioPreview,
+    setComments,
+    profile
+  } = useGlobalContext();
   const [view, setView] = useState('lyrics');
-  const { profile } = useGlobalContext();
-  const { setComments } = useGlobalContext();
+
+  // Update state of track as track data loads
+  useEffect(() => {
+    setAudioPreview({ audio: new Audio(trackPreview) });
+  }, [trackPreview]);
+
+  // Set volume to match global volume bar once audio is loaded
+  useEffect(() => {
+    if (audioPreview.audio) {
+      audioPreview.audio.volume = volume.finalVolume;
+    }
+  }, [volume, audioPreview]);
+
+  const playPause = e => {
+    e.preventDefault();
+    const { isPlaying } = volume;
+
+    if (audioPreview.audio) {
+      if (isPlaying) {
+        audioPreview.audio.pause();
+      } else {
+        audioPreview.audio.play();
+        setDisplayTrack(track);
+      }
+    }
+
+    setVolume(prev => ({ ...prev, isPlaying: !isPlaying }));
+  };
+
+  // Stop playback when leaving component
+  useEffect(() => {
+    return () => {
+      setVolume(prev => ({ ...prev, isPlaying: false }));
+    };
+  }, []);
+
+  const playIconClasses = classNames(
+    'play-button inline-block fade-in hover:animate-pulse',
+    {
+      paused: volume.isPlaying
+    }
+  );
 
   const {
     error,
@@ -35,16 +97,41 @@ export default function SongContainer({ track }) {
   };
 
   return (
-    <div className="flex justify-evenly font-primary">
+    <div className="flex justify-evenly font-primary fade-in">
       {view === 'lyrics' && (
-        <div className="flex flex-col justify-start items-center w-5/12 h-full  min-h-[800px] mt-[60px]">
-          <Image
-            alt="album artwork"
-            className="rounded-3xl m-4"
-            height={320}
-            src={albumCoverUrl}
-            width={320}
-          />
+        <div className="flex flex-col justify-start items-center w-5/12 h-full min-h-[800px] mt-[60px]">
+          {albumCoverUrl && (
+            <>
+              <Image
+                alt="album artwork"
+                className="rounded-3xl m-4"
+                height={320}
+                src={albumCoverUrl}
+                width={320}
+              />
+              <div className="flex justify-evenly w-3/4">
+                <Button
+                  addedclasses="text-md rounded-xl w-40"
+                  content={
+                    <span>
+                      <span className={playIconClasses} /> Preview
+                    </span>
+                  }
+                  onClick={playPause}
+                  path={SONGS}
+                  prefetch="true"
+                  type="button"
+                />
+                <Button
+                  addedclasses="text-md rounded-xl w-48"
+                  content="Open in Spotify"
+                  path={spotifyUrl || `/songs/${uri}`}
+                  prefetch="true"
+                  target="_blank"
+                />
+              </div>
+            </>
+          )}
           <div className="flex flex-col justify-evenly items-center h-[150px] w-3/4 text-2xl font-semibold m-4 text-center line-clamp-4">
             <h1 className="p-2">{trackName}</h1>
             <h1 className="p-2 text-secondary text-xl">{artistName}</h1>

@@ -41,12 +41,15 @@ export default function useRecommendedTracks() {
       )
         .then(res => {
           const trackData = res.data.tracks;
+
           const tracksMap = trackData.map(track => {
             return {
               trackName: track.name,
               artist: track.artists[0].name,
               albumCoverUrl: track.album.images[0].url,
-              uri: track.id
+              uri: track.id,
+              spotifyUrl: track.external_urls.spotify,
+              trackPreview: track.preview_url
             };
           });
 
