@@ -9,6 +9,7 @@ import UserCard from './UserCard';
 import Map from './(map)/Map';
 import getDistance from '@/helpers/getDistance';
 // import getUsersBySong from '@/helpers/getUsersBySong';
+import createDirectChat from '@/helpers/createDirectChat';
 
 export default function UserCardRenderer({ track }) {
   const { profile, setSearchInput, displayTrack, setDisplayTrack } =
@@ -59,6 +60,14 @@ export default function UserCardRenderer({ track }) {
             Number(userCard.longitude)
           )
         )} km away`}
+        DmClickHandler={e => {
+          e.preventDefault();
+          createDirectChat(
+            currentUserFiltered[0].username,
+            currentUserFiltered[0].uri,
+            userCard.username
+          );
+        }}
         image={userCard.profilePictureUrl}
         key={userCard.uri}
         name={userCard.username}
