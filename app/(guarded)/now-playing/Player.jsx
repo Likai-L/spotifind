@@ -15,7 +15,7 @@ export default function Player() {
   const { profile, setDisplayTrack } = useGlobalContext();
   const playerClassNames = classNames(
     'rounded-[50%]',
-    'hover:none',
+    'hover:scale-100',
     'animate-spin-slow',
     {
       pause: !profile.playerState.isPlaying
@@ -37,7 +37,11 @@ export default function Player() {
   return (
     <Container classNames="w-[1500px] h-[600px] flex justify-evenly mx-auto">
       <div className="w-[20%]">
-        <p className="text-3xl font-bold my-[30px]">Now Playing</p>
+        <p className="text-[28px] font-bold my-[30px]">
+          {profile.playerState.device
+            ? `Playing on ${profile.playerState.device}`
+            : 'No active device'}
+        </p>
         <AlbumCover
           classNames={playerClassNames}
           height={280}
@@ -50,10 +54,12 @@ export default function Player() {
           <p className="text-2xl mt-[20px] font-bold whitespace-pre-wrap">
             {profile.playerState.name}
           </p>
-          <p className="mt-[20px]">
-            {profile.playerState.artist || 'No song currently playing'}
+          <p className="mt-[20px] text-secondary">
+            {profile.playerState.artist || ''}
           </p>
-          <p className="mt-[5px]">{profile.playerState.album || ''}</p>
+          <p className="mt-[15px] text-secondary">
+            {profile.playerState.album || ''}
+          </p>
         </div>
       </div>
       <div className="w-[55%]">

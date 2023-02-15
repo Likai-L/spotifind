@@ -90,7 +90,7 @@ export default function SocketHandler(req, res) {
           // the requests are continuously firing in the background, wasting request chances
         })
         .catch(err => {
-          console.log(err.response.data);
+          console.log(err);
           setTimeout(socket.poll, 1000);
         });
     };

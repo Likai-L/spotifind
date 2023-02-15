@@ -20,6 +20,7 @@ model User {
   nowPlaying        Song?      @relation(name: "NowPlaying", fields: [currentSongUri], references: [spotifySongUri])
   latitude          String?
   longitude         String? 
+  likes             Like[]
 
   @@map("users")
 }
@@ -38,13 +39,26 @@ model Song {
 }
 
 model Comment {
-  id        String   @id @default(cuid())
-  userId    String
-  songId    String
-  text      String
-  createdAt DateTime @default(now()) @map("created_at")
-  song_id   Song     @relation(fields: [songId], references: [id])
-  user_id   User     @relation(fields: [userId], references: [id])
+  id           String   @id @default(cuid())
+  content      String
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @map("updated_at")
+  songUri      String
+  song         Song     @relation(fields: [songUri], references: [spotifySongUri], onDelete: Cascade)
+  authorUri    String
+  author       User     @relation(fields: [authorUri], references: [spotifyUserUri], onDelete: Cascade)
+  parentId     String?
+  parent       Comment?  @relation(name: "ParentChild",fields: [parentId], references: [id], onDelete: Cascade)
+  chilren      Comment[] @relation(name: "ParentChild")
+  likes        Like[]
 
   @@map("comments")
 }
+
+model Like {
+  user         User  @relation(fields: [userUri], references: [spotifyUserUri], onDelete: Cascade)
+  userUri      String
+  comment      Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId  String
+  @@id([userUri, commentId])
+} 

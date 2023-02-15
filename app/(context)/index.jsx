@@ -45,6 +45,7 @@ export function GlobalContextProvider(props) {
   // Geolocation
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
+  const [comments, setComments] = useState([]);
 
   const { children } = props;
 
@@ -70,7 +71,9 @@ export function GlobalContextProvider(props) {
       latitude,
       setLatitude,
       longitude,
-      setLongitude
+      setLongitude,
+      comments,
+      setComments
     }),
     [
       profile.uri,
@@ -83,7 +86,8 @@ export function GlobalContextProvider(props) {
       displayTrack,
       profile.lyrics,
       volume,
-      audioPreview
+      audioPreview,
+      comments
     ]
   );
 
