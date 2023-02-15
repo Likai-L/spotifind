@@ -2,9 +2,9 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Button from 'app/(button)/Button';
 import { PEOPLE } from 'public/constants/pathNames';
+import { useGlobalContext } from 'app/(context)';
 import LyricsContainer from './LyricsContainer';
 import CommentsContainer from './CommentsContainer';
-import { useGlobalContext } from 'app/(context)';
 import CommentForm from './CommentForm';
 import { useAsyncFn } from '@/hooks/useAsync';
 import createComment from '@/helpers/createComment';
@@ -25,7 +25,8 @@ export default function SongContainer({ track }) {
     return createCommentFn({
       songUri: track.uri,
       authorUri: profile.uri,
-      content
+      content,
+      track
     }).then(comment => {
       setComments(prev => {
         return [comment, ...prev];

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from 'app/(context)';
 import { COMMENTS, LYRICS, SPOTIFY_BASE_URL } from 'public/constants/pathNames';

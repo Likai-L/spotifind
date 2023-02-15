@@ -7,9 +7,25 @@ export default async function createCommentHandler(req, res) {
     res.status(400).send({ message: 'Comment cannot be blank' });
     return;
   }
+  const { track, ...commentData } = req.body;
+  await prisma.song.upsert({
+    where: { spotifySongUri: track.uri },
+    update: {
+      spotifySongUri: track.uri,
+      name: track.trackName,
+      artist: track.artistName,
+      album: track.albumName
+    },
+    create: {
+      spotifySongUri: track.uri,
+      name: track.trackName,
+      artist: track.artistName,
+      album: track.albumName
+    }
+  });
   try {
     const comment = await prisma.comment.create({
-      data: req.body,
+      data: commentData,
       select: COMMENT_SELECT_FIELD
     });
     res.status(200).json(comment);
