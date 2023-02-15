@@ -1,18 +1,19 @@
 'use client';
 
-import SearchBar from 'app/(searchbar)/SearchBar';
-import Map from 'app/(guarded)/people/(map)/Map';
+// import SearchBar from 'app/(searchbar)/SearchBar';
+// import Map from 'app/(guarded)/people/(map)/Map';
 import { useEffect, useState } from 'react';
 import Button from 'app/(button)/Button';
-import { PEOPLE } from 'public/constants/pathNames';
+import { PEOPLE, SONGS } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
-import UserCard from './UserCard';
+// import UserCard from './UserCard';
 import SongCard from './SongCard';
 import useCurrentTrack from '@/hooks/useCurrentTrack';
+// import UserSearch from './UserSearch';
+import UserCardRenderer from './UserCardRenderer';
 
 // TODO: Fix map pushing sidebar and layout around
 export default function People() {
-  const [showMap, setShowMap] = useState(false);
   const { profile, setSearchInput, displayTrack, setDisplayTrack } =
     useGlobalContext();
   useCurrentTrack();
@@ -47,13 +48,19 @@ export default function People() {
       <div className="flex">
         <h1 className="text-[2.3vh] font-primary font-semibold ml-10 cursor-default">
           Find people with similar taste
-          <SearchBar action={PEOPLE} label="Search for a user" />
+          {/* <UserSearch /> */}
         </h1>
         <Button
           addedclasses="text-md mx-4 mt-8"
           content="Set to Now Playing"
           onClick={setNowPlaying}
           path={PEOPLE}
+          prefetch="true"
+        />
+        <Button
+          addedclasses="text-md mx-4 mt-8"
+          content="Search for a song"
+          path={SONGS}
           prefetch="true"
         />
       </div>
@@ -66,28 +73,11 @@ export default function People() {
           </span>
         )}
       </div>
-      <div className="container m-auto bg-secondary min-w-[80%] w-4/5 h-3/5 max-h-max rounded-xl">
-        <div className="flex flex-row">
-          <h1 className="text-[2vh] p-5 cursor-default">x user/s found </h1>
-          <div className="my-auto">
-            <Button
-              content="View on map"
-              onClick={() => setShowMap(!showMap)}
-              path={PEOPLE}
-            />
-          </div>
-        </div>
-        <div className="flex flex-row h-3/4 w-full m-auto overflow-x-auto overflow-y-hidden scrollbar-hide items-center">
-          {showMap ? <Map /> : null}
-          {/* Will be dynamic and mapped based on search results,
-           but for now just pasted like this to see multiple */}
-          <UserCard />
-          <UserCard />
-          <UserCard />
-          <UserCard />
-          <UserCard />
-        </div>
-      </div>
+      {displayTrack.trackName ? (
+        <UserCardRenderer track={displayTrack} />
+      ) : (
+        <div className="container m-auto bg-secondary min-w-[80%] w-4/5 h-3/5 max-h-max rounded-xl" />
+      )}
     </div>
   );
 }
