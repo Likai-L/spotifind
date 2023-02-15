@@ -9,6 +9,7 @@ import UserCard from './UserCard';
 import Map from './(map)/Map';
 import getDistance from '@/helpers/getDistance';
 // import getUsersBySong from '@/helpers/getUsersBySong';
+// import createDirectChat from '@/helpers/createDirectChat';
 
 export default function UserCardRenderer({ track }) {
   const { profile, displayTrack } = useGlobalContext();
@@ -28,8 +29,6 @@ export default function UserCardRenderer({ track }) {
   console.log('usercards object under here', userCards);
   console.log(userCards);
 
-  // I know it's best practice to put this straight in the return statement and forego the const userCardsComponent,
-  // but this caused it not to render in this instance, maybe because its an api call?
   if (userCards.length > 0) {
     //
     const userCardsFiltered = userCards.filter(
