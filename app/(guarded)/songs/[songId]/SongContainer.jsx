@@ -7,7 +7,7 @@ import LyricsContainer from './LyricsContainer';
 import CommentsContainer from './CommentsContainer';
 import CommentForm from './CommentForm';
 import { useAsyncFn } from '@/hooks/useAsync';
-import createComment from '@/helpers/createComment';
+import { createComment } from '@/helpers/comments';
 
 export default function SongContainer({ track }) {
   const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
