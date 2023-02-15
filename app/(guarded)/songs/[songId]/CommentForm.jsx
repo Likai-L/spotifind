@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Container from 'app/(container)/Container';
 
 export default function CommentForm({
+  autoFocus = false,
   error,
   loading,
   formClasses,
@@ -18,6 +19,7 @@ export default function CommentForm({
     <form className={formClasses} onSubmit={handleSubmit}>
       <Container classNames="bg-container-light w-full h-[240px] mt-[50px] flex justify-center">
         <textarea
+          autoFocus={autoFocus}
           onChange={e => setNewComment(e.target.value)}
           value={newComment}
           className="bg-[transparent] w-[90%] h-[80%%] border-[none]  resize-none  focus:outline-0 focus:border-0 mt-[30px] mx-auto shadow-[none] scrollbar-hide"
