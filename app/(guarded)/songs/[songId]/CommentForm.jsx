@@ -6,9 +6,10 @@ export default function CommentForm({
   autoFocus = false,
   error,
   loading,
-  formClasses,
+  containerClasses,
   onSubmit,
-  initialValue = ''
+  initialValue = '',
+  footerClasses
 }) {
   const [newComment, setNewComment] = useState(initialValue);
   const handleSubmit = e => {
@@ -16,8 +17,9 @@ export default function CommentForm({
     onSubmit(newComment).then(() => setNewComment(''));
   };
   return (
-    <form className={formClasses} onSubmit={handleSubmit}>
-      <Container classNames="bg-container-light w-full h-[240px] mt-[50px] flex justify-center">
+    <form onSubmit={handleSubmit}>
+      <Container
+        classNames={`bg-container-light w-full h-[240px] mt-[50px] flex justify-center ${containerClasses}`}>
         <textarea
           autoFocus={autoFocus}
           onChange={e => setNewComment(e.target.value)}
@@ -25,7 +27,8 @@ export default function CommentForm({
           className="bg-[transparent] w-[90%] h-[80%%] border-[none]  resize-none  focus:outline-0 focus:border-0 mt-[30px] mx-auto shadow-[none] scrollbar-hide"
         />
       </Container>
-      <div className="flex justify-between w-[85%] mx-auto mt-[30px]">
+      <div
+        className={`flex justify-between w-[85%] mx-auto mt-[30px] ${footerClasses}`}>
         <Button
           addedclasses="text-md rounded-2xl w-[100px]"
           content="Post"

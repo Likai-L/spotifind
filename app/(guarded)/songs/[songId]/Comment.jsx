@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa';
 import formatDistance from 'date-fns/formatDistance';
 import Container from 'app/(container)/Container';
+import CommentForm from './CommentForm';
 import IconButton from './IconButton';
 // eslint-disable-next-line import/no-cycle
 import CommentList from './CommentList';
@@ -78,6 +79,15 @@ export default function Comment({
           </div>
         </Container>
       </div>
+      {isReplying && (
+        <div className="">
+          <CommentForm
+            autoFocus={true}
+            containerClasses="h-[110px] w-[calc(100%-30px)] bg-[#2b2133] mt-[10px] mx-auto"
+            footerClasses="mt-[10px]"
+          />
+        </div>
+      )}
       <div>
         {childComments?.length > 0 && (
           <>
