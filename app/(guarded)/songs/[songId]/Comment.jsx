@@ -24,7 +24,7 @@ export default function Comment({
   const childComments = getReplies(id);
   const [childrenHidden, setChildrenHidden] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
-  const [isEditting, setIsEditting] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <>
@@ -66,8 +66,8 @@ export default function Comment({
               <IconButton
                 aria-label="Edit"
                 color="text-blue-300"
-                onClick={() => setIsEditting(prev => !prev)}
-                isActive={isEditting}
+                onClick={() => setIsEditing(prev => !prev)}
+                isActive={isEditing}
                 Icon={FaEdit}
               />
               <IconButton
