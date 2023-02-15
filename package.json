@@ -13,6 +13,7 @@
     "db:push": "npx prisma validate && npx prisma generate && npx prisma db push"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.6",
     "@next/font": "13.1.6",
     "@prisma/client": "^4.9.0",
     "@tailwindcss/line-clamp": "^0.4.2",
