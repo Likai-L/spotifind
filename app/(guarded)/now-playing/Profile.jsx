@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useGlobalContext } from 'app/(context)';
 import Container from 'app/(container)/Container';
+import ToolTip from 'app/(tooltip)/ToolTip';
 import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import useProfile from 'src/hooks/useProfile';
@@ -44,14 +45,17 @@ export default function Profile() {
             {profile.tracks.length > 0 ? (
               profile.tracks.map(track => {
                 return (
-                  <AlbumCover
-                    classNames="mx-[15px]"
-                    height={200}
-                    key={track.uri}
-                    src={track.albumCoverUrl}
-                    trackUri={track.uri}
-                    width={200}
-                  />
+                  <ToolTip
+                    tooltip={`${track.trackName} by ${track.artist.name}`}>
+                    <AlbumCover
+                      classNames="mx-[15px]"
+                      height={160}
+                      key={track.uri}
+                      src={track.albumCoverUrl}
+                      uri={track.uri}
+                      width={160}
+                    />
+                  </ToolTip>
                 );
               })
             ) : (

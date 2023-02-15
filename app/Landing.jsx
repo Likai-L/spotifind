@@ -1,4 +1,4 @@
-'use client';
+/* eslint-disable react/no-unescaped-entities */
 
 import Image from 'next/image';
 import LoginButton from 'app/(button)/LoginButton';
@@ -10,10 +10,10 @@ import logo from '../public/images/logo.png';
 
 export default function Landing() {
   return (
-    <div className="bg-landing min-h-screen">
+    <div className="bg-landing h-screen overflow-hidden">
       <div className="flex flex-row justify-center">
         <div className="mr-24">
-          <div className="text-center text-white text-5xl font-bold mt-40 font-title">
+          <div className="text-center text-white text-5xl font-bold mt-32 font-title">
             <p>Find Your Music Soul Mates</p>
             <div className="mt-6">
               <span>With</span>
@@ -25,34 +25,34 @@ export default function Landing() {
               <span className="font-primary">SpotiFind</span>
             </div>
           </div>
-          <div className="mt-8 flex  justify-center">
+          <div className="mt-8 flex justify-center">
             <LoginButton />
           </div>
         </div>
         <PeopleListening />
       </div>
-      <div className="flex flex-row justify-evenly">
+      <div className="flex justify-evenly">
         <div className="text-center text-white text-2xl font-bold w-80">
           <Phone />
-          <p className="mt-6 font-title">Share your thoughts</p>
-          <p className="mt-6 text-lg font-light font-primary text-left">
-            Find your favorite songs, share your insights and feelings in the
-            comment sections!
+          <p className="mt-4 font-title">Find Your People</p>
+          <p className="mt-4 text-lg font-light font-primary">
+            Connect with others in your area who are interested in your
+            favourite songs!
           </p>
         </div>
         <div className="text-center text-white text-2xl font-bold w-80">
           <PeoplePlaying />
-          <p className="mt-6 font-title">Find your people</p>
-          <p className="mt-6 text-lg font-light font-primary text-left">
-            Find people around you who are also interested in your favorite
-            songs.
+          <p className="mt-4 font-title">Discuss Your Music</p>
+          <p className="mt-4 text-lg font-light font-primary">
+            Share your thoughts and insight into the music you listen to!
           </p>
         </div>
         <div className="text-center text-white text-2xl font-bold w-80">
           <PeopleDancing />
-          <p className="mt-12 font-title">Enjoy music together</p>
-          <p className="mt-6 text-lg font-light font-primary text-left">
-            Message people, meet up and listen together!
+          <p className="mt-8 font-title">Discover Your Niche</p>
+          <p className="mt-4 text-lg font-light font-primary">
+            Get new music recommendations based off what you're listening to and
+            see what others are saying about it!
           </p>
         </div>
       </div>
