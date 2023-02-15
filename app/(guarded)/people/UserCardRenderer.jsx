@@ -60,16 +60,29 @@ export default function UserCardRenderer({ track }) {
             Number(userCard.longitude)
           )
         )} km away`}
-        DmClickHandler={e => {
-          e.preventDefault();
-          createDirectChat(
-            currentUserFiltered[0].username,
-            currentUserFiltered[0].uri,
-            userCard.username
-          );
+        DmClickHandler={async e => {
+          e.preventDefault;
+          const authObject = {
+            'Project-ID': 'f06a82ab-ee91-4d7d-9b6d-90b79d3392ca',
+            'User-Name': currentUserFiltered[0].username,
+            'User-Secret': currentUserFiltered[0].spotifyUserUri
+          };
+          try {
+            await axios.put(
+              'https://api.chatengine.io/chats/',
+              {
+                usernames: [currentUserFiltered[0].username, userCard.username],
+                title: userCard.username,
+                is_direct_chat: true
+              },
+              { headers: authObject }
+            );
+          } catch (err) {
+            console.log('somethign went wrong as usual', err);
+          }
         }}
         image={userCard.profilePictureUrl}
-        key={userCard.uri}
+        key={userCard.spotifyUserUri}
         name={userCard.username}
       />
     ));
