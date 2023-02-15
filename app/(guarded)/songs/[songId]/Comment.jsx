@@ -14,7 +14,7 @@ export default function Comment({
   getReplies
 }) {
   const childComments = getReplies(id);
-  const [childrenHidden, setChildrenHidden] = useState(true);
+  const [childrenHidden, setChildrenHidden] = useState(false);
   return (
     <>
       <div className="h-[150px]] w-[calc(100%-30px)] flex justify-center mt-[20px] mx-auto">
@@ -80,7 +80,10 @@ export default function Comment({
                 </div>
               </div>
             </div>
-            <button onClick={() => setChildrenHidden(false)} type="button">
+            <button
+              onClick={() => setChildrenHidden(false)}
+              type="button"
+              className={`${childrenHidden ? '' : 'hidden'}`}>
               Show Replies
             </button>
           </>
