@@ -31,7 +31,9 @@ export default function CommentsContainer() {
       <div className="text-3xl font-bold my-6">Comments</div>
       <Container classNames="bg-container-light max-w-[90%] min-h-[600px] overflow-auto scrollbar-hide">
         {rootComments && (
-          <CommentList comments={getReplies(null)} getReplies={getReplies} />
+          <div className="mx-[20px] mb-[30px] mt-[10px]">
+            <CommentList comments={getReplies(null)} getReplies={getReplies} />
+          </div>
         )}
       </Container>
     </div>
