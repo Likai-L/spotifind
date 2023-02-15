@@ -2,10 +2,20 @@ import Button from 'app/(button)/Button';
 import { useState } from 'react';
 import Container from 'app/(container)/Container';
 
-export default function CommentForm({ error, loading, formClasses }) {
-  const [newComment, setNewComment] = useState('');
+export default function CommentForm({
+  error,
+  loading,
+  formClasses,
+  onSubmit,
+  initialValue = ''
+}) {
+  const [newComment, setNewComment] = useState(initialValue);
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(newComment).then(() => setNewComment(''));
+  };
   return (
-    <form className={formClasses}>
+    <form className={formClasses} onSubmit={handleSubmit}>
       <Container classNames="bg-container-light w-full h-[240px] mt-[50px] flex justify-center">
         <textarea
           onChange={e => setNewComment(e.target.value)}
