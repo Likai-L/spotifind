@@ -16,7 +16,7 @@ export default function Comment({
   const childrenHidden = false;
   return (
     <>
-      <div className="h-[150px]] w-[calc(100%-60px)] flex justify-center mt-[20px] mx-auto">
+      <div className="h-[150px]] w-[calc(100%-30px)] flex justify-center mt-[20px] mx-auto">
         <div className="flex flex-col justify-between mr-[20px] w-[80px]">
           <Image
             alt="user-pfp"
@@ -66,13 +66,9 @@ export default function Comment({
       <div>
         {childComments?.length > 0 && (
           <div className="flex ">
-            <button
-              aria-label="Hide Replies"
-              className="collapse-line  w-[30px]  relative"></button>
+            <div className="border-r-2 border-[#ffffff18] border-solid w-[30px]"></div>
             <div className="grow">
-              <CommentList
-                comments={childComments}
-                getReplies={getReplies}></CommentList>
+              <CommentList comments={childComments} getReplies={getReplies} />
             </div>
           </div>
         )}
