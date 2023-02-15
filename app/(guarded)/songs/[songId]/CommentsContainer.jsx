@@ -1,8 +1,8 @@
 import Container from 'app/(container)/Container';
 import { useGlobalContext } from 'app/(context)';
+import { useMemo } from 'react';
 import CommentList from './CommentList';
 import Comment from './Comment';
-import { useMemo } from 'react';
 
 export default function CommentsContainer() {
   const { comments } = useGlobalContext();
@@ -18,7 +18,6 @@ export default function CommentsContainer() {
     });
     return group;
   }, [comments]);
-
   const getReplies = parentId => {
     return commentsByParentId[parentId];
   };
