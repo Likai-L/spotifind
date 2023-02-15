@@ -31,8 +31,6 @@ model Song {
   artist        String
   album         String?
   spotifySongUri String    @unique @map("spotify_song_uri")
-  artist         String
-  album          String?
   comments       Comment[]
   playedBy       User[]    @relation("NowPlaying")
   likedBy        User[]    @relation("Likes")
