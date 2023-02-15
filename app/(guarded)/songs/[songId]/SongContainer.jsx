@@ -5,13 +5,30 @@ import { PEOPLE } from 'public/constants/pathNames';
 import LyricsContainer from './LyricsContainer';
 import CommentsContainer from './CommentsContainer';
 import { useGlobalContext } from 'app/(context)';
-import Container from 'app/(container)/Container';
 import CommentForm from './CommentForm';
+import { useAsyncFn } from '@/hooks/useAsync';
+import createComment from '@/helpers/createComment';
 
 export default function SongContainer({ track }) {
   const { albumCoverUrl, trackName, artistName, albumName, lyrics } = track;
   const [view, setView] = useState('lyrics');
   const { profile } = useGlobalContext();
+
+  const {
+    error,
+    loading,
+    execute: createCommentFn
+  } = useAsyncFn(createComment);
+  const onCreateComment = content => {
+    // returned from useAsyncFn, it calls createComment and keeps track of the request loading status and results
+    return createCommentFn({
+      songUri: track.uri,
+      authorId: profile.uri,
+      content
+    }).then(comment => {
+      console.log(comment);
+    });
+  };
 
   return (
     <div className="flex justify-evenly font-primary">
@@ -89,9 +106,9 @@ export default function SongContainer({ track }) {
             </div>
           </div>
           <CommentForm
-            loading
-            error="ReferenceError: location is not defined
-    at navigate"
+            error={error}
+            loading={loading}
+            onSubmit={onCreateComment}
           />
         </div>
       )}
