@@ -87,20 +87,22 @@ export default function SongContainer({ track }) {
               </div>
             </div>
           </div>
-          <Container classNames="bg-container-light w-[92%] h-[240px] mt-[50px]"></Container>
-          <div className="flex justify-between w-[80%] mx-auto">
-            <Button
-              addedclasses="text-md rounded-2xl w-[100px]"
-              content="Post"
-              path="#"
-              prefetch="true"
-            />
-            <Button
-              addedclasses="text-md rounded-2xl w-[100px]"
-              content="Reset"
-              path="#"
-              prefetch="true"
-            />
+          <div className="w-[92%]">
+            <Container classNames="bg-container-light w-full h-[240px] mt-[50px]"></Container>
+            <div className="flex justify-between w-[85%] mx-auto mt-[30px]">
+              <Button
+                addedclasses="text-md rounded-2xl w-[100px]"
+                content="Post"
+                path="#"
+                prefetch="true"
+              />
+              <Button
+                addedclasses="text-md rounded-2xl w-[100px]"
+                content="Reset"
+                path="#"
+                prefetch="true"
+              />
+            </div>
           </div>
         </div>
       )}
