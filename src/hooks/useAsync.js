@@ -11,6 +11,7 @@ function useAsyncInternal(func, dependencies, initialLoading = false) {
       .then(data => {
         setValue(data);
         setError(undefined);
+        return data;
       })
       .catch(err => {
         setError(err);
