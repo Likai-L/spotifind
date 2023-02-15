@@ -102,3 +102,12 @@ export const getLyricsFromData = data => {
 
   return { ...rest, lyrics_body: sortedText };
 };
+
+export const sortLikedTrack = track => {
+  return {
+    spotifySongUri: track.uri,
+    name: track.trackName,
+    artist: track.artist.name,
+    album: track.albumName
+  };
+};
