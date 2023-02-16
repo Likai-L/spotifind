@@ -14,7 +14,11 @@ import CommentForm from './CommentForm';
 import IconButton from './IconButton';
 // eslint-disable-next-line import/no-cycle
 import CommentList from './CommentList';
-import { createComment, updateComment } from '@/helpers/comments';
+import {
+  createComment,
+  updateComment,
+  deleteComment
+} from '@/helpers/comments';
 import { useAsyncFn } from '@/hooks/useAsync';
 
 export default function Comment({
@@ -30,6 +34,8 @@ export default function Comment({
   const [isReplying, setIsReplying] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const createCommentFn = useAsyncFn(createComment);
+  const updateCommentFn = useAsyncFn(updateComment);
+  const deleteCommentFn = useAsyncFn(deleteComment);
   const onReplyComment = replyContent => {
     return createCommentFn
       .execute({
@@ -43,7 +49,6 @@ export default function Comment({
         setComments(prev => [comment, ...prev]);
       });
   };
-  const updateCommentFn = useAsyncFn(updateComment);
   const onUpdateComment = updatedContent => {
     return updateCommentFn
       .execute({
@@ -61,6 +66,14 @@ export default function Comment({
           });
         });
       });
+  };
+  const onDeleteComment = () => {
+    return deleteCommentFn.execute({ id }).then(({ id: deletedCommentId }) => {
+      console.log('deleted comment id', deletedCommentId);
+      setComments(prev => {
+        return prev.filter(prevComment => prevComment.id !== deletedCommentId);
+      });
+    });
   };
 
   return (
@@ -123,6 +136,8 @@ export default function Comment({
                     aria-label="Delete"
                     color="text-red-400"
                     Icon={FaTrash}
+                    onClick={onDeleteComment}
+                    disabled={deleteCommentFn.loading}
                   />
                 </>
               )}
