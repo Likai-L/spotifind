@@ -61,6 +61,7 @@ export default function Comment({
         </div>
         <Container classNames="bg-container px-[25px] py-[15px] w-[100%] h-[120px] overflow-auto scrollbar-hide flex flex-col justify-between shrink">
           <p>{content || ''}</p>
+
           <div className="flex justify-between">
             <p className="text-secondary text-base">
               {formatDistance(new Date(createdAt), new Date(), {
@@ -74,7 +75,7 @@ export default function Comment({
                 Icon={FaHeart}></IconButton>
 
               <IconButton
-                aria-label="Reply"
+                aria-label={isReplying ? 'Cancel Replying' : 'Reply'}
                 color="text-green-300"
                 onClick={() => setIsReplying(prev => !prev)}
                 isActive={isReplying}
@@ -83,7 +84,7 @@ export default function Comment({
               {author.spotifyUserUri === profile.uri && (
                 <>
                   <IconButton
-                    aria-label="Edit"
+                    aria-label={isEditing ? 'Cancel Editing' : 'Edit'}
                     color="text-blue-300"
                     onClick={() => setIsEditing(prev => !prev)}
                     isActive={isEditing}
@@ -104,14 +105,28 @@ export default function Comment({
         <div className="">
           <CommentForm
             autoFocus
-            containerClasses="h-[110px] w-[calc(100%-30px)] bg-[#2b2133] mt-[10px] mx-auto"
+            containerClasses="h-22 w-[calc(100%-30px)] bg-[#2b2133] mt-3 mx-auto"
             error={createCommentFn.error}
-            footerClasses="mt-[10px]"
+            footerClasses="mt-3"
             loading={createCommentFn.loading}
             onSubmit={onReplyComment}
           />
         </div>
       )}
+
+      {isEditing && (
+        <div className="">
+          <CommentForm
+            autoFocus
+            containerClasses="h-22 w-[calc(100%-30px)] bg-[#2b2133] mt-3 mx-auto"
+            error={createCommentFn.error}
+            footerClasses="mt-3"
+            loading={createCommentFn.loading}
+            onSubmit={onReplyComment}
+          />
+        </div>
+      )}
+
       <div>
         {childComments?.length > 0 && (
           <>
