@@ -82,7 +82,7 @@ export default function UserCardRenderer({ track }) {
     <div className="container m-auto bg-secondary min-w-[80%] w-4/5 h-3/5 max-h-max rounded-xl">
       <div className="flex flex-row">
         <h1 className="text-[2vh] p-5 cursor-default">
-          0 users found, try another song
+          {/* 0 users found, try another song */}
         </h1>
       </div>
     </div>
