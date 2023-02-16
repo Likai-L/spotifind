@@ -9,7 +9,8 @@ export default function CommentForm({
   containerClasses,
   onSubmit,
   initialValue = '',
-  footerClasses
+  footerClasses,
+  postButtonName = 'Post'
 }) {
   const [newComment, setNewComment] = useState(initialValue);
   const handleSubmit = e => {
@@ -31,7 +32,7 @@ export default function CommentForm({
         className={`flex justify-between w-[85%] mx-auto mt-[30px] ${footerClasses}`}>
         <Button
           addedclasses="text-md rounded-2xl w-[100px]"
-          content="Post"
+          content={postButtonName}
           disabled={loading}
           path="#"
           prefetch="true"
