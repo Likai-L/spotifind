@@ -1,6 +1,7 @@
 import {
   CREATECOMMENT,
   DELETECOMMENT,
+  LIKECOMMENT,
   UPDATECOMMENT
 } from 'public/constants/pathNames';
 import makeRequest from './makeRequest';
@@ -14,4 +15,7 @@ export function updateComment(data) {
 }
 export function deleteComment(data) {
   return makeRequest(DELETECOMMENT, { method: 'DELETE', data }); // data: {id}
+}
+export function toggleCommentLike(data) {
+  return makeRequest(LIKECOMMENT, { method: 'POST', data });
 }
