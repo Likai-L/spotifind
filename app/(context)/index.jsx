@@ -28,8 +28,8 @@ export function GlobalContextProvider(props) {
   const [searchResults, setSearchResults] = useState({});
 
   const [volume, setVolume] = useState({
-    volume: 0.25,
-    finalVolume: 0.25,
+    volume: 0.1,
+    finalVolume: 0.1,
     muted: false,
     isPlaying: false
   });
