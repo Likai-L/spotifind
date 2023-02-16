@@ -61,7 +61,14 @@ export default function Profile() {
                 );
               })
             ) : (
-              <Skeleton className="w-[200px] h-[200px] rounded-3xl" />
+              <>
+                <Skeleton className="w-[160px] h-[160px] rounded-3xl mr-[30px]" />
+                <Skeleton className="w-[160px] h-[160px] rounded-3xl mr-[30px]" />
+                <Skeleton className="w-[160px] h-[160px] rounded-3xl mr-[30px]" />
+                <Skeleton className="w-[160px] h-[160px] rounded-3xl mr-[30px]" />
+                <Skeleton className="w-[160px] h-[160px] rounded-3xl mr-[30px]" />
+                <Skeleton className="w-[160px] h-[160px] rounded-3xl mr-[30px]" />
+              </>
             )}
           </div>
         </Container>
