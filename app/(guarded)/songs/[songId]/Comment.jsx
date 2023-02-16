@@ -14,7 +14,7 @@ import CommentForm from './CommentForm';
 import IconButton from './IconButton';
 // eslint-disable-next-line import/no-cycle
 import CommentList from './CommentList';
-import { createComment } from '@/helpers/comments';
+import { createComment, updateComment } from '@/helpers/comments';
 import { useAsyncFn } from '@/hooks/useAsync';
 
 export default function Comment({
@@ -43,16 +43,23 @@ export default function Comment({
         setComments(prev => [comment, ...prev]);
       });
   };
-  const updateCommentFn = useAsyncFn(createComment);
+  const updateCommentFn = useAsyncFn(updateComment);
   const onUpdateComment = updatedContent => {
-    return createCommentFn
+    return updateCommentFn
       .execute({
         commentId: id,
         content: updatedContent
       })
-      .then(comment => {
-        setIsReplying(false);
-        setComments(prev => [comment, ...prev]);
+      .then(({ content: newContent, id: newId }) => {
+        setIsEditing(false);
+        setComments(prev => {
+          return prev.map(prevComment => {
+            if (prevComment.id === newId) {
+              return { ...prevComment, content: newContent };
+            }
+            return prevComment;
+          });
+        });
       });
   };
 
