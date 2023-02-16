@@ -34,6 +34,7 @@ export default async function createCommentHandler(req, res) {
     });
     res.status(200).json(comment);
   } catch (err) {
-    res.status(500).send('Database server error: please try again later');
+    console.log('error when updating a comment', err);
+    res.status(500).send(err);
   }
 }

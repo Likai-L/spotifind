@@ -9,7 +9,8 @@ export default function CommentForm({
   containerClasses,
   onSubmit,
   initialValue = '',
-  footerClasses
+  footerClasses,
+  postButtonName = 'Post'
 }) {
   const [newComment, setNewComment] = useState(initialValue);
   const handleSubmit = e => {
@@ -24,14 +25,14 @@ export default function CommentForm({
           autoFocus={autoFocus}
           onChange={e => setNewComment(e.target.value)}
           value={newComment}
-          className="bg-[transparent] w-[90%] h-[80%%] border-[none]  resize-none  focus:outline-0 focus:border-0 mt-[30px] mx-auto shadow-[none] scrollbar-hide"
+          className="bg-[transparent] w-[90%] h-[80%] border-[none]  resize-none  focus:outline-0 focus:border-0 mt-[30px] mx-auto shadow-[none] scrollbar-hide"
         />
       </Container>
       <div
         className={`flex justify-between w-[85%] mx-auto mt-[30px] ${footerClasses}`}>
         <Button
           addedclasses="text-md rounded-2xl w-[100px]"
-          content="Post"
+          content={postButtonName}
           disabled={loading}
           path="#"
           prefetch="true"
