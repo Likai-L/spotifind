@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { SONGS } from 'public/constants/pathNames';
+import AlbumCover from '../now-playing/AlbumCover';
 
 export default function SongCard({ track }) {
   const { uri, albumCoverUrl, trackName, artistName, albumName } = track;
@@ -10,11 +10,12 @@ export default function SongCard({ track }) {
       <div className="flex w-full h-full m-auto cursor-pointer">
         <div className="flex shrink-0 sticky max-w-1/5 max-h-5/5 aspect-square m-4 ml-6">
           {albumCoverUrl && (
-            <Image
+            <AlbumCover
               alt="album-cover"
               className="rounded-2xl cursor-pointer transition duration-200 ease-out hover:scale-105"
               height={200}
               src={albumCoverUrl}
+              uri={uri}
               width={200}
             />
           )}

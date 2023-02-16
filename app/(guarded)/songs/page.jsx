@@ -27,6 +27,7 @@ export default function Songs() {
     <m.div
       animate={{ opacity: 1 }}
       className="flex flex-col justify-center max-h-[90vh] h-[90vh] w-[80vw]"
+      exit={{ opacity: 0 }}
       initial={{ opacity: 0 }}
       transition={{ duration: 0.75, ease: 'easeOut' }}>
       <div className="flex justify-center pb-8">
