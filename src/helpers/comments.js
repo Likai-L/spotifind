@@ -6,5 +6,5 @@ export function createComment(data) {
 }
 
 export function updateComment(data) {
-  return makeRequest(UPDATECOMMENT, { method: 'PUT', data }); // data: {commentId, content, userUri}
+  return makeRequest(UPDATECOMMENT, { method: 'PUT', data }); // data: {commentId, content}
 }
