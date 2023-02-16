@@ -9,11 +9,11 @@ import {
 } from 'react-icons/fa';
 import formatDistance from 'date-fns/formatDistance';
 import Container from 'app/(container)/Container';
+import { useGlobalContext } from 'app/(context)';
 import CommentForm from './CommentForm';
 import IconButton from './IconButton';
 // eslint-disable-next-line import/no-cycle
 import CommentList from './CommentList';
-import { useGlobalContext } from 'app/(context)';
 import { createComment } from '@/helpers/comments';
 import { useAsyncFn } from '@/hooks/useAsync';
 
@@ -80,18 +80,22 @@ export default function Comment({
                 isActive={isReplying}
                 Icon={FaReply}
               />
-              <IconButton
-                aria-label="Edit"
-                color="text-blue-300"
-                onClick={() => setIsEditing(prev => !prev)}
-                isActive={isEditing}
-                Icon={FaEdit}
-              />
-              <IconButton
-                aria-label="Delete"
-                color="text-red-400"
-                Icon={FaTrash}
-              />
+              {author.spotifyUserUri === profile.uri && (
+                <>
+                  <IconButton
+                    aria-label="Edit"
+                    color="text-blue-300"
+                    onClick={() => setIsEditing(prev => !prev)}
+                    isActive={isEditing}
+                    Icon={FaEdit}
+                  />
+                  <IconButton
+                    aria-label="Delete"
+                    color="text-red-400"
+                    Icon={FaTrash}
+                  />
+                </>
+              )}
             </div>
           </div>
         </Container>
