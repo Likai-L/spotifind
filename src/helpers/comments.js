@@ -12,6 +12,6 @@ export function createComment(data) {
 export function updateComment(data) {
   return makeRequest(UPDATECOMMENT, { method: 'PUT', data }); // data: {commentId, content}
 }
-export function deleteComment(id) {
-  return makeRequest(DELETECOMMENT, { method: 'DELETE', data: { id } }); // data: {commentId, content}
+export function deleteComment(data) {
+  return makeRequest(DELETECOMMENT, { method: 'DELETE', data }); // data: {id}
 }
