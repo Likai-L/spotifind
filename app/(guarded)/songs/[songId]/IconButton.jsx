@@ -15,9 +15,9 @@ export default function IconButton({
       className={`flex justify-evenly items-center mr-4 ${position} ${
         liked ? 'text-pink-300' : ''
       } ${color ? `hover:${color}` : ''} ${isActive ? color : ''}`}
+      disabled={disabled}
       onClick={onClick}
-      type="button"
-      disabled={disabled}>
+      type="button">
       <span className={`${children != null ? 'mr-[5px]' : ''} ${hidden}`}>
         <Icon />
       </span>
