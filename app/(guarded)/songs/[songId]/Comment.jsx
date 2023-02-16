@@ -43,6 +43,18 @@ export default function Comment({
         setComments(prev => [comment, ...prev]);
       });
   };
+  const updateCommentFn = useAsyncFn(createComment);
+  const onUpdateComment = updatedContent => {
+    return createCommentFn
+      .execute({
+        commentId: id,
+        content: updatedContent
+      })
+      .then(comment => {
+        setIsReplying(false);
+        setComments(prev => [comment, ...prev]);
+      });
+  };
 
   return (
     <>
@@ -77,7 +89,12 @@ export default function Comment({
               <IconButton
                 aria-label={isReplying ? 'Cancel Replying' : 'Reply'}
                 color="text-green-300"
-                onClick={() => setIsReplying(prev => !prev)}
+                onClick={() => {
+                  if (!isReplying) {
+                    setIsEditing(false);
+                  }
+                  setIsReplying(prev => !prev);
+                }}
                 isActive={isReplying}
                 Icon={FaReply}
               />
@@ -86,7 +103,12 @@ export default function Comment({
                   <IconButton
                     aria-label={isEditing ? 'Cancel Editing' : 'Edit'}
                     color="text-blue-300"
-                    onClick={() => setIsEditing(prev => !prev)}
+                    onClick={() => {
+                      if (!isEditing) {
+                        setIsReplying(false);
+                      }
+                      setIsEditing(prev => !prev);
+                    }}
                     isActive={isEditing}
                     Icon={FaEdit}
                   />
@@ -101,22 +123,25 @@ export default function Comment({
           </div>
         </Container>
       </div>
-      {isReplying && (
+      {isEditing && (
         <div className="">
           <CommentForm
             autoFocus
+            postButtonName="Update"
             containerClasses="h-22 w-[calc(100%-30px)] bg-[#2b2133] mt-3 mx-auto"
-            error={createCommentFn.error}
+            error={updateCommentFn.error}
             footerClasses="mt-3"
-            loading={createCommentFn.loading}
-            onSubmit={onReplyComment}
+            loading={updateCommentFn.loading}
+            onSubmit={onUpdateComment}
+            initialValue={content}
           />
         </div>
       )}
 
-      {isEditing && (
+      {isReplying && (
         <div className="">
           <CommentForm
+            postButtonName="Reply"
             autoFocus
             containerClasses="h-22 w-[calc(100%-30px)] bg-[#2b2133] mt-3 mx-auto"
             error={createCommentFn.error}
