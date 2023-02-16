@@ -15,7 +15,7 @@ export default function Button(props) {
 
   // Will take in addedClasses prop, overwriting any of the same class types set by default here.
   const buttonClasses = classNames(
-    'btn bg-button text-primary font-primary font-bold rounded-2xl button-hover-pulse text-xl py-2 px-4',
+    'btn bg-button text-primary font-primary font-bold rounded-2xl button-hover-pulse text-xl py-2 px-4 shadow-[0_0.2rem_0.3rem_0.1rem_rgb(0,0,0,0.2)]',
     addedclasses,
     disabled ? 'opacity-40' : ''
   );
