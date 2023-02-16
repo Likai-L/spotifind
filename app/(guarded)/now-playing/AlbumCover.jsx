@@ -9,7 +9,7 @@ export default function AlbumCover({ src, width, height, classNames, uri }) {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0 }}
         initial={{ opacity: 0, scale: 0.5 }}
-        transition={{ duration: 0.1, ease: [0, 0.71, 0.2, 1.01] }}>
+        transition={{ duration: 0.4, ease: [0, 0.71, 0.2, 1.01] }}>
         <Link className="flex shrink-0" href={`/songs/${uri}`}>
           <Image
             alt="album-cover"
