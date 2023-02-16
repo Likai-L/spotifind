@@ -6,6 +6,7 @@ import Button from 'app/(button)/Button';
 import { PEOPLE, SONGS } from 'public/constants/pathNames';
 import { useGlobalContext } from 'app/(context)';
 import classNames from 'classnames';
+import AlbumCover from 'app/(guarded)/now-playing/AlbumCover';
 import LyricsContainer from './LyricsContainer';
 import CommentsContainer from './CommentsContainer';
 import CommentForm from './CommentForm';
@@ -102,11 +103,13 @@ export default function SongContainer({ track }) {
         <div className="flex flex-col justify-start items-center w-5/12 h-full min-h-[800px] mt-[60px]">
           {albumCoverUrl && (
             <>
-              <Image
+              <AlbumCover
                 alt="album artwork"
-                className="rounded-3xl m-4"
+                classNames="rounded-3xl m-4"
                 height={320}
+                onClick={e => e.preventDefault()}
                 src={albumCoverUrl}
+                uri={uri}
                 width={320}
               />
               <div className="flex justify-evenly w-3/4">

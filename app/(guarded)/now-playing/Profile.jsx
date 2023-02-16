@@ -26,7 +26,7 @@ export default function Profile() {
           {profile.pfp ? (
             <Image
               alt="pfp"
-              className="rounded-3xl"
+              className="rounded-3xl drop-shadow-[0_0.2rem_0.3rem_rgb(0,0,0,0.6)]"
               height={200}
               src={profile.pfp}
               width={200}
