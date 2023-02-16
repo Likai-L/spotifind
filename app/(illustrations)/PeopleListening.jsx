@@ -1,7 +1,7 @@
 export default function PeopleListening({ ...rest }) {
   return (
     <svg
-      className="w-[600px]"
+      className="w-[600px] animate__animated animate__bounceInRight"
       fill="none"
       viewBox="0 0 575 428"
       xmlns="http://www.w3.org/2000/svg"

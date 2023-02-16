@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import 'animate.css';
 import Image from 'next/image';
 import LoginButton from 'app/(button)/LoginButton';
 import PeopleListening from 'app/(illustrations)/PeopleListening';
@@ -10,28 +11,28 @@ import logo from '../public/images/logo.png';
 
 export default function Landing() {
   return (
-    <div className="bg-landing h-screen overflow-hidden">
+    <div className="fade-in bg-landing h-screen overflow-hidden">
       <div className="flex flex-row justify-center">
         <div className="mr-24">
-          <div className="text-center text-white text-5xl font-bold mt-32 font-title">
+          <div className="fade-in-down text-center text-white text-5xl font-bold mt-32 font-title">
             <p>Find Your Music Soul Mates</p>
             <div className="mt-6">
               <span>With</span>
               <Image
                 alt="Spotifind logo"
-                className="inline-block w-20 mx-2"
+                className="inline-block w-20 mx-2 animate-pulse"
                 src={logo}
               />
-              <span className="font-primary">SpotiFind</span>
+              <span className="font-primary text-6xl">SpotiFind</span>
             </div>
           </div>
-          <div className="mt-8 flex justify-center">
+          <div className="animate__animated animate__bounceIn animate__slow-2s mt-8 flex justify-center">
             <LoginButton />
           </div>
         </div>
         <PeopleListening />
       </div>
-      <div className="flex justify-evenly">
+      <div className="animate__animated animate__bounceInUp flex justify-evenly">
         <div className="text-center text-white text-2xl font-bold w-80">
           <Phone />
           <p className="mt-4 font-title">Find Your People</p>
