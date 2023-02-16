@@ -32,7 +32,7 @@ export default async function createCommentHandler(req, res) {
       data: commentData,
       select: COMMENT_SELECT_FIELD
     });
-    res.status(200).json(comment);
+    res.status(200).json({ ...comment, likeCount: 0, likedByMe: false });
   } catch (err) {
     console.log('error when updating a comment', err);
     res.status(500).send(err);
