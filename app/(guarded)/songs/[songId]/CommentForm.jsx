@@ -24,7 +24,7 @@ export default function CommentForm({
           autoFocus={autoFocus}
           onChange={e => setNewComment(e.target.value)}
           value={newComment}
-          className="bg-[transparent] w-[90%] h-[80%%] border-[none]  resize-none  focus:outline-0 focus:border-0 mt-[30px] mx-auto shadow-[none] scrollbar-hide"
+          className="bg-[transparent] w-[90%] h-[80%] border-[none]  resize-none  focus:outline-0 focus:border-0 mt-[30px] mx-auto shadow-[none] scrollbar-hide"
         />
       </Container>
       <div
