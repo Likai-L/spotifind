@@ -12,7 +12,7 @@ export default async function updateCommentHandler(req, res) {
     const comment = await prisma.comment.update({
       where: { id: commentId },
       data: { content },
-      select: { content: true }
+      select: { content: true, id: true }
     });
     res.status(200).json(comment);
   } catch (err) {
