@@ -16,8 +16,9 @@ import IconButton from './IconButton';
 import CommentList from './CommentList';
 import {
   createComment,
+  deleteComment,
   updateComment,
-  deleteComment
+  toggleCommentLike
 } from '@/helpers/comments';
 import { useAsyncFn } from '@/hooks/useAsync';
 
@@ -26,7 +27,9 @@ export default function Comment({
   content,
   createdAt,
   id,
-  getReplies
+  getReplies,
+  likeCount,
+  likedByMe
 }) {
   const childComments = getReplies(id);
   const { setComments, displayTrack, profile } = useGlobalContext();
@@ -76,6 +79,37 @@ export default function Comment({
     });
   };
 
+  const toggleLocalCommentLike = (commentId, addLike) => {
+    setComments(prev => {
+      return prev.map(comment => {
+        if (comment.id !== commentId) return comment;
+        if (addLike) {
+          return {
+            ...comment,
+            likeCount: comment.likeCount + 1,
+            likedByMe: true
+          };
+        }
+        return {
+          ...comment,
+          likeCount: comment.likeCount - 1,
+          likedByMe: false
+        };
+      });
+    });
+  };
+  const toggleCommentLikeFn = useAsyncFn(toggleCommentLike);
+  const onToggleCommentLike = () => {
+    return toggleCommentLikeFn
+      .execute({
+        userUri: profile.uri,
+        commentId: id
+      })
+      .then(({ addLike }) => {
+        toggleLocalCommentLike(id, addLike);
+      });
+  };
+
   return (
     <>
       <div className=" w-[calc(100%-30px)] flex justify-center mt-[20px] mx-auto">
@@ -104,7 +138,12 @@ export default function Comment({
               <IconButton
                 aria-label="Like"
                 color="text-pink-300"
-                Icon={FaHeart}></IconButton>
+                loading={toggleCommentLikeFn.loading}
+                onClick={onToggleCommentLike}
+                Icon={FaHeart}
+                liked={likedByMe}>
+                {likeCount > 0 ? likeCount : 0}
+              </IconButton>
 
               <IconButton
                 aria-label={isReplying ? 'Cancel Replying' : 'Reply'}
