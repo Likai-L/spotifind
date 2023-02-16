@@ -52,7 +52,7 @@ export default function Player() {
         />
         <div className="text-center text-xl font-semibold">
           <p className="text-2xl mt-[20px] font-bold whitespace-pre-wrap">
-            {profile.playerState.name}
+            {profile.playerState.name || 'No song currently playing'}
           </p>
           <p className="mt-[20px] text-secondary">
             {profile.playerState.artist || ''}
