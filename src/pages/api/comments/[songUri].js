@@ -21,8 +21,10 @@ export default async function songCommentsHandler(req, res) {
   });
 
   const commentsWithLikes = comments.map(comment => {
+    const { _count, ...commentFields } = comment;
     return {
-      ...comment,
+      ...commentFields,
+      likeCount: _count.likes,
       likedByMe: likes.find(like => like.commentId === comment.id)
     };
   });

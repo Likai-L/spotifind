@@ -18,6 +18,7 @@ const COMMENTS = '/api/comments';
 const CREATECOMMENT = '/api/comments/create';
 const UPDATECOMMENT = '/api/comments/update';
 const DELETECOMMENT = '/api/comments/delete';
+const LIKECOMMENT = '/api/comments/like';
 
 export {
   LANDING,
@@ -39,5 +40,6 @@ export {
   COMMENTS,
   CREATECOMMENT,
   UPDATECOMMENT,
-  DELETECOMMENT
+  DELETECOMMENT,
+  LIKECOMMENT
 };

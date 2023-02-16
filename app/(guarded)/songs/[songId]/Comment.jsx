@@ -16,8 +16,9 @@ import IconButton from './IconButton';
 import CommentList from './CommentList';
 import {
   createComment,
+  deleteComment,
   updateComment,
-  deleteComment
+  toggleCommentLike
 } from '@/helpers/comments';
 import { useAsyncFn } from '@/hooks/useAsync';
 
@@ -26,7 +27,9 @@ export default function Comment({
   content,
   createdAt,
   id,
-  getReplies
+  getReplies,
+  likeCount,
+  likedByMe
 }) {
   const childComments = getReplies(id);
   const { setComments, displayTrack, profile } = useGlobalContext();
@@ -76,6 +79,37 @@ export default function Comment({
     });
   };
 
+  const toggleLocalCommentLike = (commentId, addLike) => {
+    setComments(prev => {
+      return prev.map(comment => {
+        if (comment.id !== commentId) return comment;
+        if (addLike) {
+          return {
+            ...comment,
+            likeCount: comment.likeCount + 1,
+            likedByMe: true
+          };
+        }
+        return {
+          ...comment,
+          likeCount: comment.likeCount - 1,
+          likedByMe: false
+        };
+      });
+    });
+  };
+  const toggleCommentLikeFn = useAsyncFn(toggleCommentLike);
+  const onToggleCommentLike = () => {
+    return toggleCommentLikeFn
+      .execute({
+        userUri: profile.uri,
+        commentId: id
+      })
+      .then(({ addLike }) => {
+        toggleLocalCommentLike(id, addLike);
+      });
+  };
+
   return (
     <>
       <div className=" w-[calc(100%-30px)] flex justify-center mt-[20px] mx-auto">
@@ -104,40 +138,45 @@ export default function Comment({
               <IconButton
                 aria-label="Like"
                 color="text-pink-300"
-                Icon={FaHeart}></IconButton>
+                Icon={FaHeart}
+                liked={likedByMe}
+                loading={toggleCommentLikeFn.loading}
+                onClick={onToggleCommentLike}>
+                {likeCount > 0 ? likeCount : 0}
+              </IconButton>
 
               <IconButton
                 aria-label={isReplying ? 'Cancel Replying' : 'Reply'}
                 color="text-green-300"
+                Icon={FaReply}
+                isActive={isReplying}
                 onClick={() => {
                   if (!isReplying) {
                     setIsEditing(false);
                   }
                   setIsReplying(prev => !prev);
                 }}
-                isActive={isReplying}
-                Icon={FaReply}
               />
               {author.spotifyUserUri === profile.uri && (
                 <>
                   <IconButton
                     aria-label={isEditing ? 'Cancel Editing' : 'Edit'}
                     color="text-blue-300"
+                    Icon={FaEdit}
+                    isActive={isEditing}
                     onClick={() => {
                       if (!isEditing) {
                         setIsReplying(false);
                       }
                       setIsEditing(prev => !prev);
                     }}
-                    isActive={isEditing}
-                    Icon={FaEdit}
                   />
                   <IconButton
                     aria-label="Delete"
                     color="text-red-400"
+                    disabled={deleteCommentFn.loading}
                     Icon={FaTrash}
                     onClick={onDeleteComment}
-                    disabled={deleteCommentFn.loading}
                   />
                 </>
               )}
@@ -149,13 +188,13 @@ export default function Comment({
         <div className="">
           <CommentForm
             autoFocus
-            postButtonName="Update"
             containerClasses="h-22 w-[calc(100%-30px)] bg-[#2b2133] mt-3 mx-auto"
             error={updateCommentFn.error}
             footerClasses="mt-3"
+            initialValue={content}
             loading={updateCommentFn.loading}
             onSubmit={onUpdateComment}
-            initialValue={content}
+            postButtonName="Update"
           />
         </div>
       )}
