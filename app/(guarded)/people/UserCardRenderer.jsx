@@ -44,7 +44,7 @@ export default function UserCardRenderer({ track }) {
             Number(userCard.latitude),
             Number(userCard.longitude)
           )
-        )} km away`}
+        ).toLocaleString('en-US')} km away`}
         DmClickHandler={e => {
           e.preventDefault;
           createDirectChat(profile, userCard.username);
