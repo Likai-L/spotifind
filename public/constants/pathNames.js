@@ -17,6 +17,7 @@ const FINDUSERSBYSONG = '/api/usersBySong';
 const COMMENTS = '/api/comments';
 const CREATECOMMENT = '/api/comments/create';
 const UPDATECOMMENT = '/api/comments/update';
+const DELETECOMMENT = '/api/comments/delete';
 
 export {
   LANDING,
@@ -37,5 +38,6 @@ export {
   FINDUSERSBYSONG,
   COMMENTS,
   CREATECOMMENT,
-  UPDATECOMMENT
+  UPDATECOMMENT,
+  DELETECOMMENT
 };

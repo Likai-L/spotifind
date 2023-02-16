@@ -6,6 +6,7 @@ export default function IconButton({
   color,
   children,
   position,
+  disabled,
   ...props
 }) {
   return (
@@ -14,7 +15,8 @@ export default function IconButton({
         color ? `hover:${color}` : ''
       } ${isActive ? color : ''}`}
       onClick={onClick}
-      type="button">
+      type="button"
+      disabled={disabled}>
       <span className={`${children ? 'mr-1' : ''} ${hidden}`}>
         <Icon />
       </span>
