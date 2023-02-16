@@ -7,12 +7,14 @@ export default function useGeoLocation() {
   const { latitude, setLatitude, longitude, setLongitude, profile } =
     useGlobalContext();
 
-  navigator.geolocation.getCurrentPosition(position => {
-    setLatitude(position.coords.latitude);
-    setLongitude(position.coords.longitude);
-  });
+  if (!latitude) {
+    navigator.geolocation.getCurrentPosition(position => {
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    });
+  }
 
-  console.log('latitude:', latitude, 'longitude:', longitude);
+  // console.log('latitude:', latitude, 'longitude:', longitude);
 
   useEffect(() => {
     if (

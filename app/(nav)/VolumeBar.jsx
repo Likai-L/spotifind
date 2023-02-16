@@ -12,13 +12,13 @@ export default function VolumeBar() {
     e.preventDefault();
     setVolume(prev => ({ ...prev, muted: !prev.muted }));
 
-    // Set back to default value of 0.25 on click if bar was dragged to 0.
+    // Set back to default value of 0.1 on click if bar was dragged to 0.
     if (volume.volume === 0) {
       setVolume(prev => ({
         ...prev,
         muted: false,
-        volume: 0.25,
-        finalVolume: 0.25
+        volume: 0.1,
+        finalVolume: 0.1
       }));
     }
   };

@@ -8,11 +8,10 @@ import { useGlobalContext } from 'app/(context)';
 import UserCard from './UserCard';
 import Map from './(map)/Map';
 import getDistance from '@/helpers/getDistance';
-// import getUsersBySong from '@/helpers/getUsersBySong';
-// import createDirectChat from '@/helpers/createDirectChat';
+import createDirectChat from '@/helpers/createDirectChat';
 
 export default function UserCardRenderer({ track }) {
-  const { profile, displayTrack } = useGlobalContext();
+  const { profile, displayTrack, longitude, latitude } = useGlobalContext();
 
   const [showMap, setShowMap] = useState(false);
   const { uri } = track;
@@ -34,42 +33,21 @@ export default function UserCardRenderer({ track }) {
     const userCardsFiltered = userCards.filter(
       user => user.spotifyUserUri !== profile.uri
     );
-    const currentUserFiltered = userCards.filter(
-      user => user.spotifyUserUri === profile.uri
-    );
-    console.log('currentUserFiltered', currentUserFiltered);
     console.log('userCardsFiltered', userCardsFiltered);
     const userCardsComponent = userCardsFiltered.map(userCard => (
       <UserCard
         alt={`${userCard.username}'s profile photo`}
         distance={`${Math.round(
           getDistance(
-            Number(currentUserFiltered[0].latitude),
-            Number(currentUserFiltered[0].longitude),
+            latitude,
+            longitude,
             Number(userCard.latitude),
             Number(userCard.longitude)
           )
         )} km away`}
-        DmClickHandler={async e => {
+        DmClickHandler={e => {
           e.preventDefault;
-          const authObject = {
-            'Project-ID': 'f06a82ab-ee91-4d7d-9b6d-90b79d3392ca',
-            'User-Name': currentUserFiltered[0].username,
-            'User-Secret': currentUserFiltered[0].spotifyUserUri
-          };
-          try {
-            await axios.put(
-              'https://api.chatengine.io/chats/',
-              {
-                usernames: [currentUserFiltered[0].username, userCard.username],
-                title: userCard.username,
-                is_direct_chat: true
-              },
-              { headers: authObject }
-            );
-          } catch (err) {
-            console.log('somethign went wrong as usual', err);
-          }
+          createDirectChat(profile, userCard.username);
         }}
         image={userCard.profilePictureUrl}
         key={userCard.spotifyUserUri}
@@ -94,9 +72,7 @@ export default function UserCardRenderer({ track }) {
         </div>
 
         <div className="flex flex-row h-3/4 w-full m-auto overflow-x-auto overflow-y-hidden scrollbar-hide items-center">
-          {showMap ? (
-            <Map currentUser={currentUserFiltered} users={userCardsFiltered} />
-          ) : null}
+          {showMap ? <Map users={userCardsFiltered} /> : null}
           {userCardsComponent}
         </div>
       </div>
