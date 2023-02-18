@@ -1,6 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SpotiFind
+
+Created by [Likai Liu](https://github.com/Likai-L), [Justin Bennett](https://github.com/CorgiOnNeptune), [Lars Yaeger](https://github.com/larsyaeger).
+
+SpotiFind is a geosocial music application for Spotify users to find, interact and make friends with people who have similar music tastes.
+
+With the Spotify Web API, SpotiFind shares your liked history and currently playing track on behalf of you, so that you can find and be found by people who liked or are listening to the same songs as you.
+
+Discuss, chat and enjoy music together with like-minded people on SpotiFind!
+
+## Tech Stacks
+
+- Main framework: Next.js
+- Database: PostgreSQL, Prisma.
+- Styling: Tailwind CSS
+- Other: Socket.io
 
 ## Getting Started
+
+## Final Product
+
+## Feature Demos
 
 First, run the development server:
 
